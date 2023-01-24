@@ -1,12 +1,12 @@
-import Link from "next/link";
+import MainContainer from "../components/mainLayout/mainLayout";
 
 const Index = () => {
     return (
-        <div>
-            <Link href='/'>Главная</Link>
-            <Link href='/doors'>двери</Link>
-            <h1>Главная страница</h1>
-        </div>
+        <MainContainer>
+            <section>
+                <h1>Главная страница</h1>
+            </section>
+        </MainContainer>
     );
 };
 

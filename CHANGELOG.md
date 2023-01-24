@@ -4,4 +4,4 @@
 
 - Added SCSS support
 - Added basic routing
-- 
+- Added TypeScript

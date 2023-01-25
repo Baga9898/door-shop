@@ -7,3 +7,4 @@
 - Added TypeScript
 - Added basic SEO
 - Added custom 404 page
+- Added header

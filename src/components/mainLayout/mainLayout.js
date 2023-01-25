@@ -1,21 +1,16 @@
-
-import Link from "next/link";
 import CustomHead from "../head/head";
+import Navigation from "../navigation/navigation";
 
 import styles from './mainLayout.module.scss';
 
-const routes = [
-    {href: '/', text: 'Главная'},
-    {href: '/doors', text: 'Двери'},
-];
-
 const MainContainer = ({ children, keywords, title }) => {
     return (
-        <>
+        <div className={styles.layout}>
             <CustomHead keywords={keywords} title={title} />
-            {routes.map(route => <Link className={styles.check} key={route.href} href={route.href}>{route.text}</Link>)}
+            <Navigation />
+            <h1>{title}</h1>
             { children }
-        </>
+        </div>
     );
 };
 

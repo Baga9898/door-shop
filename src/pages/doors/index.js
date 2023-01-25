@@ -1,6 +1,6 @@
 import Link          from "next/link";
 
-import MainContainer from "../components/mainLayout/mainLayout";
+import MainContainer from "../../components/mainLayout/mainLayout";
 
 export const getStaticProps = async () => {
     const response = await fetch(`https://63cf9f8d109824043782c6e2.mockapi.io/doors-mock/doors`);
@@ -13,8 +13,7 @@ export const getStaticProps = async () => {
 
 const Doors = ({ doors }) => {
     return (
-        <MainContainer keywords="check, 123">
-            <h1>Список дверей</h1>
+        <MainContainer keywords="" title="Список дверей">
             <ul>
                 {doors.map(door => (
                     <li>

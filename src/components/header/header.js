@@ -1,13 +1,14 @@
-import Navigation from "../navigation/navigation";
+import HeaderActions   from '../headerActions/headerActions';
+import Navigation      from '../navigation/navigation';
 
-import styles from './header.module.scss';
+import styles          from './header.module.scss';
 
 const Header = () => {
     return (
-        <header className={styles}>
+        <header className={styles.wrapper}>
             <div>Logo here</div>
             <Navigation />
-            <div>action icons</div>
+            <HeaderActions />
         </header>
     );
 };

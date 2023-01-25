@@ -12,7 +12,7 @@ const font = Montserrat({
 
 const MainContainer = ({ children, keywords, title }) => {
     return (
-        <div className={styles.layout} style={font.style}>
+        <div className={styles.container} style={font.style}>
             <CustomHead keywords={keywords} title={title} />
             <Header />
             <h1>{title}</h1>

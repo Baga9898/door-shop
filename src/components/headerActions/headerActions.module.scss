@@ -1,0 +1,20 @@
+.actions {
+    display: flex;
+    align-items: center;
+
+    svg {
+        width: 20px;
+        height: 20px;
+        margin: 0 5px;
+        cursor: pointer;
+
+        path {
+            transition: 0.5s;
+            fill: #d9c9bdcf;
+
+            &:hover {
+                fill: rgb(166, 138, 102);
+            }
+        }
+    }
+}

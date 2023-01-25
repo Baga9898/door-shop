@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
 
 const Doors = ({ doors }) => {
     return (
-        <MainContainer>
+        <MainContainer keywords="check, 123">
             <h1>Список дверей</h1>
             <ul>
                 {doors.map(door => (

@@ -1,4 +1,4 @@
 export const routes = [
     {href: '/', text: 'Главная'},
-    {href: '/doors', text: 'Двери'},
+    {href: '/doors', text: 'Каталог'},
 ];

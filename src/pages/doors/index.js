@@ -16,8 +16,8 @@ const Doors = ({ doors }) => {
         <MainContainer keywords="" title="Список дверей">
             <ul>
                 {doors.map(door => (
-                    <li>
-                        <Link key={door.id} href={`/doors/${door.id}`}>{door.name}</Link>
+                    <li key={door.id}>
+                        <Link href={`/doors/${door.id}`}>{door.name}</Link>
                     </li>
                 ))}
             </ul>

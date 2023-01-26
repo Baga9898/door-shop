@@ -10,10 +10,12 @@
 
         path {
             transition: 0.5s;
-            fill: #d9c9bdcf;
+            fill: #e2e2e2;
+        }
 
-            &:hover {
-                fill: rgb(166, 138, 102);
+        &:hover {
+            path {
+                fill: #000;
             }
         }
     }

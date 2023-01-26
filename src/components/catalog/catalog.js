@@ -1,5 +1,5 @@
-import styles   from './catalog.module.scss';
-import CatalogItem from './catalogItem/catalogItem';
+import styles        from './catalog.module.scss';
+import CatalogItem   from './catalogItem/catalogItem';
 
 const Catalog = ({ doors }) => {
     return (

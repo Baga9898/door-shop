@@ -1,5 +1,5 @@
-import Catalog              from "../catalog/catalog";
 import { latestArrivals }   from "../../texts";
+import Catalog              from "../catalog/catalog";
 
 import styles               from './newest.module.scss';
 

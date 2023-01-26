@@ -5,15 +5,16 @@ import {
 }                            from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon }   from '@fortawesome/react-fontawesome';
 
+import * as INTL             from '../../texts';
+
 import styles                from './headerActions.module.scss';
 
 const HeaderActions = () => {
     return (
         <div className={styles.actions}> 
-            {/* Все текстовки вынести в файлик текстовок */}
-            <FontAwesomeIcon icon={faUser} title='Вход/Выход' />
-            <FontAwesomeIcon icon={faPhone} title='Контакты' />
-            <FontAwesomeIcon icon={faCartShopping} title='Корзина' />
+            <FontAwesomeIcon icon={faUser} title={INTL.logInOut} />
+            <FontAwesomeIcon icon={faPhone} title={INTL.contacts} />
+            <FontAwesomeIcon icon={faCartShopping} title={INTL.cart} />
         </div>
     )
 }

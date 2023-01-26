@@ -4,6 +4,7 @@ import Header     from "../header/header";
 import { Montserrat } from '@next/font/google';
 
 import styles     from './mainLayout.module.scss';
+import Footer from "../footer/footer";
 
 const font = Montserrat({
     subsets: ['cyrillic'],
@@ -17,6 +18,7 @@ const MainContainer = ({ children, keywords, title }) => {
             <Header />
             <h1>{title}</h1>
             { children }
+            <Footer />
         </div>
     );
 };

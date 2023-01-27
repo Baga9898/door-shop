@@ -1,18 +1,24 @@
 .contacts {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
 
     .phone {
-        margin-bottom: 5px;
-        font-size: 24px;
+        margin-bottom: 10px;
+        font-size: 22px;
         font-weight: 600;
+        color: #c4c4c4;
+        transition: 0.5s;
     }
     
     .mail {
         font-size: 16px;
         color: #c4c4c4;
         transition: 0.5s;
+    }
+
+    .phone,
+    .mail {
 
         &:hover {
             color: #000;

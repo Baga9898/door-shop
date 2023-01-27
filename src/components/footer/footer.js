@@ -1,13 +1,15 @@
-import Leftside    from './leftside/leftside';
-import Rightside   from './rightside/rightside';
+import Contacts   from '../contacts/contacts';
+import Copyright from '../copyright/copyright';
+import Social     from '../social/social';
 
-import styles      from './footer.module.scss';
+import styles     from './footer.module.scss';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <Leftside />
-      <Rightside />
+      <Contacts />
+      <Social />
+      <Copyright />
     </footer>
   )
 }

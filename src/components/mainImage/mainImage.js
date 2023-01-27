@@ -18,7 +18,7 @@ const MainImage = () => {
                 height={600}
             />
             <Link href={doorsRoute}>
-                <button>{INTL.catalog}</button>
+                <button>{INTL.catalogButton}</button>
             </Link>
         </div>
     )

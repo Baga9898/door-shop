@@ -1,10 +1,10 @@
-import CustomHead from "../head/head";
-import Header     from "../header/header";
+import { Montserrat }   from '@next/font/google';
 
-import { Montserrat } from '@next/font/google';
+import CustomHead       from "../head/head";
+import Footer           from "../footer/footer";
+import Header           from "../header/header";
 
-import styles     from './mainLayout.module.scss';
-import Footer from "../footer/footer";
+import styles           from './mainLayout.module.scss';
 
 const font = Montserrat({
     subsets: ['cyrillic'],
@@ -16,7 +16,7 @@ const MainContainer = ({ children, keywords, title }) => {
         <div className={styles.container} style={font.style}>
             <CustomHead keywords={keywords} title={title} />
             <Header />
-            <h1>{title}</h1>
+            {/* {title && <h1>{title}</h1>} */}
             { children }
             <Footer />
         </div>

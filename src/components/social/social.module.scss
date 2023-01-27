@@ -1,0 +1,23 @@
+.social {
+    margin-top: 10px;
+    display: flex;
+    justify-content: end;
+    
+    svg {
+        width: 35px;
+        height: 35px;
+        margin: 0 5px;
+        cursor: pointer;
+
+        path {
+            transition: 0.5s;
+            fill: #e2e2e2;
+        }
+
+        &:hover {
+            path {
+                fill: #000;
+            }
+        }
+    }
+}

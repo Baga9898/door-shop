@@ -1,15 +1,13 @@
-import Logo from '../logo/logo';
-import styles from './footer.module.scss';
+import Leftside    from './leftside/leftside';
+import Rightside   from './rightside/rightside';
+
+import styles      from './footer.module.scss';
 
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div>
-        <Logo />
-      </div>
-      <div>
-
-      </div>
+      <Leftside />
+      <Rightside />
     </footer>
   )
 }

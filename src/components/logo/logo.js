@@ -9,7 +9,7 @@ const Logo = () => {
             <Image
                 src='/assets/logo-example.png'
                 width={120}
-                height={120}
+                height={40}
             />
         </Link>
     );

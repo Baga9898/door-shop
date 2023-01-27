@@ -5,7 +5,7 @@ const CustomHead = ({ children, keywords, title }) => {
     <Head>
         <meta keywords={`двери, doors, ${keywords}`}></meta>
         <title>{title}</title>
-        <link rel="shortcut icon" href="/assets/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
         {children}
     </Head>
   )

@@ -5,7 +5,7 @@ const Catalog = ({ doors }) => {
     return (
         <div className={styles.catalog}>
             {doors.map(door => (
-                <CatalogItem door={door}/>
+                <CatalogItem key={door.id} door={door}/>
             ))}
         </div>
     );

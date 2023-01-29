@@ -14,6 +14,7 @@ const MainImage = () => {
             <Image
                 src='/assets/main-screen-door.jpg'
                 alt='door main image'
+                priority={1}
                 width={1200}
                 height={600}
             />

@@ -1,15 +1,16 @@
-// import { useDispatch, useSelector }      from 'react-redux';
+import { useDispatch, useSelector }      from 'react-redux';
 import { useRef, useState, useEffect }   from 'react';
 
+import { setSortMode }                   from '../../../redux/slices/catalogSlice';
 import * as MODES                        from './selectModes';
 
-import styles from './sortSelect.module.scss';
+import styles                            from './sortSelect.module.scss';
 
 const SortSelect = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false);
-    // const currentItem = useSelector(state => state.warehouse.mode);
+    const currentSortMode = useSelector(state => state.catalog.sortMode);
     const selectModeRef = useRef();
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (!menuIsVisible) return;
@@ -23,24 +24,24 @@ const SortSelect = () => {
         return () => window.removeEventListener("click", handleClick);
       }, [menuIsVisible]);
 
-    // const setMode = (item) => {
-    //     dispatch({ type: 'SET_MODE', payload: item})
-    // }
+    const setMode = (item) => {
+        dispatch(setSortMode(item));
+    };
 
     const showMode = () => {
         setMenuIsVisible(!menuIsVisible);
-    }
+    };
 
     return (
         <div ref={selectModeRef} className={menuIsVisible ? styles.modeSelectWrapperOpen : styles.modeSelectWrapper} onClick={showMode}>
-            <p>Сортировка: <span>{MODES.allModes[0]}</span></p>
+            <p>Сортировка: <span>{currentSortMode}</span></p>
             <ul>
                 {MODES.allModes.map(item => (
                     <li key={item} onClick={() => setMode(item)}>{item}</li>
                 ))}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default SortSelect;

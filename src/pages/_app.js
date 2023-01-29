@@ -2,7 +2,6 @@ import { useRouter }             from 'next/router';
 import { useState, useEffect }   from 'react';
 
 import Loader                    from '../components/shared/loader/loader';
-import MainContainer             from '../components/mainLayout/mainLayout';
 
 import '../styles/global.scss';
 

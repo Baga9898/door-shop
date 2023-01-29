@@ -10,3 +10,5 @@
 - Added layout
 - Added cart page
 - Added page to page loading transition
+- Added highlighting current link
+- Added check for existence of paths

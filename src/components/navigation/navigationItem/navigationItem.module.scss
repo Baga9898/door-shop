@@ -1,0 +1,23 @@
+.link {
+
+    &Active,
+    a {
+        margin: 0 10px;
+        font-size: 16px;
+        text-transform: uppercase;
+        color: #c4c4c4;
+        transition: 0.5s;
+        
+    }
+
+    &Active {
+        color: #000;
+    }
+
+    a {
+        
+        &:hover {
+            color: #000;
+        }
+    }
+}

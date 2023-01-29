@@ -2,20 +2,5 @@
 
     ul {
         display: flex;
-
-        li {
-            
-            a {
-                margin: 0 10px;
-                font-size: 16px;
-                text-transform: uppercase;
-                color: #c4c4c4;
-                transition: 0.5s;
-
-                &:hover {
-                    color: #000;
-                }
-            }
-        }
     }
 }

@@ -7,4 +7,6 @@
 - Added TypeScript
 - Added basic SEO
 - Added custom 404 page
-- Added header
+- Added layout
+- Added cart page
+- Added page to page loading transition

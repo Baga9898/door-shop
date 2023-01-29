@@ -1,5 +1,3 @@
- import { useRouter } from "next/router";
-
 import MainContainer from "../../components/mainLayout/mainLayout";
 
 export const getStaticProps = async ({ params }) => {
@@ -26,11 +24,9 @@ export const getStaticPaths = async () => {
 };
 
 export default ({ door }) => {
-    const { query } = useRouter();
-
   return (
     <MainContainer>
-      <div>Дверь {query.id} {door.name}</div>
+      <div>Дверь {door.id} {door.name}</div>
     </MainContainer>
   )
 };

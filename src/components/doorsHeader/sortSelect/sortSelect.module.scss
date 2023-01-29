@@ -1,0 +1,77 @@
+.modeSelect {
+
+    &Wrapper,
+    &WrapperOpen {
+        position: relative;
+        min-width: 186px;
+        height: 30px;
+        padding: 0 8px;
+        border-radius: 5px;
+        cursor: pointer;
+        background: #f3f3f3;
+        transition: 0.5s;
+        display: flex;
+        align-items: center;
+
+        &:hover {
+            background: #c4c4c4;
+            color: #fff;
+        }
+
+        p {
+            font-size: 16px;
+
+            span {
+                text-transform: capitalize;
+            }
+        }
+
+        ul {
+            position: absolute;
+            overflow: hidden;
+            z-index: 1;
+            top: 36px;
+            left: 0px;
+            min-width: 186px;
+            border-radius: 5px;
+            background: #dedede;
+            opacity: 0;
+            pointer-events: none;
+            transition: 0.5s;
+            -webkit-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+            -moz-box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+            box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.2);
+
+            li {
+                height: 40px;
+                font-size: 18px;
+                color: #000;
+                cursor: pointer;
+                text-transform: capitalize;
+                transition: 0.5s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    background: #cfcfcf;
+                }
+            }
+        }
+    }
+
+    &Wrapper {
+
+        ul {
+            opacity: 0;
+        }
+    }
+
+    &WrapperOpen {
+
+        ul {
+            opacity: 1;
+            pointer-events: all;
+        }
+    }
+}

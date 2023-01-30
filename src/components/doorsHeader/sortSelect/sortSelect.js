@@ -12,6 +12,7 @@ const SortSelect = () => {
     const selectModeRef = useRef();
     const dispatch = useDispatch();
 
+    // Реализовать кастомный хук
     useEffect(() => {
         if (!menuIsVisible) return;
         const handleClick = (event) => {

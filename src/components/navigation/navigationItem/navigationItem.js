@@ -9,11 +9,7 @@ const NavigationItem = ({ route }) => {
 
     return (
         <li className={isCurrentPath ? styles.linkActive : styles.link}>
-            <Link  
-                href={route.href}
-            >
-                {route.text}
-            </Link>
+            <Link href={route.href}>{route.text}</Link>
         </li>
     );
 };

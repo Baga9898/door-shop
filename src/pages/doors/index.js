@@ -1,10 +1,10 @@
-import { useState, useEffect }    from 'react';
+import { useState, useEffect }   from 'react';
 
-import Catalog         from './../../components/catalog/catalog';
-import MainContainer   from '../../components/mainLayout/mainLayout';
-import axios from 'axios';
-import DoorsHeader from '../../components/doorsHeader/doorsHeader';
-import { useSelector } from 'react-redux';
+import { API }                   from '../../axios/instance';
+import { useAppSelector }        from '../../redux/hook';
+import Catalog                   from './../../components/catalog/catalog';
+import DoorsHeader               from '../../components/doorsHeader/doorsHeader';
+import MainContainer             from '../../components/mainLayout/mainLayout';
 
 export const getServerSideProps = async () => {
     const response = await fetch(`https://63cf9f8d109824043782c6e2.mockapi.io/doors-mock/doors`);
@@ -19,14 +19,14 @@ export const getServerSideProps = async () => {
 
 const Doors = ({ doors }) => {
     const [localDoors, setLocalDoors] = useState(doors);
-    const currentSortMode = useSelector(state => state.catalog.sortMode);
+    const currentSortMode = useAppSelector(state => state.catalog.sortMode);
 
     useEffect(() => {
 
         // Создать папку запросов и перенести туда эту функцию.
-        // На бэке реализовать оконечную точку, принимающую параметры в виде стипа сортировки и возвращающую на фронт отсортированный список.
+        // На бэке реализовать оконечную точку, принимающую параметры в виде типа сортировки и возвращающую на фронт отсортированный список.
         try {
-            axios.get(`https://63cf9f8d109824043782c6e2.mockapi.io/doors-mock/doors`)
+            API(`/doors`)
             .then((response) => {
                 setLocalDoors(response.data);
             });
@@ -34,7 +34,6 @@ const Doors = ({ doors }) => {
             console.error(error);
         } 
     }, [currentSortMode]);
-
 
     return (
         <MainContainer keywords="" title="Каталог">

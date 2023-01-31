@@ -1,16 +1,16 @@
-import { useDispatch, useSelector }      from 'react-redux';
-import { useRef, useState, useEffect }   from 'react';
+import { useRef, useState, useEffect }    from 'react';
 
-import { setSortMode }                   from '../../../redux/slices/catalogSlice';
-import * as MODES                        from './selectModes';
+import { setSortMode }                    from '../../../redux/slices/catalogSlice';
+import { useAppDispatch, useAppSelector } from './../../../redux/hook';
+import * as MODES                         from './selectModes';
 
-import styles                            from './sortSelect.module.scss';
+import styles                             from './sortSelect.module.scss';
 
 const SortSelect = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false);
-    const currentSortMode = useSelector(state => state.catalog.sortMode);
+    const currentSortMode = useAppSelector(state => state.catalog.sortMode);
     const selectModeRef = useRef();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     // Реализовать кастомный хук
     useEffect(() => {

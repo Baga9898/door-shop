@@ -1,7 +1,7 @@
 import { Provider }   from 'react-redux';
 
-import { store }      from './../redux/store';
-import Loading        from '../components/shared/loading/loading';
+import { store }         from './../redux/store';
+import Loading           from '../components/shared/loading/loading';
 
 import '../styles/global.scss';
 

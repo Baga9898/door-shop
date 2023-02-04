@@ -42,7 +42,7 @@ const Modal = ({
                     { children }
                 </div>
                 <div className={styles.footer}>
-                    <button onClick={firstAction}>{firstText ? firstText : 'отмена'}</button>
+                    <button onClick={firstAction ? firstAction : onCloseFunction}>{firstText ? firstText : 'отмена'}</button>
                     {secondText || isReg && <button onClick={secondAction}>{getSecondButtonText()}</button>}
                 </div>
             </div>

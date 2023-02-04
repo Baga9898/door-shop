@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     authMode: 'auth',
     authForm: {
-        name: '',
+        username: '',
         password: '',
     },
     authModalIsOpen: false,
@@ -26,5 +26,4 @@ export const authSlice = createSlice({
 });
 
 export const { setAuthForm, setAuthMode, setAuthModalIsOpen } = authSlice.actions;
-
 export default authSlice.reducer;

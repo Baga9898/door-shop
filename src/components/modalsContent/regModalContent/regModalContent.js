@@ -15,7 +15,7 @@ const RegModalContent = () => {
     };
 
     const setAuthNameValue = (value) => {
-        dispatch(setAuthForm({ ...authForm, name: value }));
+        dispatch(setAuthForm({ ...authForm, username: value }));
     };
 
     const setAuthPasswordValue = (value) => {
@@ -40,7 +40,7 @@ const RegModalContent = () => {
             </div>
             <div className={styles.body}>
                 <input 
-                    value={authForm.name}
+                    value={authForm.username}
                     onChange={(e) => {setAuthNameValue(e.target.value)}}
                     placeholder='Логин'
                 />

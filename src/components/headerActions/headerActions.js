@@ -1,16 +1,18 @@
 import { FaUser, FaPhone, FaShoppingCart } from 'react-icons/fa';
+import axios                               from 'axios';
 import Link                                from 'next/link';
 
-import { useAppDispatch, useAppSelector } from './../../redux/hook';
-import * as INTL       from '../../texts';
-import Modal           from '../shared/modal/modal';
-import RegModalContent from '../modalsContent/regModalContent/regModalContent';
+import { setAuthForm, setAuthModalIsOpen } from '../../redux/slices/authSlice';
+import { setUser }                         from '../../redux/slices/userSlice';
+import { useAppDispatch, useAppSelector }  from './../../redux/hook';
+import * as INTL                           from '../../texts';
+import Modal                               from '../shared/modal/modal';
+import RegModalContent                     from '../modalsContent/regModalContent/regModalContent';
 
 import styles from './headerActions.module.scss';
-import { setAuthModalIsOpen } from '../../redux/slices/authSlice';
 
 const HeaderActions = () => {
-    const isOpen = useAppSelector(state => state.auth.authModalIsOpen);
+    const { authModalIsOpen, authMode, authForm } = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
 
     const openModal = () => {
@@ -19,6 +21,46 @@ const HeaderActions = () => {
 
     const closeModal = () => {
         dispatch(setAuthModalIsOpen(false));
+    };
+
+    const registration = async () => {
+        try {
+            await axios.post('http://localhost:5000/auth/registration', authForm)
+            .then(() => {
+                dispatch(setAuthForm({
+                    username: '',
+                    password: '',
+                }));
+                closeModal();
+            });
+        } catch (error) {
+            console.log('Что - то пошло не так');
+        }
+    };
+
+    const login = async () => {
+        try {
+            await axios.post('http://localhost:5000/auth/login', authForm)
+            .then((response) => {
+                localStorage.setItem('token', response.data.token);
+                dispatch(setUser(response.data.user));
+                dispatch(setAuthForm({
+                    username: '',
+                    password: '',
+                }));
+                closeModal();
+            });
+        } catch (error) {
+            console.log('Что - то пошло не так');
+        }
+    };
+
+    const authReg = () => {
+        if (authMode === 'auth') {
+            login();
+        } else if (authMode === 'reg') {
+            registration();
+        }
     };
 
     return (
@@ -32,8 +74,9 @@ const HeaderActions = () => {
             </div>
             <Modal
                 isReg
-                isOpen={isOpen}
+                isOpen={authModalIsOpen}
                 onCloseFunction={closeModal}
+                secondAction={authReg}
             >
                 <RegModalContent />
             </Modal>

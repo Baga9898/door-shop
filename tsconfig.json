@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "src/redux/slices/catalogSlice.js"  ],
   "exclude": [
     "node_modules"
   ]

@@ -35,7 +35,7 @@ const SortSelect = () => {
 
     return (
         <div ref={selectModeRef} className={menuIsVisible ? styles.modeSelectWrapperOpen : styles.modeSelectWrapper} onClick={showMode}>
-            <p>Сортировка: <span>{currentSortMode}</span></p>
+            <p>Сортировка: </p><span>{currentSortMode}</span>
             <ul>
                 {MODES.allModes.map(item => (
                     <li key={item} onClick={() => setMode(item)}>{item}</li>

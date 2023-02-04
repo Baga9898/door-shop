@@ -1,6 +1,7 @@
 import { useState, useEffect }   from 'react';
 
 import { API }                   from '../../axios/instance';
+import { useAppDispatch }        from './../../redux/hook';
 import { useAppSelector }        from '../../redux/hook';
 import Catalog                   from './../../components/catalog/catalog';
 import DoorsHeader               from '../../components/doorsHeader/doorsHeader';
@@ -12,28 +13,38 @@ export const getServerSideProps = async () => {
 
     return {
         props: { 
-            doors: data,
+            serverDoors: data,
         },
     };
 };
 
-const Doors = ({ doors }) => {
-    const [localDoors, setLocalDoors] = useState(doors);
-    const currentSortMode = useAppSelector(state => state.catalog.sortMode);
+    // На бэке реализовать оконечную точку, принимающую параметры в виде типа сортировки и возвращающую на фронт отсортированный список.
 
-    useEffect(() => {
 
-        // Создать папку запросов и перенести туда эту функцию.
-        // На бэке реализовать оконечную точку, принимающую параметры в виде типа сортировки и возвращающую на фронт отсортированный список.
+const Doors = ({ serverDoors }) => {
+    const [localDoors, setLocalDoors] = useState(serverDoors);
+    const { sortMode } = useAppSelector(state => state.catalog);
+    const dispatch = useAppDispatch();
+
+    const getSortedDoors = () => {
+        // Задиспатчить старт работы лоадера.
+
+        // Написать роут на бэке, принимающий пост запрос с параметром сортировки, в зависимости от которорого возвращает отсортированный массив.
         try {
-            API(`/doors`)
-            .then((response) => {
+            API.get('/doors')
+            .then(response => {
                 setLocalDoors(response.data);
             });
         } catch (error) {
-            console.error(error);
-        } 
-    }, [currentSortMode]);
+            console.log('Some wents wrong!');
+        } finally {
+            // Задиспатчить окончание работы лоадера.
+        }
+    };
+
+    useEffect(() => {
+        getSortedDoors();
+    }, [sortMode]);
 
     return (
         <MainContainer keywords="" title="Каталог">

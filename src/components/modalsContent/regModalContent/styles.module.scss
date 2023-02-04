@@ -1,0 +1,39 @@
+.content {
+
+    .header {
+        text-align: center;
+
+        button {
+            margin: 0 10px;
+            font-size: 20px;
+            color: #c4c4c4;
+            background: transparent;
+            text-transform: uppercase;
+            transition: 0.5s;
+
+            &:hover {
+                color: #000;
+            }
+        }
+
+        .active {
+            color: #000;
+        }
+    }
+
+    .body {
+        padding: 30px 20px 20px 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        input {
+            border-bottom: 1px solid #c4c4c4;
+            font-size: 20px;
+
+            &:first-child {
+                margin-bottom: 40px;
+            }
+        }
+    }
+}

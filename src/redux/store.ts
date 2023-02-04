@@ -1,9 +1,11 @@
-import { configureStore }   from '@reduxjs/toolkit';
-import catalogReducer       from './slices/catalogSlice';
+import { configureStore } from '@reduxjs/toolkit';
+import catalogReducer     from './slices/catalogSlice';
+import authReducer        from './slices/authSlice';
 
 export const store = configureStore({
   reducer: {
     catalog: catalogReducer,
+    auth: authReducer,
   },
 });
 

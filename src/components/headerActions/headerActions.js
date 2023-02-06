@@ -3,7 +3,7 @@ import axios                               from 'axios';
 import Link                                from 'next/link';
 
 import { setAuthForm, setAuthModalIsOpen } from '../../redux/slices/authSlice';
-import { setUser }                         from '../../redux/slices/userSlice';
+import { setUser, logOut }                         from '../../redux/slices/userSlice';
 import { useAppDispatch, useAppSelector }  from './../../redux/hook';
 import * as INTL                           from '../../texts';
 import Modal                               from '../shared/modal/modal';
@@ -13,6 +13,7 @@ import styles from './headerActions.module.scss';
 
 const HeaderActions = () => {
     const { authModalIsOpen, authMode, authForm } = useAppSelector(state => state.auth);
+    const { currentUser, isAuth } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
     const openModal = () => {
@@ -49,10 +50,15 @@ const HeaderActions = () => {
                     password: '',
                 }));
                 closeModal();
+                console.log('Тут нотификация, что пользователь залогинился успешно и лоадер ещё не забыть.');
             });
         } catch (error) {
-            console.log('Что - то пошло не так');
+            console.log('Тут нотификация, что не удалось залогиниться.');
         }
+    };
+
+    const logout = async () => {
+        dispatch(logOut());
     };
 
     const authReg = () => {
@@ -66,7 +72,7 @@ const HeaderActions = () => {
     return (
         <>
             <div className={styles.actions}> 
-                <FaUser onClick={openModal} title={INTL.logInOut} />
+                {isAuth ? <p onClick={logout}>{currentUser.username}</p> : <FaUser onClick={openModal} title={INTL.logInOut} />}
                 <FaPhone title={INTL.contacts} />
                 <Link href='/cart'>
                     <FaShoppingCart title={INTL.cart} />

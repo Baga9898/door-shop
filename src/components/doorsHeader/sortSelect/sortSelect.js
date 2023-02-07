@@ -1,29 +1,19 @@
-import { useRef, useState, useEffect }    from 'react';
+import { useRef } from 'react';
 
 import { setSortMode }                    from '../../../redux/slices/catalogSlice';
+import { sortText }                       from '../../../texts';
 import { useAppDispatch, useAppSelector } from './../../../redux/hook';
+import { useOutsideClick }                from '../../../hooks/useOutsideClick';
 import * as MODES                         from './selectModes';
 
-import styles                             from './sortSelect.module.scss';
+import styles from './sortSelect.module.scss';
 
 const SortSelect = () => {
-    const [menuIsVisible, setMenuIsVisible] = useState(false);
     const currentSortMode = useAppSelector(state => state.catalog.sortMode);
-    const selectModeRef = useRef();
     const dispatch = useAppDispatch();
-
-    // Реализовать кастомный хук
-    useEffect(() => {
-        if (!menuIsVisible) return;
-        const handleClick = (event) => {
-          if (selectModeRef.current && !selectModeRef.current.contains(event.target)) {
-            setMenuIsVisible(false);
-          }
-        }
-        window.addEventListener("click", handleClick);
-
-        return () => window.removeEventListener("click", handleClick);
-      }, [menuIsVisible]);
+    const selectModeRef = useRef();
+    const [menuIsVisible, setMenuIsVisible] = useOutsideClick(false, selectModeRef);
+    const sortClass = menuIsVisible ? styles.modeSelectWrapperOpen : styles.modeSelectWrapper;
 
     const setMode = (item) => {
         dispatch(setSortMode(item));
@@ -34,8 +24,8 @@ const SortSelect = () => {
     };
 
     return (
-        <div ref={selectModeRef} className={menuIsVisible ? styles.modeSelectWrapperOpen : styles.modeSelectWrapper} onClick={showMode}>
-            <p>Сортировка: </p><span>{currentSortMode}</span>
+        <div ref={selectModeRef} className={sortClass} onClick={showMode}>
+            <p>{sortText}</p><span>{currentSortMode}</span>
             <ul>
                 {MODES.allModes.map(item => (
                     <li key={item} onClick={() => setMode(item)}>{item}</li>

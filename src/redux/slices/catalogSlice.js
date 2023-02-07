@@ -5,8 +5,6 @@ import * as MODES from '../../components/doorsHeader/sortSelect/selectModes';
 const initialState = {
   sortMode: MODES.newest,
   doors: [],
-  status: null,
-  error: null,
 };
 
 export const catalogSlice = createSlice({

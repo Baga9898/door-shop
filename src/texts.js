@@ -1,5 +1,11 @@
 // Buttons
 export const catalogButton = 'каталог';
+export const logoutButton  = 'Выйти';
+
+// Contacts
+export const copyright   = 'Имя компании';
+export const mailAdress  = 'yrpochta@mail.com';
+export const phoneNumber = '+7(999)999-99-99';
 
 // Headings
 export const latestArrivals = 'Последние поступления';
@@ -9,12 +15,10 @@ export const cart     = 'Корзина';
 export const contacts = 'Контакты';
 export const logInOut = 'Вход/Выход';
 
-// Contacts
-export const copyright   = 'Имя компании';
-export const mailAdress  = 'yrpochta@mail.com';
-export const phoneNumber = '+7(999)999-99-99';
+// Other
+export const sortText = 'Сортировка: ';
 
-// Routes
+// Pages
 export const catalogPage = 'каталог';
 export const mainPage    = 'главная';
 

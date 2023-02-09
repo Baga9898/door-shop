@@ -8,6 +8,7 @@ export const mailAdress  = 'yrpochta@mail.com';
 export const phoneNumber = '+7(999)999-99-99';
 
 // Headings
+export const catalogHeading = 'Каталог';
 export const latestArrivals = 'Последние поступления';
 
 // Icons titles

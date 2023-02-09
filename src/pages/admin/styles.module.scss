@@ -1,0 +1,37 @@
+.createForm {
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+
+        .leftSide {
+            display: flex;
+            flex-direction: column;
+            width: 50%;
+            margin-top: 20px;
+
+            input {
+                margin-bottom: 40px;
+                border-bottom: 1px solid #c4c4c4;
+                font-size: 20px;
+                transition: 0.5s;
+    
+                &:hover {
+                    border-bottom: 1px solid #000;
+                }
+            }
+        }
+
+        .rightSide {
+            display: flex;
+            flex-direction: column;
+
+            img {
+                margin-bottom: 20px;
+                width: 450px;
+                height: 450px;
+                background: #f3f3f3;
+            }
+        }
+    }
+}

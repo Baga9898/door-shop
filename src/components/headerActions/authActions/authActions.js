@@ -1,6 +1,8 @@
 import { AiFillSetting } from 'react-icons/ai';
-import React, { useRef }   from 'react';
+import Link              from 'next/link';
+import React, { useRef } from 'react';
 
+import { adminRoute }                     from '../../../constants';
 import { logOut }                         from '../../../redux/slices/userSlice';
 import { logoutButton }                   from '../../../texts';
 import { useAppDispatch, useAppSelector } from '../../../redux/hook';
@@ -33,7 +35,11 @@ const AuthActions = () => {
                     <li onClick={logout}>{logoutButton}</li>
                 </ul>
             </div>
-            {isAdmin && <AiFillSetting />}
+            {isAdmin && (
+                <Link href={adminRoute}>
+                    <AiFillSetting />
+                </Link>
+            )}
         </>
     );
 };

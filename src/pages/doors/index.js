@@ -8,7 +8,7 @@ import DoorsHeader               from '../../components/doorsHeader/doorsHeader'
 import MainContainer             from '../../components/mainLayout/mainLayout';
 
 export const getServerSideProps = async () => {
-    const response = await fetch(`https://63cf9f8d109824043782c6e2.mockapi.io/doors-mock/doors`);
+    const response = await fetch(`http://localhost:5000/api/doors`);
     const data = await response.json();
 
     return {
@@ -42,9 +42,9 @@ const Doors = ({ serverDoors }) => {
         }
     };
 
-    useEffect(() => {
-        getSortedDoors();
-    }, [sortMode]);
+    // useEffect(() => {
+    //     getSortedDoors();
+    // }, [sortMode]);
 
     return (
         <MainContainer keywords="" title="Каталог">

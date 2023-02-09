@@ -1,7 +1,7 @@
 import MainContainer from "../../components/mainLayout/mainLayout";
 
 export const getStaticProps = async ({ params }) => {
-  const response = await fetch(`https://63cf9f8d109824043782c6e2.mockapi.io/doors-mock/doors/${params.id}`);
+  const response = await fetch(`http://localhost:5000/api/doors/${params.id}`);
   const door = await response.json();
 
   return {
@@ -10,11 +10,11 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const response = await fetch(`https://63cf9f8d109824043782c6e2.mockapi.io/doors-mock/doors/`);
+  const response = await fetch(`http://localhost:5000/api/doors`);
   const doors = await response.json();
 
   const paths = doors.map((door) => {
-    return { params: { id: door.id.toString() } };
+    return { params: { id: door._id.toString() } };
   });
 
   return {
@@ -26,7 +26,7 @@ export const getStaticPaths = async () => {
 export default ({ door }) => {
   return (
     <MainContainer>
-      <div>Дверь {door.id} {door.name}</div>
+      <div>Дверь {door._id} {door.name}</div>
     </MainContainer>
   )
 };

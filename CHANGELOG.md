@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.5.0
+
+- Added admin page
 ## 0.4.0
 
 - Added cart page

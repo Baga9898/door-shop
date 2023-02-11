@@ -27,9 +27,9 @@ const AdminPage = () => {
     const [image, setImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
     const { currentUser } = useAppSelector(state => state.user);
-    const isAdmin = currentUser.roles?.includes('admin');
+    // const isAdmin = currentUser.roles?.includes('admin');
 
-    const handleUpload = () => {
+    const handleUpload = async() => {
         const formData = new FormData();
         formData.append('name', doorForm.name);
         formData.append('price', doorForm.price);
@@ -47,7 +47,7 @@ const AdminPage = () => {
         formData.append('image', image);
 
         try {
-            axios.post('http://localhost:5000/api/doors', formData);
+            await axios.post('http://localhost:5000/api/doors', formData);
             console.log('Дверь успешно создана');
         } catch (error) {
             console.log(error);
@@ -61,9 +61,9 @@ const AdminPage = () => {
         }
     }
 
-    if (!isAdmin) { 
-        return <NotFoundPage />
-    }
+    // if (!isAdmin) { 
+    //     return <NotFoundPage />
+    // }
 
     return (
         <MainContainer>

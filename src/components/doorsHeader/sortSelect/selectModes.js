@@ -1,5 +1,5 @@
-export const cheap     = 'Дешевле';
-export const expencive = 'Дороже';
-export const newest    = 'Новее';
+export const cheap     = 'Бюджет';
+export const expencive = 'Премиум';
+export const newest    = 'Новинки';
 
 export const allModes = [ newest, cheap, expencive ];

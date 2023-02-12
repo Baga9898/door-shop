@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 
+import { setDoors }       from '../../redux/slices/catalogSlice';
 import { useAppDispatch } from './../../redux/hook';
 import { useAppSelector } from '../../redux/hook';
 import Catalog            from './../../components/catalog/catalog';
@@ -18,7 +19,17 @@ export const getServerSideProps = async () => {
 };
 
 const Doors = ({ serverDoors }) => {
-    const [localDoors, setLocalDoors] = useState(serverDoors); // Перенести в редакс, добавить санку.
+    const dispatch = useAppDispatch();
+    const [localDoors, setLocalDoors] = useState(serverDoors);
+    const storageDoors = useAppSelector(state => state.catalog.doors);
+
+    useEffect(() => {
+        dispatch(setDoors(localDoors));
+    }, []);
+
+    useEffect(() => {
+        setLocalDoors(storageDoors);
+    }, [storageDoors]);
 
     return (
         <MainContainer keywords="" title="Каталог">

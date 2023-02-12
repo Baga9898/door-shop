@@ -1,7 +1,6 @@
 import { useRef } from 'react';
-import axios      from 'axios';
 
-import { setSortMode }                    from '../../../redux/slices/catalogSlice';
+import { getSortedDoors, setSortMode }    from '../../../redux/slices/catalogSlice';
 import { sortText }                       from '../../../texts';
 import { useAppDispatch, useAppSelector } from './../../../redux/hook';
 import { useOutsideClick }                from '../../../hooks/useOutsideClick';
@@ -10,41 +9,27 @@ import * as MODES                         from './selectModes';
 import styles from './sortSelect.module.scss';
 
 const SortSelect = () => {
-    const currentSortMode = useAppSelector(state => state.catalog.sortMode);
-    const dispatch = useAppDispatch();
     const selectModeRef = useRef();
+    const dispatch = useAppDispatch();
+    const currentSortMode = useAppSelector(state => state.catalog.sortMode);
     const [menuIsVisible, setMenuIsVisible] = useOutsideClick(false, selectModeRef);
     const sortClass = menuIsVisible ? styles.modeSelectWrapperOpen : styles.modeSelectWrapper;
-
-    const getSortedDoors = async(sortMode) => {
-        // Задиспатчить старт работы лоадера.
-        try {
-            await axios.post(`http://localhost:5000/api/doors/sort`, { sortMode })
-            .then(response => { // Санка из редакса.
-                // setLocalDoors(response.data);
-            });
-        } catch (error) {
-            console.log(error);
-        } finally {
-            // Задиспатчить окончание работы лоадера.
-        }
-    };
 
     const setMode = (item) => {
         let value;
         switch (item) {
-            case 'Новее':
+            case 'Новинки':
                 value = 'new';
                 break;
-            case 'Дороже':
+            case 'Премиум':
                 value = 'expencive';
                 break;
-            case 'Дешевле':
+            case 'Бюджет':
                 value = 'cheap';
                 break;
         }
 
-        getSortedDoors(value);
+        dispatch(getSortedDoors(value));
         dispatch(setSortMode(item));
     };
 

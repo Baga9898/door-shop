@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios        from "axios";
 
+import { notify }         from './../../components/shared/notify/notify';
 import { useAppSelector } from '../../redux/hook';
 import MainContainer      from '../../components/mainLayout/mainLayout';
 import NotFoundPage       from '../404';
@@ -48,9 +49,10 @@ const AdminPage = () => {
 
         try {
             await axios.post('http://localhost:5000/api/doors', formData);
-            console.log('Дверь успешно создана');
+            notify('success', 'Дверь успешно создана');
         } catch (error) {
             console.log(error);
+            notify('error', 'Дверь успешно создана');
         }
     };
 

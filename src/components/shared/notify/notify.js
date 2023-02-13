@@ -1,52 +1,38 @@
 import { toast } from 'react-toastify';
 
+const defaultNotifySpecs = {
+    position: "top-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+};
+
 export const notify = (status, text) => {
     switch (status) {
         case 'success':
             toast.success(text, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                ...defaultNotifySpecs,
             });
             break;
       
         case 'error':
             toast.error(text, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                ...defaultNotifySpecs,
             });
             break;
 
         case 'warn':
             toast.warn(text, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                ...defaultNotifySpecs,
             });
             break;
 
         case 'info':
             toast.info(text, {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
+                ...defaultNotifySpecs,
             });
             break;
     }

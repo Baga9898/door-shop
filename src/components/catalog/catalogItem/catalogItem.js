@@ -2,22 +2,19 @@ import { MdDelete } from 'react-icons/md';
 import axios        from 'axios';
 import Link         from "next/link";
 
+import { deleteDoorById } from '../../../redux/slices/catalogSlice';
 import { notify }         from '../../shared/notify/notify';
+import { useAppDispatch } from './../../../redux/hook';
 import { useAppSelector } from "../../../redux/hook";
 
 import styles from './catalogItem.module.scss';
 
 const CatalogItem = ({ door }) => {
   const isAuth = useAppSelector(state => state.user.isAuth);
+  const dispatch = useAppDispatch();
 
   const handleDelete = async(doorId) => {
-    try {
-      await axios.delete(`http://localhost:5000/api/doors/${doorId}`); 
-      notify('success', 'Удаление прошло успешно');
-    } catch (error) {
-      console.log(error);
-      notify('error', 'Что - то пошло не так');
-    }
+    dispatch(deleteDoorById(doorId));
   };
 
   return (

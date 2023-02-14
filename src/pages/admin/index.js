@@ -2,9 +2,7 @@ import { useState } from 'react';
 import axios        from "axios";
 
 import { notify }         from './../../components/shared/notify/notify';
-import { useAppSelector } from '../../redux/hook';
 import MainContainer      from '../../components/mainLayout/mainLayout';
-import NotFoundPage       from '../404';
 
 import styles from './styles.module.scss';
 
@@ -27,8 +25,6 @@ const AdminPage = () => {
     });
     const [image, setImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
-    const { currentUser } = useAppSelector(state => state.user);
-    // const isAdmin = currentUser.roles?.includes('admin');
 
     const handleUpload = async() => {
         const formData = new FormData();
@@ -48,11 +44,19 @@ const AdminPage = () => {
         formData.append('image', image);
 
         try {
-            await axios.post('http://localhost:5000/api/doors', formData);
+            const token = localStorage.getItem('token');
+            await axios({
+                method: 'post',
+                url: 'http://localhost:5000/api/doors',
+                data: formData,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             notify('success', 'Дверь успешно создана');
         } catch (error) {
             console.log(error);
-            notify('error', 'Дверь успешно создана');
+            notify('error', 'При создании двери возникли проблемы');
         }
     };
 
@@ -62,10 +66,6 @@ const AdminPage = () => {
             setImage(e.target.files[0]);
         }
     }
-
-    // if (!isAdmin) { 
-    //     return <NotFoundPage />
-    // }
 
     return (
         <MainContainer>

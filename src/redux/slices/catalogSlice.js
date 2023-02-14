@@ -20,8 +20,13 @@ export const getSortedDoors = createAsyncThunk(
 export const deleteDoorById = createAsyncThunk(
   'catalog/deleteDoorById',
   async (doorId, { rejectWithValue, dispatch }) => {
+    const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/api/doors/${doorId}`);
+      await axios.delete(`http://localhost:5000/api/doors/${doorId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
       dispatch(deleteDoor(doorId));
       notify('success', 'Удаление прошло успешно');
     } catch (error) {

@@ -55,3 +55,22 @@
         }
     }
 }
+
+.bottomSide {
+    display: flex;
+    justify-content: space-between;
+
+    button {
+        width: 125px;
+        border: 1px solid #c4c4c4;
+        background: transparent;
+        text-transform: uppercase;
+        transition: 0.5s;
+
+        &:hover {
+            border: 1px solid #000;
+            background: #000;
+            color: #fff;
+        }
+    }
+}

@@ -23,8 +23,8 @@ const CartItem = ({ door }) => {
                         <p>{door.name}</p>
                     </div>
                     <div>
-                        <button>В избранное</button>
-                        <span> / </span>
+                        {/* <button>В избранное</button> */}
+                        {/* <span> | </span> */}
                         <button>Удалить</button>
                     </div>
                 </div>

@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import axios                   from "axios";
 
 import CartHeader    from '../../components/cartHeader/cartHeader';
 import CartItem      from '../../components/cartItem/cartItem';
+import CartOrder     from '../../components/cartOrder/cartOrder';
 import EmptyCart     from '../../components/emptyCart/emptyCart';
 import MainContainer from "../../components/mainLayout/mainLayout";
 
@@ -17,20 +17,19 @@ const Cart = () => {
     return (
         <MainContainer keywords="" title="Корзина">
                 <CartHeader setCartDoors={setCartDoors} />
-                <div>
-                    <div>
-                        {cartDoors ? 
-                            cartDoors.map(door => (
+                {cartDoors ? (
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <div style={{width: '65%'}}>
+                            {cartDoors.map(door => (
                                 <CartItem 
                                     key={door._id} 
                                     door={door} 
-                                />)) : <EmptyCart />
-                        }
+                                />
+                            ))}
+                        </div>
+                        <CartOrder />
                     </div>
-                    <div>
-                        
-                    </div>
-                </div>
+                ) : <EmptyCart /> }
         </MainContainer>
     );
 };

@@ -1,13 +1,13 @@
-import { MdDelete } from 'react-icons/md';
-import { useState } from 'react';
-import Link         from "next/link";
+import { MdDelete }            from 'react-icons/md';
+import { useState, useEffect } from 'react';
+import Link                    from "next/link";
 
 import { deleteDoorById } from '../../../redux/slices/catalogSlice';
+import { notify }         from './../../shared/notify/notify';
 import { useAppDispatch } from './../../../redux/hook';
 import { useAppSelector } from "../../../redux/hook";
 
 import styles from './catalogItem.module.scss';
-import { notify } from './../../shared/notify/notify';
 
 const CatalogItem = ({ door }) => {
   const [inCart, setInCart] = useState([]);
@@ -27,8 +27,14 @@ const CatalogItem = ({ door }) => {
   };
 
   const isInCart = (doorId) => {
-    inCart.map(door => door._id).includes(doorId);
+    return inCart.map(door => door._id).includes(doorId);
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('cartDoors')) {
+      setInCart(JSON.parse(localStorage.getItem('cartDoors')));
+    }
+  }, []);
 
   return (
     <div className={styles.cardWrapper}>

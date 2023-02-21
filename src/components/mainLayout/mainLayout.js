@@ -1,3 +1,4 @@
+// Refactoring need
 import { Montserrat } from '@next/font/google';
 import { useEffect }  from 'react';
 import axios          from 'axios';
@@ -8,7 +9,7 @@ import CustomHead         from "../head/head";
 import Footer             from "../footer/footer";
 import Header             from "../header/header";
 
-import styles           from './mainLayout.module.scss';
+import styles from './mainLayout.module.scss';
 
 const font = Montserrat({
     subsets: ['cyrillic'],

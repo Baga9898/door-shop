@@ -1,5 +1,6 @@
-import { Provider }              from 'react-redux';
+import { Provider }       from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+
 
 import { store } from './../redux/store';
 import Loading   from '../components/shared/loading/loading';

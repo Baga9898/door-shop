@@ -1,16 +1,38 @@
+// Refactoring need
 import { useState } from 'react';
 
 import styles from './styles.module.scss';
+import { useEffect } from 'react';
 
-const CartItem = ({ door }) => {
-    const [count, setCount] = useState(1);
+const CartItem = ({ door, cartDoors }) => {
+    const [count, setCount] = useState(door.count || 1);
+    const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id)[0];
+
+    useEffect(() => {
+        currentDoor.fullPrice = +door.price;
+        localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
+    }, []);
 
     const decrement = () => {
-        setCount(prevState => prevState - 1);
+        if (count > 1) {
+            setCount(prevState => prevState - 1);
+            currentDoor.count = count - 1;
+            currentDoor.fullPrice = (+door.price * count) - +door.price;
+            localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
+
+            console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+            console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+        }
     };
 
     const inccrement = () => {
         setCount(prevState => prevState + 1);
+        currentDoor.count = count + 1;
+        currentDoor.fullPrice = (+door.price * count) + +door.price;
+        localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
+
+        console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+        console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
     };
 
     return (

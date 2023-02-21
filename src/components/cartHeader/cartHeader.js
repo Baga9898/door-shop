@@ -1,3 +1,4 @@
+// Refactoring need
 import styles from './styles.module.scss';
 
 const CartHeader = ({ setCartDoors }) => {

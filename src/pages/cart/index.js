@@ -1,3 +1,4 @@
+// Refactoring need
 import { useState, useEffect } from 'react';
 
 import CartHeader    from '../../components/cartHeader/cartHeader';
@@ -24,6 +25,7 @@ const Cart = () => {
                                 <CartItem 
                                     key={door._id} 
                                     door={door} 
+                                    cartDoors={cartDoors}
                                 />
                             ))}
                         </div>

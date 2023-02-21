@@ -19,16 +19,23 @@
     }
 }
 
-.doorName {
-    margin-bottom: 5px;
-    font-size: 18px;
-    font-weight: 700;
+.doorArticle {
+    font-size: 12px;
+    line-height: 20px;
+    color: #c4c4c4;
+}
 
+.doorName {
+    height: 80px;
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .doorPrice {
-    font-size: 16px;
-    color: #c4c4c4;
+    margin: 10px 0;
+    line-height: 24px;
+    font-size: 22px;
 }
 
 .cardWrapper {
@@ -57,20 +64,18 @@
 }
 
 .bottomSide {
-    display: flex;
-    justify-content: space-between;
 
     button {
         width: 125px;
-        border: 1px solid #c4c4c4;
-        background: transparent;
-        text-transform: uppercase;
+        height: 50px;
+        border-radius: 5px;
+        background: #464c5c;
+        color: #fff;
+        font-size: 16px;
         transition: 0.5s;
 
         &:hover {
-            border: 1px solid #000;
             background: #000;
-            color: #fff;
         }
     }
 }

@@ -1,3 +1,4 @@
+// Refactoring need
 import { MdDelete }            from 'react-icons/md';
 import { useState, useEffect } from 'react';
 import Link                    from "next/link";
@@ -42,12 +43,11 @@ const CatalogItem = ({ door }) => {
       <div className={styles.doorCard}>
         <Link href={`/doors/${door._id}`}>
           <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
+          <p className={styles.doorArticle}>Арт. {door.article}</p>
+          <p className={styles.doorName}>{door.name}</p>
         </Link>
           <div className={styles.bottomSide}>
-            <div>
-              <p className={styles.doorName}>{door.name}</p>
-              <p className={styles.doorPrice}>{door.price}&#8381;</p>
-            </div>
+            <p className={styles.doorPrice}>{door.price}&#8381;</p>
             {isInCart(door._id) ?
               <button>В корзине</button> :
               <button onClick={handleClick}>В корзину</button>

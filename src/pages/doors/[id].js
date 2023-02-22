@@ -1,5 +1,7 @@
 import MainContainer from "../../components/mainLayout/mainLayout";
 
+import styles from './styles.module.scss';
+
 export const getStaticProps = async ({ params }) => {
   const response = await fetch(`http://localhost:5000/api/doors/${params.id}`);
   const door = await response.json();
@@ -26,7 +28,24 @@ export const getStaticPaths = async () => {
 export default ({ door }) => {
   return (
     <MainContainer>
-      <div>Дверь {door._id} {door.name}</div>
+      <section className={styles.currentDoor}>
+        <div>
+          <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
+        </div>
+        <div>
+          <p>Арт. {door.article}</p>
+          <p>{door.name}</p>
+          <p>{'Размеры двери (см):'}</p>
+          <div> {/* Вынести в массив. */}
+            <div>200 x 60</div>
+            <div>200 x 70</div>
+            <div>200 x 80</div>
+            <div>200 x 90</div>
+          </div>
+          <p>{door.price} &#8381;/шт.</p>
+          <button>В корзину</button>
+        </div>
+      </section>
     </MainContainer>
   )
 };

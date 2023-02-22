@@ -27,7 +27,7 @@ const CatalogItem = ({ door }) => {
     notify('success', 'Товар успешно добавлен в корзину');
   };
 
-  const isInCart = (doorId) => {
+  const isInCart = (doorId) => { // Вынести в хелпер.
     return inCart.map(door => door._id).includes(doorId);
   };
 

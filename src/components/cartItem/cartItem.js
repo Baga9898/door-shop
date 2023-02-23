@@ -1,8 +1,7 @@
 // Refactoring need
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import styles from './styles.module.scss';
-import { useEffect } from 'react';
 
 const CartItem = ({ door, cartDoors }) => {
     const [count, setCount] = useState(door.count || 1);

@@ -1,8 +1,91 @@
 .currentDoor {
+    padding-top: 50px;
 
-    img {
-        width: 600px;
-        height: 600px;
-        background: #f3f3f3;
+    .upSide {
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: space-between;
+
+        img {
+            width: 600px;
+            height: 600px;
+            background: #f3f3f3;
+        }
+    
+        .rightSide {
+            width: 430px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+    
+            .article {
+                margin-bottom: 10px;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 16px;
+                color: #c4c4c4;
+            }
+    
+            .doorName {
+                margin-bottom: 10px;
+                font-weight: 500;
+                font-size: 26px;
+                line-height: 32px;
+            }
+    
+            .sizesParagraph {
+                margin-bottom: 10px;
+                font-size: 12px;
+                line-height: 16px;
+                color: #c4c4c4;
+            }
+    
+            .sizes {
+                display: flex;
+    
+                li {
+                    margin-right: 10px;
+                    width: 95px;
+                    height: 40px;
+                    border-radius: 5px;
+                    border: 1px solid #c4c4c4;
+                    color: #c4c4c4;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    transition: 0.5s;
+    
+                    &:hover {
+                        border: 1px solid #000;
+                        color: #000;
+                    }
+    
+                    .active {
+                        border: 2px solid #000;
+                    }
+                }
+            }
+
+            .price {
+                font-size: 30px;
+                line-height: 36px;
+            }
+
+            button {
+                margin-top: 10px;
+                width: 280px;
+                height: 50px;
+                border-radius: 5px;
+                background: #464c5c;
+                color: #fff;
+                font-size: 16px;
+                transition: 0.5s;
+        
+                &:hover {
+                    background: #000;
+                }
+            }
+        }
     }
 }

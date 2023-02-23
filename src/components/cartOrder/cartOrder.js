@@ -1,10 +1,15 @@
 // Refactoring need
 import { useState, useEffect } from 'react';
+import axios                   from 'axios';
+
+import { notify }         from '../shared/notify/notify';
+import { useAppDispatch } from './../../redux/hook';
 
 import styles from './styles.module.scss';
+import { setCartDoors } from '../../redux/slices/catalogSlice';
 
 const CartOrder = () => {
-    const [cartDoors, setCartDoors] = useState([]);
+    const dispatch = useAppDispatch();
     const [orderForm, setOrderForm] = useState({
         customerName: '',
         customerPhone: '',
@@ -13,11 +18,22 @@ const CartOrder = () => {
 
     useEffect(() => {
         const localDoors = JSON.parse(localStorage.getItem('cartDoors'));
-        setCartDoors(localDoors);
+        // dispatch(setCartDoors(localDoors));
     }, []);
 
-    const makeOrder = () => {
-        console.log(orderForm);
+    const makeOrder = async() => {
+        try {
+            await axios.post('http://localhost:5000/api/mail', orderForm);
+            localStorage.removeItem('cartDoors');
+            setOrderForm({
+                customerName: '',
+                customerPhone: '',
+                customerMail: '',
+            });
+            notify('success', 'Заказ оформлен успешно');
+        } catch (error) {
+            notify('error', 'При оформлении заказа возникла ошибка');
+        }
     };
 
     return (

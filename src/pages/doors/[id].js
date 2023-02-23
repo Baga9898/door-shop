@@ -29,21 +29,27 @@ export default ({ door }) => {
   return (
     <MainContainer>
       <section className={styles.currentDoor}>
-        <div>
-          <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
-        </div>
-        <div>
-          <p>Арт. {door.article}</p>
-          <p>{door.name}</p>
-          <p>{'Размеры двери (см):'}</p>
-          <div> {/* Вынести в массив. */}
-            <div>200 x 60</div>
-            <div>200 x 70</div>
-            <div>200 x 80</div>
-            <div>200 x 90</div>
+        <div className={styles.upSide}>
+          <div>
+            <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
           </div>
-          <p>{door.price} &#8381;/шт.</p>
-          <button>В корзину</button>
+          <div className={styles.rightSide}>
+            <div>
+              <p className={styles.article}>Арт. {door.article}</p>
+              <p className={styles.doorName}>{door.name}</p>
+              <p className={styles.sizesParagraph}>{'Размеры двери (см):'}</p>
+              <div className={styles.sizes}> {/* Вынести в массив. */}
+                <li>200 x 60</li>
+                <li>200 x 70</li>
+                <li>200 x 80</li>
+                <li>200 x 90</li>
+              </div>
+            </div>
+            <div>
+              <p className={styles.price}>{door.price} &#8381;/шт.</p>
+              <button>В корзину</button>
+            </div>
+          </div>
         </div>
       </section>
     </MainContainer>

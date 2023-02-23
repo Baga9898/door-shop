@@ -7,6 +7,7 @@ import * as MODES from '../../components/doorsHeader/sortSelect/selectModes';
 const initialState = {
   sortMode: MODES.newest,
   doors: [],
+  // cartDoors: [],
 };
 
 export const getSortedDoors = createAsyncThunk(
@@ -46,6 +47,9 @@ export const catalogSlice = createSlice({
     setDoors: (state, action) => {
       state.doors = action.payload;
     },
+    // setCartDoors: (state, action) => {
+    //   state.cartDoors = action.payload;
+    // },
     deleteDoor: (state, action) => {
       state.doors = state.doors.filter(door => door._id !== action.payload);
     },

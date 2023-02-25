@@ -1,3 +1,7 @@
+// Refactoring need
+import { useState, useEffect } from 'react';
+
+import { notify }    from '../../components/shared/notify/notify';
 import MainContainer from "../../components/mainLayout/mainLayout";
 
 import styles from './styles.module.scss';
@@ -26,6 +30,37 @@ export const getStaticPaths = async () => {
 };
 
 export default ({ door }) => {
+  const [chosenSize, setChosenSize] = useState('');
+  const [inCart, setInCart] = useState([]);
+
+  const addToCart = () => {
+    if (chosenSize === '') {
+      notify('warn', 'Выберите размер')
+      return;
+    }
+
+    let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
+    door.chosenSize = chosenSize;
+    cartDoors.push(door);
+    localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
+    setInCart(cartDoors);
+    notify('success', 'Товар успешно добавлен в корзину');
+  };
+
+  const isInCart = (article, size) => { // Вынести в хелпер.
+    return inCart.map(cartDoor => cartDoor.article).includes(article) && inCart.map(cartDoor => cartDoor.chosenSize).includes(size);
+  };
+
+  useEffect(() => {
+    if (localStorage.getItem('cartDoors')) {
+      setInCart(JSON.parse(localStorage.getItem('cartDoors')));
+    }
+  }, []);
+
+  const alreadyInCart = () => {
+    notify('info', 'Товар уже добавлен в корзину');
+  };
+
   return (
     <MainContainer>
       <section className={styles.currentDoor}>
@@ -38,18 +73,29 @@ export default ({ door }) => {
               <p className={styles.article}>Арт. {door.article}</p>
               <p className={styles.doorName}>{door.name}</p>
               <p className={styles.sizesParagraph}>{'Размеры двери (см):'}</p>
-              <div className={styles.sizes}> {/* Вынести в массив. */}
-                <li>200 x 60</li>
-                <li>200 x 70</li>
-                <li>200 x 80</li>
-                <li>200 x 90</li>
+              <div className={styles.sizes}>
+                {door.sizes && door.sizes.toString().split(',').map(size => (
+                  <li 
+                    key={size} 
+                    className={size === chosenSize && styles.active}
+                    onClick={() => setChosenSize(size)}
+                  >
+                    {size}
+                  </li>
+                ))}
               </div>
             </div>
             <div>
               <p className={styles.price}>{door.price} &#8381;/шт.</p>
-              <button>В корзину</button>
+              {isInCart(door.article, chosenSize) ?
+                <button onClick={alreadyInCart}>В корзине</button> :
+                <button onClick={addToCart}>В корзину</button>
+              }
             </div>
           </div>
+        </div>
+        <div className={styles.downSide}>
+          <h2>Характеристики</h2>
         </div>
       </section>
     </MainContainer>

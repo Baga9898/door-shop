@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import styles from './styles.module.scss';
 
-const CartItem = ({ door, cartDoors }) => {
+const CartItem = ({ door, cartDoors, setCartDoors }) => {
     const [count, setCount] = useState(door.count || 1);
     const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id)[0];
 
@@ -34,6 +34,15 @@ const CartItem = ({ door, cartDoors }) => {
         console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
     };
 
+    const deleteFromCart = (article, size) => {
+        const localDoors = JSON.parse(localStorage.getItem('cartDoors'));
+        const itemForDelete = localDoors.filter(door => door.article === article && door.chosenSize === size)[0];
+        const indexOfChosenDoor = localDoors.indexOf(itemForDelete);
+        localDoors.splice(indexOfChosenDoor, 1);
+        localStorage.setItem('cartDoors', JSON.stringify(localDoors));
+        setCartDoors(localDoors);
+    };
+
     return (
         <div className={styles.cartItem}>
             <div className={styles.leftSide}>
@@ -46,19 +55,26 @@ const CartItem = ({ door, cartDoors }) => {
                     <div>
                         {/* <button>В избранное</button> */}
                         {/* <span> | </span> */}
-                        <button>Удалить</button>
+                        <button onClick={() => deleteFromCart(door.article, door.chosenSize)}>Удалить</button>
                     </div>
                 </div>
             </div>
             <div className={styles.rightSide}>
-                <div className={styles.sum}>
-                    <p>{+door.price * count}<span> &#8381;</span></p>
-                    <p>{door.price} &#8381;/шт.</p>
-                </div>
-                <div className={styles.counter}>  
-                    <button onClick={decrement}>-</button>
-                    <p>{count}</p>
-                    <button onClick={inccrement}>+</button>
+                {door.chosenSize && (
+                    <div className={styles.size}>
+                        <p>{door.chosenSize}</p>
+                    </div>
+                )}
+                <div>
+                    <div className={styles.sum}>
+                        <p>{+door.price * count}<span> &#8381;</span></p>
+                        <p>{door.price} &#8381;/шт.</p>
+                    </div>
+                    <div className={styles.counter}>  
+                        <button onClick={decrement}>-</button>
+                        <p>{count}</p>
+                        <button onClick={inccrement}>+</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,7 +19,7 @@ const CatalogItem = ({ door }) => {
     dispatch(deleteDoorById(doorId));
   };
 
-  const handleClick = () => {
+  const addToCart = () => {
     let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
     cartDoors.push(door);
     localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
@@ -50,7 +50,7 @@ const CatalogItem = ({ door }) => {
             <p className={styles.doorPrice}>{door.price}&#8381;</p>
             {isInCart(door._id) ?
               <button>В корзине</button> :
-              <button onClick={handleClick}>В корзину</button>
+              <button onClick={addToCart}>В корзину</button>
             }
           </div>
       </div>

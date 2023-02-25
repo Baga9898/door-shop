@@ -1,8 +1,9 @@
+// Refactoring need
 import { useState } from 'react';
 import axios        from "axios";
 
-import { notify }         from './../../components/shared/notify/notify';
-import MainContainer      from '../../components/mainLayout/mainLayout';
+import { notify }    from './../../components/shared/notify/notify';
+import MainContainer from '../../components/mainLayout/mainLayout';
 
 import styles from './styles.module.scss';
 
@@ -23,8 +24,29 @@ const AdminPage = () => {
         surface: '',
         specs: [],
     });
+    const [currentWidthSize, setCurrentWidthSize] = useState('');
+    const [currentHeightSize, setCurrentHeightSize] = useState('');
     const [image, setImage] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
+
+    const setDefaultForm = () => {
+        setDoorForm({
+            name: '',
+            price: '',
+            makeDate: '',
+            addDate: '',
+            category: '',
+            article: '',
+            country: '',
+            color: '',
+            description: '',
+            sizes: [],
+            material: '',
+            construction: '',
+            surface: '',
+            specs: [],
+        });
+    };
 
     const handleUpload = async() => {
         const formData = new FormData();
@@ -53,6 +75,7 @@ const AdminPage = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
+            setDefaultForm();
             notify('success', 'Дверь успешно создана');
         } catch (error) {
             console.log(error);
@@ -67,6 +90,12 @@ const AdminPage = () => {
         }
     }
 
+    const addSize = () => {
+        setDoorForm({...doorForm, sizes: [...doorForm.sizes, `${currentHeightSize} x ${currentWidthSize}`]});
+        setCurrentWidthSize('');
+        setCurrentHeightSize('');
+    };
+
     return (
         <MainContainer>
             <section className={styles.createForm}>
@@ -75,13 +104,22 @@ const AdminPage = () => {
                     <div className={styles.leftSide}>
                         <input value={doorForm.name} placeholder='Наименование модели' onChange={(e) => setDoorForm({...doorForm, name: e.target.value})} />
                         <input value={doorForm.price} placeholder='Цена' onChange={(e) => setDoorForm({...doorForm, price: e.target.value})} />
-                        <input value={doorForm.makeDate} placeholder='Год производства' onChange={(e) => setDoorForm({...doorForm, makeDate: e.target.value})} />
+                        {/* <input value={doorForm.makeDate} placeholder='Год производства' onChange={(e) => setDoorForm({...doorForm, makeDate: e.target.value})} /> */}
                         <input value={doorForm.category} placeholder='Категория' onChange={(e) => setDoorForm({...doorForm, category: e.target.value})} /> {/* Переделать на селект */} 
                         <input value={doorForm.article} placeholder='Артикул' onChange={(e) => setDoorForm({...doorForm, article: e.target.value})} />
                         <input value={doorForm.country} placeholder='Страна производства' onChange={(e) => setDoorForm({...doorForm, country: e.target.value})} />
                         <input value={doorForm.color} placeholder='Цвет' onChange={(e) => setDoorForm({...doorForm, color: e.target.value})} />
                         <input value={doorForm.description} placeholder='Описание' onChange={(e) => setDoorForm({...doorForm, description: e.target.value})} />
-                        <input value={doorForm.sizes} placeholder='Размеры' onChange={(e) => setDoorForm({...doorForm, sizes: e.target.value})} /> {/* В поле инпут вводить размер, после нажатия кнопки добавить отражать новосозданный размер, с возможностью дальнейшего удаления. */} 
+                        {/* Добавить пресеты в соответствии с категорией, возможно, добавляющиеся по выбору категории с возможностью редактирования и удаления. */}
+                        <div style={{display: 'flex'}}>
+                            <input value={currentHeightSize} placeholder='Высота' onChange={(e) => setCurrentHeightSize(e.target.value)} /> 
+                            <input value={currentWidthSize} placeholder='Ширина' onChange={(e) => setCurrentWidthSize(e.target.value)} /> 
+                            <button onClick={() => addSize()}>+</button>
+                        </div>
+                        <div>
+                            {doorForm.sizes.map(size => <li key={size}>{size}</li>)}
+                        </div>
+
                         <input value={doorForm.material} placeholder='Материал' onChange={(e) => setDoorForm({...doorForm, material: e.target.value})} />
                         <input value={doorForm.construction} placeholder='Конструкция' onChange={(e) => setDoorForm({...doorForm, construction: e.target.value})} />
                         <input value={doorForm.surface} placeholder='Покрытие' onChange={(e) => setDoorForm({...doorForm, surface: e.target.value})} />

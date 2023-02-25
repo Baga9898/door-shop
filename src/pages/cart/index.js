@@ -12,7 +12,7 @@ import MainContainer from "../../components/mainLayout/mainLayout";
 const Cart = () => {
     // const dispatch = useAppDispatch();
     // const cartDoors = useAppSelector(state => state.catalog.cartDoors);
-    const [cartDoors, setCartDoors] = useState();
+    const [cartDoors, setCartDoors] = useState([]);
 
     useEffect(() => {
         const localDoors = JSON.parse(localStorage.getItem('cartDoors'));
@@ -26,11 +26,12 @@ const Cart = () => {
                 {cartDoors ? (
                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                         <div style={{width: '65%'}}>
-                            {cartDoors.map(door => (
+                            {cartDoors.map((door, index) => (
                                 <CartItem 
-                                    key={door._id} 
+                                    key={`${door._id}_${index}`} 
                                     door={door} 
                                     cartDoors={cartDoors}
+                                    setCartDoors={setCartDoors}
                                 />
                             ))}
                         </div>

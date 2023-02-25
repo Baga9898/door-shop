@@ -5,8 +5,8 @@ import styles from './catalog.module.scss';
 const Catalog = ({ doors }) => {
     return (
         <div className={styles.catalog}>
-            {doors.map(door => (
-                <CatalogItem key={door._id} door={door}/>
+            {doors.map((door, index) => (
+                <CatalogItem key={`${door._id}_${index}`} door={door}/>
             ))}
         </div>
     );

@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 
 const CartItem = ({ door, cartDoors, setCartDoors }) => {
     const [count, setCount] = useState(door.count || 1);
-    const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id)[0];
+    const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id && cartDoor.chosenSize === door.chosenSize)[0];
 
     useEffect(() => {
         currentDoor.fullPrice = +door.price;
@@ -19,8 +19,8 @@ const CartItem = ({ door, cartDoors, setCartDoors }) => {
             currentDoor.fullPrice = (+door.price * count) - +door.price;
             localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
 
-            console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
-            console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+            // console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+            // console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
         }
     };
 
@@ -30,8 +30,8 @@ const CartItem = ({ door, cartDoors, setCartDoors }) => {
         currentDoor.fullPrice = (+door.price * count) + +door.price;
         localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
 
-        console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
-        console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+        // console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+        // console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
     };
 
     const deleteFromCart = (article, size) => {

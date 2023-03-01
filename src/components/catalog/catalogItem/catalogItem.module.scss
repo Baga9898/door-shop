@@ -80,3 +80,31 @@
         }
     }
 }
+
+.sizes {
+    display: flex;
+
+    li {
+        margin-right: 10px;
+        width: 95px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #c4c4c4;
+        color: #c4c4c4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.5s;
+
+        &:hover {
+            border: 1px solid #000;
+            color: #000;
+        }
+    }
+}
+
+.active {
+    color: #000 !important;
+    border: 1px solid #000 !important;
+}

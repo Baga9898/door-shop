@@ -41,6 +41,7 @@ export default ({ door }) => {
 
     let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
     door.chosenSize = chosenSize;
+    door.count = 1;
     cartDoors.push(door);
     localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
     setInCart(cartDoors);

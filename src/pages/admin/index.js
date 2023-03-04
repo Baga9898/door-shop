@@ -19,6 +19,7 @@ const AdminPage = () => {
         color: '',
         description: '',
         sizes: [],
+        withLeftRight: false,
         material: '',
         construction: '',
         surface: '',
@@ -41,6 +42,7 @@ const AdminPage = () => {
             color: '',
             description: '',
             sizes: [],
+            withLeftRight: false,
             material: '',
             construction: '',
             surface: '',
@@ -59,6 +61,7 @@ const AdminPage = () => {
         formData.append('color', doorForm.color);
         formData.append('description', doorForm.description);
         formData.append('sizes', doorForm.sizes);
+        formData.append('withLeftRight', doorForm.withLeftRight);
         formData.append('material', doorForm.material);
         formData.append('construction', doorForm.construction);
         formData.append('surface', doorForm.surface);
@@ -102,6 +105,7 @@ const AdminPage = () => {
                 <h1>Создание двери</h1>
                 <div className={styles.wrapper}>
                     <div className={styles.leftSide}>
+                        {/* Создать универсальный компонент инпута. */}
                         <input value={doorForm.name} placeholder='Наименование модели' onChange={(e) => setDoorForm({...doorForm, name: e.target.value})} />
                         <input value={doorForm.price} placeholder='Цена' onChange={(e) => setDoorForm({...doorForm, price: e.target.value})} />
                         {/* <input value={doorForm.makeDate} placeholder='Год производства' onChange={(e) => setDoorForm({...doorForm, makeDate: e.target.value})} /> */}
@@ -119,6 +123,9 @@ const AdminPage = () => {
                         <div>
                             {doorForm.sizes.map(size => <li key={size}>{size}</li>)}
                         </div>
+
+                        <label>Нужно ли добавить выборо стороны открытия двери?</label>
+                        <input type='checkbox' value={doorForm.withLeftRight} onChange={(e) => setDoorForm({...doorForm, withLeftRight: e.target.checked})} />
 
                         <input value={doorForm.material} placeholder='Материал' onChange={(e) => setDoorForm({...doorForm, material: e.target.value})} />
                         <input value={doorForm.construction} placeholder='Конструкция' onChange={(e) => setDoorForm({...doorForm, construction: e.target.value})} />

@@ -60,11 +60,18 @@ const CartItem = ({ door, cartDoors, setCartDoors }) => {
                 </div>
             </div>
             <div className={styles.rightSide}>
-                {door.chosenSize && (
-                    <div className={styles.size}>
-                        <p>{door.chosenSize}</p>
-                    </div>
-                )}
+                <div>
+                    {door.chosenSize && (
+                        <div className={styles.spec}>
+                            <p>{door.chosenSize}</p>
+                        </div>
+                    )}
+                    {door.direction && (
+                        <div className={styles.spec}>
+                            <p>{door.direction}</p>
+                        </div>
+                    )}
+                </div>
                 <div>
                     <div className={styles.sum}>
                         <p>{+door.price * count}<span> &#8381;</span></p>

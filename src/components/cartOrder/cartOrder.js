@@ -48,6 +48,7 @@ const CartOrder = ({ setCartDoors }) => {
             size: door.chosenSize,
             price: door.price,
             count: door.count,
+            direction: door.direction,
         }));
 
         // Добавить лоадер.
@@ -58,7 +59,7 @@ const CartOrder = ({ setCartDoors }) => {
                 doors: objectsForBack,
             });
             localStorage.removeItem('cartDoors');
-            setCartDoors([]);
+            setCartDoors();
             setOrderForm({
                 customerName: '',
                 customerPhone: '',

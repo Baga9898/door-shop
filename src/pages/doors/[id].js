@@ -1,8 +1,9 @@
 // Refactoring need
 import { useState, useEffect } from 'react';
 
-import { notify }    from '../../components/shared/notify/notify';
-import MainContainer from "../../components/mainLayout/mainLayout";
+import { directions } from '../../constants';
+import { notify }     from '../../components/shared/notify/notify';
+import MainContainer  from "../../components/mainLayout/mainLayout";
 
 import styles from './styles.module.scss';
 
@@ -31,6 +32,7 @@ export const getStaticPaths = async () => {
 
 export default ({ door }) => {
   const [chosenSize, setChosenSize] = useState('');
+  const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [inCart, setInCart] = useState([]);
 
   const addToCart = () => {
@@ -41,6 +43,7 @@ export default ({ door }) => {
 
     let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
     door.chosenSize = chosenSize;
+    door.direction = chosenDirection;
     door.count = 1;
     cartDoors.push(door);
     localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
@@ -49,7 +52,7 @@ export default ({ door }) => {
   };
 
   const isInCart = (article, size) => { // Вынести в хелпер.
-    return inCart.map(cartDoor => cartDoor.article).includes(article) && inCart.map(cartDoor => cartDoor.chosenSize).includes(size);
+    return inCart.map(cartDoor => cartDoor.article).includes(article) && inCart.map(cartDoor => cartDoor.chosenSize).includes(size); // Добавить проверку на направление двери.
   };
 
   useEffect(() => {
@@ -62,8 +65,6 @@ export default ({ door }) => {
     notify('info', 'Товар уже добавлен в корзину');
   };
 
-  console.log(door);
-
   return (
     <MainContainer>
       <section className={styles.currentDoor}>
@@ -75,8 +76,8 @@ export default ({ door }) => {
             <div>
               <p className={styles.article}>Арт. {door.article}</p>
               <p className={styles.doorName}>{door.name}</p>
-              <p className={styles.sizesParagraph}>{'Размеры двери (см):'}</p>
-              <div className={styles.sizes}>
+              <p className={styles.specParagraph}>{'Размеры двери (см):'}</p>
+              <div className={styles.specWrapper}>
                 {door.sizes && door.sizes.toString().split(',').map(size => (
                   <li 
                     key={size} 
@@ -87,6 +88,22 @@ export default ({ door }) => {
                   </li>
                 ))}
               </div>
+              {door.withLeftRight &&
+                <>
+                  <p className={styles.specParagraph}>{'Направление открывания:'}</p>
+                  <div className={styles.specWrapper}>
+                    {directions && directions.map(direction => (
+                      <li 
+                        key={direction}
+                        className={direction === chosenDirection && styles.active}
+                        onClick={() => setChosenDirection(direction)}
+                      >
+                        {direction}
+                      </li>
+                    ))}
+                  </div>
+                </>
+              }
             </div>
             <div>
               <p className={styles.price}>{door.price} &#8381;/шт.</p>

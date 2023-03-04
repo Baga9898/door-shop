@@ -13,7 +13,7 @@ const Page404 = () => {
 
   useEffect(() => {
     setInterval(() => {
-      setCount(prevState  => prevState - 1);
+      setCount(prevState => prevState - 1);
     }, 1000);
 
     setTimeout (() => {

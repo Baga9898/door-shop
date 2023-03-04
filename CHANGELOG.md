@@ -4,7 +4,7 @@
 
 - Added admin page
 - Added notifications
-  
+- Added specifications
 ## 0.4.0
 
 - Added cart page

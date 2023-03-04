@@ -79,13 +79,30 @@
             background: #000;
         }
     }
+
+    .inCartButton {
+        border: 1px solid #c4c4c4;
+        background: transparent;
+        color: #c4c4c4;
+
+        &:hover {
+            border: 1px solid #000;
+            background: transparent;
+            color: #000;
+        }
+    }
 }
 
-.sizes {
+.specWrapper {
     display: flex;
+    align-items: baseline;
+
+    span {
+        width: 110px;
+    }
 
     li {
-        margin-right: 10px;
+        margin: 0 10px 10px 0;
         width: 95px;
         height: 40px;
         border-radius: 5px;

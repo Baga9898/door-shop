@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import { setDoors }       from '../../redux/slices/catalogSlice';
+import { getDoorsCount, setDoors }       from '../../redux/slices/catalogSlice';
 import { useAppDispatch } from './../../redux/hook';
 import { useAppSelector } from '../../redux/hook';
 import Catalog            from './../../components/catalog/catalog';
@@ -26,6 +26,7 @@ const Doors = ({ serverDoors }) => {
 
     useEffect(() => {
         dispatch(setDoors(localDoors));
+        dispatch(getDoorsCount());
     }, []);
 
     useEffect(() => {

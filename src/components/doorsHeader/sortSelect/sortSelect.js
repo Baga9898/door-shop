@@ -11,7 +11,7 @@ import styles from './sortSelect.module.scss';
 const SortSelect = () => {
     const selectModeRef = useRef();
     const dispatch = useAppDispatch();
-    const currentSortMode = useAppSelector(state => state.catalog.sortMode);
+    const { sortMode, currentPage, pageSize } = useAppSelector(state => state.catalog);
     const [menuIsVisible, setMenuIsVisible] = useOutsideClick(false, selectModeRef);
     const sortClass = menuIsVisible ? styles.modeSelectWrapperOpen : styles.modeSelectWrapper;
 
@@ -29,7 +29,11 @@ const SortSelect = () => {
                 break;
         }
 
-        dispatch(getSortedDoors(value));
+        dispatch(getSortedDoors({
+            sortMode: value,
+            currentPage: currentPage,
+            pageSize: pageSize,
+        }));
         dispatch(setSortMode(item));
     };
 
@@ -39,7 +43,7 @@ const SortSelect = () => {
 
     return (
         <div ref={selectModeRef} className={sortClass} onClick={showMode}>
-            <p>{sortText}</p><span>{currentSortMode}</span>
+            <p>{sortText}</p><span>{sortMode}</span>
             <ul>
                 {MODES.allModes.map(item => (
                     <li key={item} onClick={() => setMode(item)}>{item}</li>

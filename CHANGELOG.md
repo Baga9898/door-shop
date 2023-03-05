@@ -1,10 +1,15 @@
 # CHANGELOG
 
+## 0.6.0
+
+- Added pagination
+
 ## 0.5.0
 
 - Added admin page
 - Added notifications
 - Added specifications
+  
 ## 0.4.0
 
 - Added cart page
@@ -21,7 +26,7 @@
 
 - Added check for existence of paths
 - Added axios
-- Added Redux toolki
+- Added Redux toolkit
   
 ## 0.2.0
 

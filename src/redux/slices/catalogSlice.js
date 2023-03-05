@@ -7,14 +7,29 @@ import * as MODES from '../../components/doorsHeader/sortSelect/selectModes';
 const initialState = {
   sortMode: MODES.newest,
   doors: [],
+  currentPage: 1,
+  doorsCount: null,
+  pageSize: 20,
 };
 
 export const getSortedDoors = createAsyncThunk(
   'catalog/getSortedDoors',
-  async (sortMode, { dispatch }) => {
+  async (params, { dispatch }) => {
     try {
-      const res = await axios.post(`http://localhost:5000/api/doors/sort`, { sortMode });
+      const res = await axios.post(`http://localhost:5000/api/doors/sort`, { ...params });
       dispatch(setDoors(res.data));
+    } catch (error) {
+      console.error(error.message);
+    }
+  },
+);
+
+export const getDoorsCount = createAsyncThunk(
+  'catalog/getDoorsCount',
+  async (_, { dispatch }) => {
+    try {
+      const res = await axios.get('http://localhost:5000/api/doors/length');
+      dispatch(setDoorsCount(res.data));
     } catch (error) {
       console.error(error.message);
     }
@@ -52,8 +67,14 @@ export const catalogSlice = createSlice({
     deleteDoor: (state, action) => {
       state.doors = state.doors.filter(door => door._id !== action.payload);
     },
+    setCurrentPage: (state, action) => {
+      state.currentPage = action.payload;
+    },
+    setDoorsCount: (state, action) => {
+      state.doorsCount = action.payload;
+    },
   },
 });
 
-export const { setSortMode, setDoors, deleteDoor } = catalogSlice.actions;
+export const { setSortMode, setDoors, deleteDoor, setCurrentPage, setDoorsCount } = catalogSlice.actions;
 export default catalogSlice.reducer;

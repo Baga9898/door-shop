@@ -1,0 +1,23 @@
+.pagination {
+    margin: 30px 0 20px 0;
+    display: flex;
+    justify-content: flex-end;
+
+    li {
+        margin-right: 5px;
+        width: 40px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #c4c4c4;
+        background: transparent;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: 0.5s;
+        cursor: pointer;
+
+        &:hover {
+            background: #f3f3f3;
+        }
+    }
+}

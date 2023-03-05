@@ -6,6 +6,7 @@ import { useAppSelector } from '../../redux/hook';
 import Catalog            from './../../components/catalog/catalog';
 import DoorsHeader        from '../../components/doorsHeader/doorsHeader';
 import MainContainer      from '../../components/mainLayout/mainLayout';
+import Pagination from './../../components/shared/pagination/pagination';
 
 export const getServerSideProps = async () => {
     const response = await fetch(`http://localhost:5000/api/doors`);
@@ -35,6 +36,7 @@ const Doors = ({ serverDoors }) => {
         <MainContainer keywords="" title="Каталог">
             <DoorsHeader />
             <Catalog doors={localDoors} />
+            <Pagination />
         </MainContainer>
     );
 };

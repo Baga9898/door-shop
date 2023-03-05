@@ -31,7 +31,12 @@ const CatalogItem = ({ door }) => {
     }
 
     let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
-    cartDoors.push({...door, chosenSize: chosenSize, count: 1});
+    cartDoors.push({
+      ...door, 
+      chosenSize: chosenSize, 
+      count: 1,
+      direction: chosenDirection,
+    });
     localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
     setInCart(cartDoors);
     notify('success', 'Товар успешно добавлен в корзину');

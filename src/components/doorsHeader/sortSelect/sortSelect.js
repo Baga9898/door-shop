@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import { getSortedDoors, setSortMode }    from '../../../redux/slices/catalogSlice';
+import { getSortedDoors, setCurrentPage, setSortMode }    from '../../../redux/slices/catalogSlice';
 import { sortText }                       from '../../../texts';
 import { useAppDispatch, useAppSelector } from './../../../redux/hook';
 import { useOutsideClick }                from '../../../hooks/useOutsideClick';
@@ -35,6 +35,7 @@ const SortSelect = () => {
             pageSize: pageSize,
         }));
         dispatch(setSortMode(item));
+        dispatch(setCurrentPage(1));
     };
 
     const showMode = () => {

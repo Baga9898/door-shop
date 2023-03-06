@@ -13,12 +13,20 @@ const Pagination = () => {
     const pageCount = Math.ceil(doorsCount / pageSize);
     const pageNumbers = [];
 
+    const scrollToTop = () => { // Вынести в хелперы.
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      };
+
     useEffect(() => {
         dispatch(getSortedDoors({
             sortMode: sortMode,
             currentPage: currentPage,
             pageSize: pageSize,
         }));
+        scrollToTop();
     }, [currentPage]);
 
     for (let i = 1; i <= pageCount; i++) {
@@ -33,10 +41,22 @@ const Pagination = () => {
         dispatch(setCurrentPage(currentPage + 1))
     };
 
+    const setPage = (page) => {
+        dispatch(setCurrentPage(page));
+    };
+
     return (
         <ul className={styles.pagination}>
             {currentPage !== 1 && <li onClick={prevPage}>{'<'}</li>}
-            {pageNumbers.map(page => <li key={`page_${page}`}>{page}</li>)}
+            {pageNumbers.map(page => (
+                <li 
+                    key={`page_${page}`}
+                    onClick={() => setPage(page)}
+                    className={page === currentPage && styles.active}
+                >
+                    {page}
+                </li>
+            ))}
             {currentPage !== pageCount && <li onClick={nextPage}>{'>'}</li>}
         </ul>
     );

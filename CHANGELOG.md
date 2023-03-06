@@ -3,6 +3,7 @@
 ## 0.6.0
 
 - Added pagination
+- Added scroll to top on page change
 
 ## 0.5.0
 

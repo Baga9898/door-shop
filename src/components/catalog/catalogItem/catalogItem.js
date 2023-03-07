@@ -17,7 +17,8 @@ const CatalogItem = ({ door }) => {
   const [chosenSize, setChosenSize] = useState('');
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [choseModalIsOpen, setChoseModalIsOpen] = useState(false);
-  const isAuth = useAppSelector(state => state.user.isAuth);
+  const { isAuth, currentUser } = useAppSelector(state => state.user);
+  const isAdmin = currentUser.roles?.includes('admin');
   const dispatch = useAppDispatch();
 
   const handleDelete = async(doorId) => {
@@ -68,7 +69,7 @@ const CatalogItem = ({ door }) => {
   return (
     <>
       <div className={styles.cardWrapper}>
-        {isAuth && <MdDelete onClick={() => handleDelete(door._id)} className={styles.deleteIcon}/>} 
+        {isAuth && isAdmin && <MdDelete onClick={() => handleDelete(door._id)} className={styles.deleteIcon}/>} 
         <div className={styles.doorCard}>
           <Link href={`/doors/${door._id}`}>
             <img src={`http://localhost:5000/${door.image}`} alt={door.name} />

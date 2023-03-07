@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.1
+
+- Fixed delete item icons view for all roles
+
 ## 0.6.0
 
 - Added pagination

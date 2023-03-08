@@ -5,6 +5,7 @@ import axios                   from 'axios';
 import { notify } from '../shared/notify/notify';
 
 import styles from './styles.module.scss';
+import { type } from './../../redux/store';
 
 const CartOrder = ({ setCartDoors }) => {
     const [nameError, setNameError] = useState('');
@@ -71,6 +72,39 @@ const CartOrder = ({ setCartDoors }) => {
         }
     };
 
+    const getNumbersValue = (input) => {
+        return input.value.trim().replace(/\D/g, '');
+    };
+
+    const onPhoneInput = (e) => {
+        let input = e.target,
+            inputNumbersValue = getNumbersValue(input),
+            formatedInputValue = '';
+
+        if (['7', '8', '9'].indexOf(inputNumbersValue[0]) > -1) {
+            // Russian number
+            if (inputNumbersValue[0] == '9') inputNumbersValue = '7' + inputNumbersValue;
+            let firstSymbols = (inputNumbersValue[0] == '8') ? '8' : '+7';
+            formatedInputValue = firstSymbols + ' ';
+            if (inputNumbersValue.length > 1) {
+                formatedInputValue += '(' + inputNumbersValue.substring(1, 4);
+            }
+            if (inputNumbersValue.length >= 5) {
+                formatedInputValue += ') ' + inputNumbersValue.substring(4, 7);
+            }
+            if (inputNumbersValue.length >= 8) {
+                formatedInputValue += '-' + inputNumbersValue.substring(7, 9);
+            }
+            if (inputNumbersValue.length >= 10) {
+                formatedInputValue += '-' + inputNumbersValue.substring(9, 11);
+            }
+        } else {
+            // Not Russian number
+            formatedInputValue = '+' + inputNumbersValue.substring(0, 16);
+        }
+        setOrderForm({...orderForm, customerPhone: formatedInputValue});
+    };
+
     const haveErrors = nameError 
         || phoneError 
         || mailError 
@@ -88,10 +122,18 @@ const CartOrder = ({ setCartDoors }) => {
             />
             <label>{nameError}</label>
             <input 
+                type='tel'
+                maxLength={18}
+                placeholder='Контактный телефон' 
+                value={orderForm.customerPhone}
+                onChange={(e) => onPhoneInput(e)}
+            />
+            {/* <input 
+                type='tel'
                 placeholder='Контактный телефон' 
                 value={orderForm.customerPhone}
                 onChange={(e) => setOrderForm({...orderForm, customerPhone: e.target.value})}
-            />
+            /> */}
             <label>{phoneError}</label>
             <input 
                 placeholder='Почта для связи' 

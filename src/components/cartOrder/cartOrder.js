@@ -80,7 +80,7 @@ const CartOrder = ({ setCartDoors }) => {
         let input = e.target,
             inputNumbersValue = getNumbersValue(input),
             formatedInputValue = '';
-
+            
         if (['7', '8', '9'].indexOf(inputNumbersValue[0]) > -1) {
             // Russian number
             if (inputNumbersValue[0] == '9') inputNumbersValue = '7' + inputNumbersValue;
@@ -105,6 +105,12 @@ const CartOrder = ({ setCartDoors }) => {
         setOrderForm({...orderForm, customerPhone: formatedInputValue});
     };
 
+    const onPhoneKeyDown = (e) => {
+        if (e.keyCode === 8 && getNumbersValue(e.target).length === 1) {
+            setOrderForm({...orderForm, customerPhone: ''});
+        }
+    };
+
     const haveErrors = nameError 
         || phoneError 
         || mailError 
@@ -127,6 +133,7 @@ const CartOrder = ({ setCartDoors }) => {
                 placeholder='Контактный телефон' 
                 value={orderForm.customerPhone}
                 onChange={(e) => onPhoneInput(e)}
+                onKeyDown={(e) => onPhoneKeyDown(e)}
             />
             {/* <input 
                 type='tel'

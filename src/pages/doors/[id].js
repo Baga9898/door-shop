@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 
 import { directions } from '../../constants';
+import { isInCart }   from '../../utils';
 import { notify }     from '../../components/shared/notify/notify';
 import MainContainer  from "../../components/mainLayout/mainLayout";
 
@@ -49,10 +50,6 @@ export default ({ door }) => {
     localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
     setInCart(cartDoors);
     notify('success', 'Товар успешно добавлен в корзину');
-  };
-
-  const isInCart = (article, size) => { // Вынести в хелпер.
-    return inCart.map(cartDoor => cartDoor.article).includes(article) && inCart.map(cartDoor => cartDoor.chosenSize).includes(size); // Добавить проверку на направление двери.
   };
 
   useEffect(() => {
@@ -107,7 +104,7 @@ export default ({ door }) => {
             </div>
             <div>
               <p className={styles.price}>{door.price} &#8381;/шт.</p>
-              {isInCart(door.article, chosenSize) ?
+              {isInCart(inCart, door.article, chosenSize, chosenDirection) ?
                 <button onClick={alreadyInCart}>В корзине</button> :
                 <button onClick={addToCart}>В корзину</button>
               }
@@ -118,6 +115,7 @@ export default ({ door }) => {
           <div>
             <h2>Характеристики</h2>
             {/* Вынести в массив объектов. И написать функцию для высчитывания количества точек между свойством и значением.*/}
+            {/* Сделать либо таблицу, либо зафлексить , а внутри контент на всю ширину, где контент точка. */}
             <p>Категория           <span>...................................................................................</span> {door.category}</p>
             <p>Цвет                <span>............................................................................................</span> {door.color}</p>
             <p>Конструкция         <span>...............................................................................</span> {door.construction}</p>

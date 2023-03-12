@@ -44,8 +44,8 @@ const CatalogItem = ({ door }) => {
     closeModal();
   };
 
-  const isInCart = (doorId) => { // Вынести в хелпер.
-    return inCart.map(door => door._id).includes(doorId);
+  const isInCart = (door) => { // Вынести в хелпер.
+    return inCart.map(door => door._id).includes(door._id);
   };
 
   useEffect(() => {
@@ -78,7 +78,7 @@ const CatalogItem = ({ door }) => {
           </Link>
             <div className={styles.bottomSide}>
               <p className={styles.doorPrice}>{door.price}&#8381;</p>
-              {isInCart(door._id) ? (
+              {isInCart(door) ? (
                   <button 
                     className={styles.inCartButton}
                     onClick={inCartNotify}

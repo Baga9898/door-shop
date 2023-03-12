@@ -20,7 +20,7 @@ const Cart = () => {
     return (
         <MainContainer keywords="" title="Корзина">
             <CartHeader setCartDoors={setCartDoors} />
-            {cartDoors ? (
+            {cartDoors && cartDoors.length !== 0 ? (
                 <div className={styles.content}>
                     <div style={{width: '65%'}}>
                         {cartDoors.map((door, index) => (

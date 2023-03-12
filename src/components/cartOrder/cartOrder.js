@@ -18,7 +18,7 @@ const CartOrder = ({ setCartDoors }) => {
     });
 
     const phoneRegexp = /(\+7|8)[- _]*\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})/g;
-    const emailRegexp = /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
+    const emailRegexp = /^[A-Z0-9._-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
     // Сделать компонент поля, где также будет приниматься регулярка, и генериться ерроры.
     useEffect(() => {
@@ -81,7 +81,7 @@ const CartOrder = ({ setCartDoors }) => {
             inputNumbersValue = getNumbersValue(input),
             formatedInputValue = '';
             
-        if (['7', '8', '9'].indexOf(inputNumbersValue[0]) > -1) {
+        if (['7', '8', '9'].indexOf(inputNumbersValue[0]) > -1) { // Вынести в utils.
             // Russian number
             if (inputNumbersValue[0] == '9') inputNumbersValue = '7' + inputNumbersValue;
             let firstSymbols = (inputNumbersValue[0] == '8') ? '8' : '+7';
@@ -135,12 +135,6 @@ const CartOrder = ({ setCartDoors }) => {
                 onChange={(e) => onPhoneInput(e)}
                 onKeyDown={(e) => onPhoneKeyDown(e)}
             />
-            {/* <input 
-                type='tel'
-                placeholder='Контактный телефон' 
-                value={orderForm.customerPhone}
-                onChange={(e) => setOrderForm({...orderForm, customerPhone: e.target.value})}
-            /> */}
             <label>{phoneError}</label>
             <input 
                 placeholder='Почта для связи' 

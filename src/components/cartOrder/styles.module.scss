@@ -23,6 +23,10 @@
         &:hover {
             background: #000;
         }
+
+        &:disabled {
+            background: #a1a1a1;
+        }
     }
 
     input {

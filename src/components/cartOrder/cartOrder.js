@@ -1,13 +1,15 @@
 // Refactoring need
+import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios                   from 'axios';
 
 import { notify } from '../shared/notify/notify';
 
 import styles from './styles.module.scss';
-import { type } from './../../redux/store';
+import { setIsLoading } from '../../redux/slices/appSlice';
 
 const CartOrder = ({ setCartDoors }) => {
+    const dispatch = useDispatch();
     const [nameError, setNameError] = useState('');
     const [phoneError, setPhoneError] = useState('');
     const [mailError, setMailError] = useState('');
@@ -52,7 +54,7 @@ const CartOrder = ({ setCartDoors }) => {
             direction: door.direction,
         }));
 
-        // Добавить лоадер.
+        dispatch(setIsLoading(true));
 
         try {
             await axios.post('http://localhost:5000/api/mail', {
@@ -69,6 +71,8 @@ const CartOrder = ({ setCartDoors }) => {
             notify('success', 'Заказ оформлен успешно');
         } catch (error) {
             notify('error', 'При оформлении заказа возникла ошибка');
+        } finally {
+            dispatch(setIsLoading(false));
         }
     };
 

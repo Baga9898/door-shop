@@ -1,11 +1,13 @@
 import { useRouter }             from 'next/router';
 import { useState, useEffect }   from 'react';
 
+import { useAppSelector }        from '../../../redux/hook';
 import Loader                    from '../loader/loader';
 
 const Loading = () => {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const { globalLoading } = useAppSelector(state => state.app);
 
     useEffect(() => {
         const handleStart = (url) => (url !== router.asPath) && setLoading(true);
@@ -22,7 +24,7 @@ const Loading = () => {
         };
     });
 
-    return loading && (
+    return (loading || globalLoading) && (
         <Loader />
     );
 };

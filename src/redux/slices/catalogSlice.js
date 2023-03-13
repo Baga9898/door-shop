@@ -76,5 +76,5 @@ export const catalogSlice = createSlice({
   },
 });
 
-export const { setSortMode, setDoors, deleteDoor, setCurrentPage, setDoorsCount } = catalogSlice.actions;
+export const { setSortMode, setDoors, deleteDoor, setCurrentPage, setDoorsCount } = catalogSlice.actions; // Переписать на actionCreators и в местах использования применять через точечную нотацию.
 export default catalogSlice.reducer;

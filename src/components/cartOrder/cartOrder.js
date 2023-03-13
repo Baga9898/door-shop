@@ -32,13 +32,13 @@ const CartOrder = ({ setCartDoors }) => {
         phoneRegexp.test(orderForm.customerPhone) ||
         orderForm.customerPhone.length === 0 ?
         setPhoneError('') : 
-        setPhoneError('Номер должен соответствовать формату: 89169999999');
+        setPhoneError('Номер должен соответствовать формату: 8 (916) 999-99-99');
     }, [orderForm.customerPhone]);
 
     useEffect(() => {
         emailRegexp.test(orderForm.customerMail) || orderForm.customerMail.length === 0 ?
         setMailError('') :
-        setMailError('Почта должна соответствовать формату: qwerty@mail.ru');
+        setMailError('Почта должна соответствовать формату: example@mail.ru');
     }, [orderForm.customerMail]);
 
     const makeOrder = async() => {
@@ -121,27 +121,33 @@ const CartOrder = ({ setCartDoors }) => {
         <div className={styles.cartOrder}>
             {/* <p>Товаров в заказе: <span>{'3'}</span></p> */}
             {/* <p>Итого <span>{'1393'} &#8381;</span></p> */}
-            <input 
-                placeholder='Ваше имя' 
-                value={orderForm.customerName}
-                onChange={(e) => setOrderForm({...orderForm, customerName: e.target.value})}
-            />
-            <label>{nameError}</label>
-            <input 
-                type='tel'
-                maxLength={18}
-                placeholder='Контактный телефон' 
-                value={orderForm.customerPhone}
-                onChange={(e) => onPhoneInput(e)}
-                onKeyDown={(e) => onPhoneKeyDown(e)}
-            />
-            <label>{phoneError}</label>
-            <input 
-                placeholder='Почта для связи' 
-                value={orderForm.customerMail}
-                onChange={(e) => setOrderForm({...orderForm, customerMail: e.target.value})}
-            />
-            <label>{mailError}</label>
+            <div className={styles.inputWrapper}>
+                <input 
+                    placeholder='Ваше имя' 
+                    value={orderForm.customerName}
+                    onChange={(e) => setOrderForm({...orderForm, customerName: e.target.value})}
+                />
+                <label className={nameError && styles.active}>{nameError}</label>
+            </div>
+            <div className={styles.inputWrapper}>
+                <input 
+                    type='tel'
+                    maxLength={18}
+                    placeholder='Контактный телефон' 
+                    value={orderForm.customerPhone}
+                    onChange={(e) => onPhoneInput(e)}
+                    onKeyDown={(e) => onPhoneKeyDown(e)}
+                />
+               <label className={phoneError && styles.active}>{phoneError}</label>
+            </div>
+            <div className={styles.inputWrapper}>
+                <input 
+                    placeholder='Почта для связи' 
+                    value={orderForm.customerMail}
+                    onChange={(e) => setOrderForm({...orderForm, customerMail: e.target.value})}
+                />
+                <label className={mailError && styles.active}>{mailError}</label>
+            </div>
             <button disabled={haveErrors} onClick={makeOrder}>Оформить заказ</button>
             <p>Дату доставки, стоимость монтажа и все оставшиеся у вас вопросы можно будет уточнить во время оформления заказа с менеджером по телефону</p>
         </div>

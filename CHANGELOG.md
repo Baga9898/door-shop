@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.6.2
+
+- Fixed check is current door specs in cart
+
 ## 0.6.1
 
 - Fixed delete item icons view for all roles

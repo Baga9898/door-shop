@@ -1,16 +1,17 @@
 import { Provider }       from 'react-redux';
 import { ToastContainer } from 'react-toastify';
+import { ErrorBoundary }  from 'react-error-boundary';
 
-
-import { store } from './../redux/store';
-import Loading   from '../components/shared/loading/loading';
+import { store }     from './../redux/store';
+import ErrorFallback from '../components/errorFallback/errorFallback';
+import Loading       from '../components/shared/loading/loading';
 
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/global.scss';
 
 const MyApp = ({ Component, pageProps }) => {
     return (
-        <>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
             <Provider store={store}>
                 <Loading />
                 <Component {...pageProps} />
@@ -27,7 +28,7 @@ const MyApp = ({ Component, pageProps }) => {
                 pauseOnHover
                 theme="light"
             />
-        </>
+        </ErrorBoundary>
     );
 };
 

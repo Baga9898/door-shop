@@ -29,6 +29,12 @@ const CartOrder = ({ setCartDoors }) => {
             setNameError('Для ввода доступны только буквы русского алфавита');
     }, [orderForm.customerName]);
 
+    useEffect(() => {
+        if (orderForm.customerName === 'check') {
+            throw new Error('custom error here');
+        }
+    }, [orderForm.customerName]);
+
     // Сделать нормальный импорт.
     useEffect(() => {
         phoneRegexp.test(orderForm.customerPhone) ||

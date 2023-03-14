@@ -14,7 +14,7 @@ import styles from './mainLayout.module.scss';
 const font = Montserrat({
     subsets: ['cyrillic'],
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  });
+});
 
 const MainContainer = ({ children, keywords, title }) => { 
     const dispatch = useAppDispatch();

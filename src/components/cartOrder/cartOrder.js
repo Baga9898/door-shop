@@ -29,18 +29,12 @@ const CartOrder = ({ setCartDoors }) => {
             setNameError('Для ввода доступны только буквы русского алфавита');
     }, [orderForm.customerName]);
 
-    useEffect(() => {
-        if (orderForm.customerName === 'check') {
-            throw new Error('custom error here');
-        }
-    }, [orderForm.customerName]);
-
     // Сделать нормальный импорт.
     useEffect(() => {
         phoneRegexp.test(orderForm.customerPhone) ||
         orderForm.customerPhone.length === 0 ?
         setPhoneError('') : 
-        setPhoneError('Номер должен соответствовать формату: 8 (916) 999-99-99');
+        setPhoneError('Номер должен соответствовать формату: 8 (916) 999-99-99'); // Вынести в константы.
     }, [orderForm.customerPhone]);
 
     useEffect(() => {

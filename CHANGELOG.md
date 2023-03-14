@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.7.0
+
+- Added error boundery
+
 ## 0.6.2
 
 - Fixed check is current door specs in cart

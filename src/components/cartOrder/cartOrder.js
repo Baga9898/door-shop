@@ -1,12 +1,13 @@
 // Refactoring need
-import { useDispatch } from 'react-redux';
+import { useDispatch }         from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios                   from 'axios';
 
-import { notify } from '../shared/notify/notify';
+import { notify }            from '../shared/notify/notify';
+import { setIsLoading }      from '../../redux/slices/appSlice';
+import { setIsOrderSuccess } from '../../redux/slices/cartSlice';
 
 import styles from './styles.module.scss';
-import { setIsLoading } from '../../redux/slices/appSlice';
 
 const CartOrder = ({ setCartDoors }) => {
     const dispatch = useDispatch();
@@ -29,7 +30,6 @@ const CartOrder = ({ setCartDoors }) => {
             setNameError('Для ввода доступны только буквы русского алфавита');
     }, [orderForm.customerName]);
 
-    // Сделать нормальный импорт.
     useEffect(() => {
         phoneRegexp.test(orderForm.customerPhone) ||
         orderForm.customerPhone.length === 0 ?
@@ -69,6 +69,7 @@ const CartOrder = ({ setCartDoors }) => {
                 customerMail: '',
             });
             notify('success', 'Заказ оформлен успешно');
+            dispatch(setIsOrderSuccess(true));
         } catch (error) {
             notify('error', 'При оформлении заказа возникла ошибка');
         } finally {

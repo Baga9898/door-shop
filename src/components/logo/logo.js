@@ -7,7 +7,7 @@ const Logo = () => {
     return (
         <Link href={rootRoute}>
             <Image
-                src='/assets/logo-example.png'
+                src='/assets/logo.png'
                 alt='logo'
                 width={120}
                 height={40}

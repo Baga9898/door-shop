@@ -5,7 +5,7 @@ export const logoutButton  = 'Выйти';
 // Contacts
 export const copyright   = 'Имя компании';
 export const mailAdress  = 'doorstore371@gmail.com';
-export const phoneNumber = '+7(999)999-99-99';
+export const phoneNumber = '+7 (985) 151-47-04';
 
 // Headings
 export const catalogHeading = 'Каталог';

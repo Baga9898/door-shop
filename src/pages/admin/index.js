@@ -167,7 +167,8 @@ const AdminPage = () => {
                 </section>
             </MainContainer>
             :
-            <div style={font.style} className='not-found-page'>
+            // Вынести в отдельный компонент.
+            <div style={font.style} className='not-found-page'> 
                 <span>404</span>
                 <span></span>
                 <div className='not-found-page__message'>

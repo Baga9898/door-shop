@@ -81,7 +81,8 @@ const CatalogItem = ({ door }) => {
               {isInCart(door) ? (
                   <button 
                     className={styles.inCartButton}
-                    onClick={inCartNotify}
+                    // onClick={inCartNotify}
+                    onClick={openModal}
                   >
                     В корзине
                   </button>
@@ -95,8 +96,8 @@ const CatalogItem = ({ door }) => {
         title='Выберите характеристики'
         isOpen={choseModalIsOpen}
         onCloseFunction={closeModal}
-        secondText='В корзину'
-        secondAction={addToCart}
+        secondText={isInCart(door) ? 'В корзине' : 'В корзину'}
+        secondAction={isInCart(door) ? inCartNotify : addToCart}
       >
         <div className={styles.specWrapper}>
           <span>Размер: </span>

@@ -8,8 +8,8 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <Contacts />
-      <Social />
-      <Copyright />
+      {/* <Social /> */}
+      {/* <Copyright /> */}
     </footer>
   )
 }

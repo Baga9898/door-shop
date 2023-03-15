@@ -1,0 +1,13 @@
+.successOrder {
+    height: calc(100vh - 177px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    p {
+        margin-bottom: 30px;
+        font-size: 30px;
+    }
+}

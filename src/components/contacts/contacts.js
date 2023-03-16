@@ -1,9 +1,6 @@
-import { 
-    mailAdress, 
-    phoneNumber 
-}               from '../../texts';
+import { mailAdress, phoneNumber } from '../../texts';
 
-import styles   from './contacts.module.scss';
+import styles from './contacts.module.scss';
 
 const Contacts = () => {
     return (

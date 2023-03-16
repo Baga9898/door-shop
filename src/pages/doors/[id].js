@@ -67,7 +67,7 @@ export default ({ door }) => {
   return (
     <MainContainer 
       keywords={`${door.article}, ${door.name}`} 
-      title={`${door.name} ${door.article}`}
+      title={`Купить ${door.name} ${door.article}`}
       customDescription={customDescription}
     >
       <section className={styles.currentDoor}>
@@ -78,7 +78,7 @@ export default ({ door }) => {
           <div className={styles.rightSide}>
             <div>
               <p className={styles.article}>Арт. {door.article}</p>
-              <p className={styles.doorName}>{door.name}</p>
+              <h1 className={styles.doorName}>{door.name}</h1>
               <p className={styles.specParagraph}>{'Размеры двери (см):'}</p>
               <div className={styles.specWrapper}>
                 {door.sizes && door.sizes.toString().split(',').map(size => (

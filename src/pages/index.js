@@ -13,7 +13,7 @@ export const getStaticProps = async () => {
 
 const Index = ({ doors }) => {
     return (
-        <MainContainer>
+        <MainContainer title='Двери Портал - Главная'>
             <MainImage />
             <Newest doors={doors}/>
         </MainContainer>

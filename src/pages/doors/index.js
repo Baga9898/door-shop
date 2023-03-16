@@ -23,6 +23,7 @@ const Doors = ({ serverDoors }) => {
     const dispatch = useAppDispatch();
     const [localDoors, setLocalDoors] = useState(serverDoors);
     const storageDoors = useAppSelector(state => state.catalog.doors);
+    const currentPage = useAppSelector(state => state.catalog.currentPage);
 
     useEffect(() => {
         dispatch(setDoors(localDoors));
@@ -34,7 +35,7 @@ const Doors = ({ serverDoors }) => {
     }, [storageDoors]);
 
     return (
-        <MainContainer keywords="" title="Каталог">
+        <MainContainer keywords="" title={`Каталог дверей страница ${currentPage}`}>
             <DoorsHeader />
             <Catalog doors={localDoors} />
             <Pagination />

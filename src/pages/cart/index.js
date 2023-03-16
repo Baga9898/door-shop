@@ -21,7 +21,7 @@ const Cart = () => {
     }, []);
 
     return (
-        <MainContainer keywords="" title="Корзина">
+        <MainContainer title='Двери Портал - корзина'>
             <CartHeader setCartDoors={setCartDoors} />
             {isOrderSuccess ? <SuccessOrder /> : (
                 cartDoors && cartDoors.length !== 0 ? (

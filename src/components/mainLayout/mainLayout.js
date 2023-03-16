@@ -16,7 +16,7 @@ const font = Montserrat({
     weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
 });
 
-const MainContainer = ({ children, keywords, title }) => { 
+const MainContainer = ({ children, keywords, title, customDescription }) => { 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -41,7 +41,11 @@ const MainContainer = ({ children, keywords, title }) => {
 
     return (
         <div className={styles.container} style={font.style}>
-            <CustomHead keywords={keywords} title={title} />
+            <CustomHead 
+                keywords={keywords} 
+                title={title} 
+                customDescription={customDescription}
+            />
             <Header />
             {/* {title && <h1>{title}</h1>} */}
             { children }

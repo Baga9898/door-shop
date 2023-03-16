@@ -36,6 +36,8 @@ export default ({ door }) => {
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [inCart, setInCart] = useState([]);
 
+  const customDescription = `Купить дверь ${door.name} артикул ${door.article}`
+
   const addToCart = () => {
     if (chosenSize === '') {
       notify('warn', 'Выберите размер')
@@ -63,7 +65,11 @@ export default ({ door }) => {
   };
 
   return (
-    <MainContainer>
+    <MainContainer 
+      keywords={`${door.article}, ${door.name}`} 
+      title={`${door.name} ${door.article}`}
+      customDescription={customDescription}
+    >
       <section className={styles.currentDoor}>
         <div className={styles.upSide}>
           <div>

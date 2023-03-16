@@ -5,6 +5,7 @@ import Link                    from "next/link";
 
 import { deleteDoorById } from '../../../redux/slices/catalogSlice';
 import { directions }     from '../../../constants';
+import { isInCart }       from '../../../utils';
 import { notify }         from './../../shared/notify/notify';
 import { useAppDispatch } from './../../../redux/hook';
 import { useAppSelector } from "../../../redux/hook";
@@ -44,10 +45,6 @@ const CatalogItem = ({ door }) => {
     closeModal();
   };
 
-  const isInCart = (door) => { // Вынести в хелпер.
-    return inCart.map(door => door._id).includes(door._id);
-  };
-
   useEffect(() => {
     if (localStorage.getItem('cartDoors')) {
       setInCart(JSON.parse(localStorage.getItem('cartDoors')));
@@ -78,17 +75,7 @@ const CatalogItem = ({ door }) => {
           </Link>
             <div className={styles.bottomSide}>
               <p className={styles.doorPrice}>{door.price}&#8381;</p>
-              {isInCart(door) ? (
-                  <button 
-                    className={styles.inCartButton}
-                    // onClick={inCartNotify}
-                    onClick={openModal}
-                  >
-                    В корзине
-                  </button>
-                ) :
-                <button onClick={openModal}>В корзину</button>
-              }
+              <button onClick={openModal}>В корзину</button>
             </div>
         </div>
       </div>
@@ -96,8 +83,8 @@ const CatalogItem = ({ door }) => {
         title='Выберите характеристики'
         isOpen={choseModalIsOpen}
         onCloseFunction={closeModal}
-        secondText={isInCart(door) ? 'В корзине' : 'В корзину'}
-        secondAction={isInCart(door) ? inCartNotify : addToCart}
+        secondText={isInCart(inCart, door.article, chosenSize, chosenDirection) ? 'В корзине' : 'В корзину'}
+        secondAction={isInCart(inCart, door.article, chosenSize, chosenDirection) ? inCartNotify : addToCart}
       >
         <div className={styles.specWrapper}>
           <span>Размер: </span>

@@ -20,7 +20,8 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        authorization();
+        const token = localStorage.getItem('token');
+        token && authorization();
     }, []);
 
     const authorization = async () => {

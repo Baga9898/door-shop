@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React from 'react';
 
+import { logOut, setUser }                 from '../../../redux/slices/userSlice';
+import { notify }                          from '../../shared/notify/notify';
 import { setAuthForm, setAuthModalIsOpen } from '../../../redux/slices/authSlice';
-import { setUser }                         from '../../../redux/slices/userSlice';
 import { useAppDispatch, useAppSelector }  from '../../../redux/hook';
 import Modal                               from '../../shared/modal/modal';
 import RegModalContent                     from '../../modalsContent/regModalContent/regModalContent';
@@ -27,7 +28,7 @@ const AuthRegModal = () => {
                     closeModal();
                 });
             } catch (error) {
-                console.log('Что - то пошло не так');
+                dispatch(logOut());
             }
         };
     
@@ -43,10 +44,11 @@ const AuthRegModal = () => {
                         password: '',
                     }));
                     closeModal();
-                    console.log('Тут нотификация, что пользователь залогинился успешно и лоадер ещё не забыть.');
+                    notify('success', 'Пользователь успешно автроизован'); // Все текстовки вынести в константы.
                 });
             } catch (error) {
-                console.log('Тут нотификация, что не удалось залогиниться.');
+                dispatch(logOut());
+                notify('error', 'При авторизации возникла ошибка');
             }
         };
 

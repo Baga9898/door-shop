@@ -16,23 +16,27 @@ const AuthRegModal = () => {
         dispatch(setAuthModalIsOpen(false));
     };
 
-        // Вынести в отдельный файлик
+        // Вынести в отдельный файлик (В санки).
         const registration = async () => {
             try {
                 await axios.post('http://localhost:5000/auth/registration', authForm)
-                .then(() => {
+                .then((response) => {
+                    localStorage.setItem('token', response.data.token);
+                    dispatch(setUser(response.data.user));
                     dispatch(setAuthForm({
                         username: '',
                         password: '',
                     }));
                     closeModal();
+                    notify('success', 'Пользователь успешно зарегестрирован');
                 });
             } catch (error) {
                 dispatch(logOut());
+                notify('error', 'При регистрации возникла ошибка');
             }
         };
     
-        // Вынести в отдельный файлик
+        // Вынести в отдельный файлик (В санки).
         const login = async () => {
             try {
                 await axios.post('http://localhost:5000/auth/login', authForm)

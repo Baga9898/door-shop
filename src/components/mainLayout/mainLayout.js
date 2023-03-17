@@ -3,11 +3,11 @@ import { Montserrat } from '@next/font/google';
 import { useEffect }  from 'react';
 import axios          from 'axios';
 
-import { setUser }        from '../../redux/slices/userSlice';
-import { useAppDispatch } from '../../redux/hook'; 
-import CustomHead         from "../head/head";
-import Footer             from "../footer/footer";
-import Header             from "../header/header";
+import { logOut, setUser } from '../../redux/slices/userSlice';
+import { useAppDispatch }  from '../../redux/hook'; 
+import CustomHead          from "../head/head";
+import Footer              from "../footer/footer";
+import Header              from "../header/header";
 
 import styles from './mainLayout.module.scss';
 
@@ -35,8 +35,7 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
                 dispatch(setUser(response.data.user));
             });
         } catch (error) {
-            console.log(error);
-            localStorage.removeItem('token');
+            dispatch(logOut());
         }
     };
 

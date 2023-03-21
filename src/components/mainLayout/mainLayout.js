@@ -18,6 +18,7 @@ const font = Montserrat({
 
 const MainContainer = ({ children, keywords, title, customDescription }) => { 
     const dispatch = useAppDispatch();
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -27,7 +28,7 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
     const authorization = async () => {
         const token = localStorage.getItem('token');
         try {
-            await axios.get('http://localhost:5000/auth/auth', {
+            await axios.get(`${basePath}/auth/auth`, {
                 headers: { Authorization: `Bearer ${token}`}
             })
             .then((response) => {

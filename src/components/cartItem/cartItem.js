@@ -6,6 +6,7 @@ import styles from './styles.module.scss';
 const CartItem = ({ door, cartDoors, setCartDoors }) => {
     const [count, setCount] = useState(door.count || 1);
     const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id && cartDoor.chosenSize === door.chosenSize)[0];
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
     useEffect(() => {
         currentDoor.fullPrice = +door.price;
@@ -46,7 +47,7 @@ const CartItem = ({ door, cartDoors, setCartDoors }) => {
     return (
         <div className={styles.cartItem}>
             <div className={styles.leftSide}>
-                <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
+                <img src={`${basePath}/${door.image}`} alt={door.name} />
                 <div className={styles.articlePart}>
                     <div className={styles.articleName}>
                         <p><span>Арт.</span> {door.article}</p>

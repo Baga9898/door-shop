@@ -11,6 +11,7 @@ import RegModalContent                     from '../../modalsContent/regModalCon
 const AuthRegModal = () => {
     const { authModalIsOpen, authMode, authForm } = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
     const closeModal = () => {
         dispatch(setAuthModalIsOpen(false));
@@ -19,7 +20,7 @@ const AuthRegModal = () => {
         // Вынести в отдельный файлик (В санки).
         const registration = async () => {
             try {
-                await axios.post('http://localhost:5000/auth/registration', authForm)
+                await axios.post(`${basePath}/auth/registration`, authForm)
                 .then((response) => {
                     localStorage.setItem('token', response.data.token);
                     dispatch(setUser(response.data.user));
@@ -39,7 +40,7 @@ const AuthRegModal = () => {
         // Вынести в отдельный файлик (В санки).
         const login = async () => {
             try {
-                await axios.post('http://localhost:5000/auth/login', authForm)
+                await axios.post(`${basePath}/auth/login`, authForm)
                 .then((response) => {
                     localStorage.setItem('token', response.data.token);
                     dispatch(setUser(response.data.user));

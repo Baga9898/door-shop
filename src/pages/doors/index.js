@@ -9,7 +9,8 @@ import MainContainer      from '../../components/mainLayout/mainLayout';
 import Pagination from './../../components/shared/pagination/pagination';
 
 export const getServerSideProps = async () => {
-    const response = await fetch(`http://localhost:5000/api/doors`);
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
+    const response = await fetch(`${basePath}/api/doors`);
     const data = await response.json();
 
     return {

@@ -39,6 +39,7 @@ const AdminPage = () => {
     const [previewImage, setPreviewImage] = useState(null);
     const currentUser = useAppSelector(state => state.user.currentUser);
     const isAdmin = currentUser.roles?.includes('admin');
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
     const [count, setCount] = useState(5);
     const router = useRouter();
@@ -97,7 +98,7 @@ const AdminPage = () => {
             const token = localStorage.getItem('token');
             await axios({
                 method: 'post',
-                url: 'http://localhost:5000/api/doors',
+                url: `${basePath}/api/doors`,
                 data: formData,
                 headers: {
                     Authorization: `Bearer ${token}`,

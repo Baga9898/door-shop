@@ -3,7 +3,8 @@ import MainImage       from '../components/mainImage/mainImage';
 import Newest          from '../components/newest/newest';
 
 export const getStaticProps = async () => {
-    const response = await fetch(`http://localhost:5000/api/doors/last-arrivals`);
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
+    const response = await fetch(`${basePath}/api/doors/last-arrivals`);
     const doors = await response.json();
 
     return {

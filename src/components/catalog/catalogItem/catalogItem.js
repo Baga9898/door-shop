@@ -14,13 +14,14 @@ import Modal              from '../../shared/modal/modal';
 import styles from './catalogItem.module.scss';
 
 const CatalogItem = ({ door }) => {
+  const dispatch = useAppDispatch();
   const [inCart, setInCart] = useState([]);
   const [chosenSize, setChosenSize] = useState('');
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [choseModalIsOpen, setChoseModalIsOpen] = useState(false);
   const { isAuth, currentUser } = useAppSelector(state => state.user);
   const isAdmin = currentUser.roles?.includes('admin');
-  const dispatch = useAppDispatch();
+  const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
   const handleDelete = async(doorId) => {
     dispatch(deleteDoorById(doorId));
@@ -69,7 +70,7 @@ const CatalogItem = ({ door }) => {
         {isAuth && isAdmin && <MdDelete onClick={() => handleDelete(door._id)} className={styles.deleteIcon}/>} 
         <div className={styles.doorCard}>
           <Link href={`/doors/${door._id}`}>
-            <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
+            <img src={`${basePath}/${door.image}`} alt={door.name} />
             <p className={styles.doorArticle}>Арт. {door.article}</p>
             <p className={styles.doorName}>{door.name}</p>
           </Link>

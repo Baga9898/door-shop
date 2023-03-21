@@ -15,8 +15,9 @@ const initialState = {
 export const getSortedDoors = createAsyncThunk(
   'catalog/getSortedDoors',
   async (params, { dispatch }) => {
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
     try {
-      const res = await axios.post(`http://localhost:5000/api/doors/sort`, { ...params });
+      const res = await axios.post(`${basePath}/api/doors/sort`, { ...params });
       dispatch(setDoors(res.data));
     } catch (error) {
       console.error(error.message);
@@ -27,8 +28,9 @@ export const getSortedDoors = createAsyncThunk(
 export const getDoorsCount = createAsyncThunk(
   'catalog/getDoorsCount',
   async (_, { dispatch }) => {
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
     try {
-      const res = await axios.get('http://localhost:5000/api/doors/length');
+      const res = await axios.get(`${basePath}/api/doors/length`);
       dispatch(setDoorsCount(res.data));
     } catch (error) {
       console.error(error.message);
@@ -39,9 +41,10 @@ export const getDoorsCount = createAsyncThunk(
 export const deleteDoorById = createAsyncThunk(
   'catalog/deleteDoorById',
   async (doorId, { dispatch }) => {
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
     const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:5000/api/doors/${doorId}`, {
+      await axios.delete(`${basePath}/api/doors/${doorId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         }

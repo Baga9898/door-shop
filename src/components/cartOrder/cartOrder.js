@@ -20,6 +20,8 @@ const CartOrder = ({ setCartDoors }) => {
         customerMail: '',
     });
 
+    const basePath = process.env.NEXT_PUBLIC_API_LINK;
+
     const phoneRegexp = /(\+7|8)[- _]*\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})/g;
     const emailRegexp = /^[A-Z0-9._-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i;
 
@@ -57,7 +59,7 @@ const CartOrder = ({ setCartDoors }) => {
         dispatch(setIsLoading(true));
 
         try {
-            await axios.post('http://localhost:5000/api/mail', {
+            await axios.post(`${basePath}/api/mail`, {
                 ...orderForm,
                 doors: objectsForBack,
             });

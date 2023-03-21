@@ -9,7 +9,8 @@ import MainContainer  from "../../components/mainLayout/mainLayout";
 import styles from './styles.module.scss';
 
 export const getStaticProps = async ({ params }) => {
-  const response = await fetch(`http://localhost:5000/api/doors/${params.id}`);
+  const basePath = process.env.NEXT_PUBLIC_API_LINK;
+  const response = await fetch(`${basePath}/api/doors/${params.id}`);
   const door = await response.json();
 
   return {
@@ -18,7 +19,8 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const response = await fetch(`http://localhost:5000/api/doors`);
+  const basePath = process.env.NEXT_PUBLIC_API_LINK;
+  const response = await fetch(`${basePath}/api/doors`);
   const doors = await response.json();
 
   const paths = doors.map((door) => {
@@ -36,6 +38,7 @@ export default ({ door }) => {
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [inCart, setInCart] = useState([]);
 
+  const basePath = process.env.NEXT_PUBLIC_API_LINK;
   const customDescription = `Купить дверь ${door.name} артикул ${door.article}`
 
   const addToCart = () => {
@@ -73,7 +76,7 @@ export default ({ door }) => {
       <section className={styles.currentDoor}>
         <div className={styles.upSide}>
           <div>
-            <img src={`http://localhost:5000/${door.image}`} alt={door.name} />
+            <img src={`${basePath}/${door.image}`} alt={door.name} />
           </div>
           <div className={styles.rightSide}>
             <div>

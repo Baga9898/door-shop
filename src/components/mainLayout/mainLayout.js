@@ -28,7 +28,7 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
     const authorization = async () => {
         const token = localStorage.getItem('token');
         try {
-            await axios.get(`${basePath}/auth/auth`, {
+            await axios.get(`${basePath}/api/auth`, {
                 headers: { Authorization: `Bearer ${token}`}
             })
             .then((response) => {

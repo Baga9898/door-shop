@@ -20,7 +20,7 @@ const AuthRegModal = () => {
         // Вынести в отдельный файлик (В санки).
         const registration = async () => {
             try {
-                await axios.post(`${basePath}/auth/registration`, authForm)
+                await axios.post(`${basePath}/api/registration`, authForm)
                 .then((response) => {
                     localStorage.setItem('token', response.data.token);
                     dispatch(setUser(response.data.user));
@@ -40,7 +40,7 @@ const AuthRegModal = () => {
         // Вынести в отдельный файлик (В санки).
         const login = async () => {
             try {
-                await axios.post(`${basePath}/auth/login`, authForm)
+                await axios.post(`${basePath}/api/login`, authForm)
                 .then((response) => {
                     localStorage.setItem('token', response.data.token);
                     dispatch(setUser(response.data.user));

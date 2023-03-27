@@ -6,6 +6,10 @@ const initialState = {
         username: '',
         password: '',
     },
+    errors: {
+        usernameError: '',
+        passwordError: '',
+    },
     authModalIsOpen: false,
 };
 
@@ -22,8 +26,11 @@ export const authSlice = createSlice({
         setAuthModalIsOpen: (state, action) => {
             state.authModalIsOpen = action.payload;
         },
+        setErrors: (state, action) => {
+            state.errors = action.payload;
+        },
     },
 });
 
-export const { setAuthForm, setAuthMode, setAuthModalIsOpen } = authSlice.actions;
+export const { setAuthForm, setAuthMode, setAuthModalIsOpen, setErrors } = authSlice.actions;
 export default authSlice.reducer;

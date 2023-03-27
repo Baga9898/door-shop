@@ -9,9 +9,10 @@ import Modal                               from '../../shared/modal/modal';
 import RegModalContent                     from '../../modalsContent/regModalContent/regModalContent';
 
 const AuthRegModal = () => {
-    const { authModalIsOpen, authMode, authForm } = useAppSelector(state => state.auth);
+    const { authModalIsOpen, authMode, authForm, errors } = useAppSelector(state => state.auth);
     const dispatch = useAppDispatch();
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
+    const disabled = errors.passwordError || errors.usernameError || authForm.password.length === 0 || authForm.username.length === 0;
 
     const closeModal = () => {
         dispatch(setAuthModalIsOpen(false));
@@ -68,6 +69,7 @@ const AuthRegModal = () => {
             isOpen={authModalIsOpen}
             onCloseFunction={closeModal}
             secondAction={authReg}
+            disabled={disabled}
         >
             <RegModalContent />
         </Modal>

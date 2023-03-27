@@ -42,3 +42,24 @@
         }
     }
 }
+
+.passwordInput {
+    position: relative;
+
+    input {
+        width: 100%;
+        padding-right: 55px;
+    }
+
+    svg {
+        top: 0;
+
+        & path:first-child{
+            fill: transparent;
+    
+            &:hover {
+                fill: transparent;
+            }
+        }
+    }
+}

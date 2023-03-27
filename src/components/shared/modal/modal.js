@@ -13,6 +13,7 @@ const Modal = ({
     secondAction, 
     firstText, 
     secondText,
+    disabled,
 }) => {
     const currentMode = useAppSelector(state => state.auth.authMode);
 
@@ -45,7 +46,7 @@ const Modal = ({
                 </div>
                 <div className={styles.footer}>
                     <button onClick={firstAction ? firstAction : onCloseFunction}>{firstText ? firstText : 'отмена'}</button>
-                    {(secondText || isReg) && <button onClick={secondAction}>{getSecondButtonText()}</button>}
+                    {(secondText || isReg) && <button disabled={disabled} onClick={secondAction}>{getSecondButtonText()}</button>}
                 </div>
             </div>
         </div>

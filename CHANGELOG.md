@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.0.1
+
+- Added button to toggle password visibility
+- Implemented login and password validation
+
 ## 1.0.0 MVP
 
 - Basic functionality is ready

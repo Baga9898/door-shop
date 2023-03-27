@@ -33,7 +33,7 @@ const CatalogItem = ({ door }) => {
       return;
     }
 
-    let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
+    let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || []; 
     cartDoors.push({
       ...door, 
       chosenSize: chosenSize, 

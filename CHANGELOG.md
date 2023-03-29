@@ -5,6 +5,7 @@
 - Added button to toggle password visibility
 - Implemented login and password validation
 - Added locales
+- Changed redirect method from push to replace
 
 ## 1.0.0 MVP
 

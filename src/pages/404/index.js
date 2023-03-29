@@ -17,7 +17,7 @@ const Page404 = () => {
     }, 1000);
 
     setTimeout (() => {
-      router.push('/');
+      router.replace('/');
     }, 5000);
   }, []);
  

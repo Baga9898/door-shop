@@ -6,11 +6,11 @@ const CustomHead = ({ children, keywords, title,customDescription }) => {
 
   return (
     <Head>
-        <meta keywords={`${basicKeywords} ${keywords}`} />
-        <meta name='description' content={customDescription ? customDescription : basicDescription} />
-        <title>{title}</title>
-        <link rel="shortcut icon" href="/favicon.ico" />
-        {children}
+      <meta keywords={`${basicKeywords} ${keywords}`} />
+      <meta name='description' content={customDescription ? customDescription : basicDescription} />
+      <title>{title}</title>
+      <link rel="shortcut icon" href="/favicon.ico" />
+      {children}
     </Head>
   )
 }

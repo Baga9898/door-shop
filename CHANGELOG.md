@@ -4,6 +4,7 @@
 
 - Added button to toggle password visibility
 - Implemented login and password validation
+- Added locales
 
 ## 1.0.0 MVP
 

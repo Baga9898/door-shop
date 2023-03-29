@@ -151,3 +151,10 @@
         }
     }
 }
+
+@media (max-width: 1400px) {
+    .contactsPopupActive,
+    .contactsPopup {
+        left: -260px;
+    }
+}

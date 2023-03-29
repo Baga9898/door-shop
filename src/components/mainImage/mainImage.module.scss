@@ -2,6 +2,10 @@
     position: relative;
     margin-bottom: 20px;
 
+    img {
+        border-radius: 5px;
+    }
+
     button {
         position: absolute;
         bottom: 60px;
@@ -17,6 +21,29 @@
         &:hover {
             background: #fff;
             color: #000;
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .mainImage {
+        
+        button {
+            bottom: 40px;
+            left: 40px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .mainImage {
+        
+        button {
+            bottom: 30px;
+            left: 30px;
+            width: 120px;
+            height: 36px;
+            font-size: 12px;
         }
     }
 }

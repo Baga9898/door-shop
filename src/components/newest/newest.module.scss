@@ -1,5 +1,15 @@
 .mainNewest {
+
     h1 {
         margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .mainNewest {
+
+        h1 {
+            font-size: 22px;
+        }
     }
 }

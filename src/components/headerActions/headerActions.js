@@ -1,14 +1,16 @@
+// Refactoring need.
 import { FaUser, FaPhone, FaShoppingCart } from 'react-icons/fa';
-import { useRef }                          from 'react';
+import { GiHamburgerMenu }                 from 'react-icons/gi';
+import { useState, useEffect, useRef }     from 'react';
 import Link                                from 'next/link';
 
-import { cartRoute }                       from './../../constants';
-import { setAuthModalIsOpen }              from '../../redux/slices/authSlice';
-import { useAppDispatch, useAppSelector }  from './../../redux/hook';
-import { useOutsideClick }                 from '../../hooks/useOutsideClick';
-import * as INTL                           from '../../texts';
-import AuthActions                         from './authActions/authActions';
-import AuthRegModal                        from './authRegModal/authRegModal';
+import { cartRoute }                      from './../../constants';
+import { setAuthModalIsOpen }             from '../../redux/slices/authSlice';
+import { useAppDispatch, useAppSelector } from './../../redux/hook';
+import { useOutsideClick }                from '../../hooks/useOutsideClick';
+import * as INTL                          from '../../texts';
+import AuthActions                        from './authActions/authActions';
+import AuthRegModal                       from './authRegModal/authRegModal';
 
 import styles from './headerActions.module.scss';
 
@@ -17,6 +19,17 @@ const HeaderActions = () => {
     const [contactsIsShown, setContactsIsShown] = useOutsideClick(false, contactsRef);
     const { isAuth } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
+    const [currentWidth, setCurrentWidth] = useState(1200);
+    const isBurgerMenuVisible = currentWidth <= 800; 
+
+    useEffect(() => {
+        const windowInnerWidth = document.documentElement.clientWidth;
+        setCurrentWidth(windowInnerWidth);
+    }, []);
+
+    const openBurgerMenu = () => {
+
+    };
 
     const openAuthModal = () => {
         dispatch(setAuthModalIsOpen(true));
@@ -28,7 +41,11 @@ const HeaderActions = () => {
 
     return (
         <>
+            {/* Вынести в отдельный компонент. */}
             <div className={styles.actions}> 
+                {/* Вынести в отдельный компонент. */}
+                {isBurgerMenuVisible && <GiHamburgerMenu onClick={openBurgerMenu} />}
+                {/* Вынести в отдельный компонент. */}
                 {isAuth ? <AuthActions /> : <FaUser onClick={openAuthModal} title={INTL.logInOut} />}
                 {/* Вынести в отдельный компонент. */}
                 <div ref={contactsRef} className={styles.contactsWrapper}>
@@ -38,6 +55,7 @@ const HeaderActions = () => {
                         <a className={styles.mail} href={`mailto: ${INTL.mailAdress}`}>{INTL.mailAdress}</a>
                     </div>
                 </div>
+                {/* Вынести в отдельный компонент. */}
                 <Link href={cartRoute}>
                     <FaShoppingCart title={INTL.cart} />
                 </Link>

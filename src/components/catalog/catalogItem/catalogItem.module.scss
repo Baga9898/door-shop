@@ -1,6 +1,6 @@
 .doorCard {
     width: 250px;
-    margin: 0 25px 20px 25px;
+    margin: 0 25px 50px 25px;
     overflow: hidden;
     display: flow-root;
 
@@ -17,6 +17,25 @@
         border-radius: 5px;
         background: #f3f3f3;
         transition: 0.5s;
+    }
+}
+
+@media (max-width: 1250px) {
+    .doorCard {
+        margin: 0 35px 50px 35px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .doorCard {
+        margin: 0 11px 22px 11px;
+        width: 230px;
+    }
+}
+
+@media (max-width: 800px) {
+    .doorCard {
+        margin: 0 15px 30px 15px;
     }
 }
 
@@ -89,6 +108,15 @@
             border: 1px solid #000;
             background: transparent;
             color: #000;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .bottomSide {
+
+        button {
+            width: 100%;
         }
     }
 }

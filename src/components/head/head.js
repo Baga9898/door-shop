@@ -8,9 +8,9 @@ const CustomHead = ({ children, keywords, title,customDescription }) => {
     <Head>
       <meta keywords={`${basicKeywords} ${keywords}`} />
       <meta name='description' content={customDescription ? customDescription : basicDescription} />
-      <meta name="color-scheme" content="light only" />
+      <meta name='color-scheme' content='light only' />
       <title>{title}</title>
-      <link rel="shortcut icon" href="/favicon.ico" />
+      <link rel='shortcut icon' href='/favicon.ico' />
       {children}
     </Head>
   )

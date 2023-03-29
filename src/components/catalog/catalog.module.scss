@@ -4,3 +4,15 @@
     max-width: 100%;
     min-height: calc(100vh - 259px);
 }
+
+@media (max-width: 800px) {
+    .catalog {
+        padding: 0 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .catalog {
+        justify-content: center;
+    }
+}

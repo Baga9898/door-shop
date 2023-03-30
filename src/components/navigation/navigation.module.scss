@@ -7,6 +7,18 @@
 
 @media (max-width: 800px) {
     .navigation {
-        display: none;
+
+        ul {
+            padding: 40px;
+            flex-direction: column;
+
+            li {
+                margin: 10px;
+
+                a {
+                    font-size: 20px;
+                }
+            }
+        }
     }
 }

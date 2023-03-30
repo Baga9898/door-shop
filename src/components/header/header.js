@@ -8,7 +8,7 @@ const Header = () => {
     return (
         <header className={styles.wrapper}>
             <Logo />
-            <Navigation />
+            <span className={styles.fullWidthNavigation}><Navigation /></span>
             <HeaderActions />
         </header>
     );

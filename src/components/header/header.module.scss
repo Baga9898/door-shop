@@ -4,3 +4,13 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.fullWidthNavigation {
+    display: block;
+}
+
+@media (max-width: 800px) {
+    .fullWidthNavigation {
+        display: none;
+    }
+}

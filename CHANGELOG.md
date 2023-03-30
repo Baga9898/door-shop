@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.1.1
+
+- Added adaptibility burger menu
+
 ## 1.1.0
 
 - Fixed problem with recalculation of image size value on the main page

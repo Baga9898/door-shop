@@ -158,3 +158,13 @@
         left: -260px;
     }
 }
+
+.burgerMenu {
+    display: none;
+}
+
+@media (max-width: 800px) {
+    .burgerMenu {
+        display: block;
+    }
+}

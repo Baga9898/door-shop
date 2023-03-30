@@ -14,7 +14,8 @@ export const getStaticProps = async ({ params }) => {
   const door = await response.json();
 
   return {
-      props: { door },
+    props: { door },
+    revalidate: 60,
   };
 };
 
@@ -29,7 +30,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: false, // Проверить вариант работы со значением 'blocking'.
   }
 };
 

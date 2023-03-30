@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.1.0
+
+- Fixed problem with recalculation of image size value on the main page
+- Implemented adaptability of the main page for mobile devices
+
 ## 1.0.1
 
 - Added button to toggle password visibility

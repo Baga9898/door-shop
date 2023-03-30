@@ -3,6 +3,8 @@
     margin-bottom: 20px;
 
     img {
+        width: 100%;
+        height: 600px;
         border-radius: 5px;
     }
 
@@ -25,8 +27,30 @@
     }
 }
 
+@media (max-width: 1250px) {
+    .mainImage {
+        
+        img {
+            height: 500px;
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .mainImage {
+        
+        img {
+            height: 400px;
+        }
+    }
+}
+
 @media (max-width: 800px) {
     .mainImage {
+
+        img {
+            height: 300px;
+        }
         
         button {
             bottom: 40px;
@@ -37,6 +61,10 @@
 
 @media (max-width: 600px) {
     .mainImage {
+
+        img {
+            height: 200px;
+        }
         
         button {
             bottom: 30px;

@@ -19,16 +19,9 @@ const HeaderActions = () => {
     const [contactsIsShown, setContactsIsShown] = useOutsideClick(false, contactsRef);
     const { isAuth } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
-    const [currentWidth, setCurrentWidth] = useState(1200);
-    const isBurgerMenuVisible = currentWidth <= 800; 
-
-    useEffect(() => {
-        const windowInnerWidth = document.documentElement.clientWidth;
-        setCurrentWidth(windowInnerWidth);
-    }, []);
 
     const openBurgerMenu = () => {
-
+        console.log('burger');
     };
 
     const openAuthModal = () => {
@@ -44,7 +37,7 @@ const HeaderActions = () => {
             {/* Вынести в отдельный компонент. */}
             <div className={styles.actions}> 
                 {/* Вынести в отдельный компонент. */}
-                {isBurgerMenuVisible && <GiHamburgerMenu onClick={openBurgerMenu} />}
+                <GiHamburgerMenu className={styles.burgerMenu} onClick={openBurgerMenu} />
                 {/* Вынести в отдельный компонент. */}
                 {isAuth ? <AuthActions /> : <FaUser onClick={openAuthModal} title={INTL.logInOut} />}
                 {/* Вынести в отдельный компонент. */}

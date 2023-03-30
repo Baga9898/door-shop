@@ -9,7 +9,8 @@ export const getStaticProps = async () => {
 
     return {
         props: { doors },
-    };
+        revalidate: 60,
+    }; 
 };
 
 const Index = ({ doors }) => {

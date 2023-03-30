@@ -8,15 +8,14 @@ import DoorsHeader        from '../../components/doorsHeader/doorsHeader';
 import MainContainer      from '../../components/mainLayout/mainLayout';
 import Pagination from './../../components/shared/pagination/pagination';
 
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
     const response = await fetch(`${basePath}/api/doors`);
     const data = await response.json();
 
     return {
-        props: { 
-            serverDoors: data,
-        },
+        props: { serverDoors: data },
+        revalidate: 60,
     };
 };
 

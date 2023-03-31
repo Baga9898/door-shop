@@ -1,5 +1,5 @@
 .currentDoor {
-    padding: 50px 0;
+    padding: 20px 0;
 
     .upSide {
         padding-bottom: 50px;
@@ -9,6 +9,7 @@
         img {
             width: 600px;
             height: 600px;
+            border-radius: 5px;
             background: #f3f3f3;
         }
     
@@ -112,4 +113,138 @@
 .active {
     color: #000 !important;
     border: 1px solid #000 !important;
+}
+
+@media (max-width: 1250px) {
+    .currentDoor {
+        
+        .upSide {
+    
+            img {
+                width: 400px;
+                height: 400px;
+            }
+
+            .rightSide {
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1000px) {
+    .currentDoor {
+
+        .upSide {
+
+            .imageWrapper {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 400px;
+                    height: 400px;
+                }
+            }
+
+            .rightSide {
+                width: 45%;
+
+                .doorName {
+                    font-size: 24px;
+                    line-height: 26px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .currentDoor {
+
+        .upSide {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .imageWrapper {
+                display: flex;
+                align-items: center;
+
+                img {
+                    width: 500px;
+                    height: 500px;
+                }
+            }
+
+            .rightSide {
+                padding: 0 30px;
+                width: 100%;
+
+                .doorName {
+                    margin-bottom: 5px;
+                    font-size: 24px;
+                    line-height: 30px;
+                }
+
+                .specParagraph {
+                    margin-bottom: 5px;
+                }
+        
+                .specWrapper {
+                    display: flex;
+                    margin-bottom: 10px;
+                }
+    
+                .price {
+                    font-size: 24px;
+                    line-height: 30px;
+                }
+    
+                button {
+                    margin-top: 10px;
+                    width: 200px;
+                    height: 50px;
+                    font-size: 16px;
+                    
+                }
+            }
+        }
+
+        .downSide {
+            padding: 0 30px;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .currentDoor {
+
+        .upSide {
+
+            .imageWrapper {
+
+                img {
+                    width: 300px;
+                    height: 300px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 400px) {
+    .currentDoor {
+
+        .upSide {
+            
+            .rightSide {
+                padding: 0;
+            }
+        }
+
+        .downSide {
+            padding: 0;
+        }
+    }
 }

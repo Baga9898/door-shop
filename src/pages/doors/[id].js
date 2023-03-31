@@ -76,7 +76,7 @@ export default ({ door }) => {
     >
       <section className={styles.currentDoor}>
         <div className={styles.upSide}>
-          <div>
+          <div className={styles.imageWrapper}>
             <img src={`${basePath}/${door.image}`} alt={door.name} />
           </div>
           <div className={styles.rightSide}>
@@ -126,12 +126,12 @@ export default ({ door }) => {
             <h2>Характеристики</h2>
             {/* Вынести в массив объектов. И написать функцию для высчитывания количества точек между свойством и значением.*/}
             {/* Сделать либо таблицу, либо зафлексить , а внутри контент на всю ширину, где контент точка. */}
-            <p>Категория           <span>...................................................................................</span> {door.category}</p>
-            <p>Цвет                <span>............................................................................................</span> {door.color}</p>
-            <p>Конструкция         <span>...............................................................................</span> {door.construction}</p>
-            <p>Страна производства <span>................................................................</span> {door.country}</p>
-            <p>Покрытие            <span>....................................................................................</span> {door.surface}</p>
-            <p>Материал            <span>....................................................................................</span> {door.material}</p>
+            <p>Категория:           <span></span> {door.category}</p>
+            <p>Цвет:                <span></span> {door.color}</p>
+            <p>Конструкция:         <span></span> {door.construction}</p>
+            <p>Страна: производства <span></span> {door.country}</p>
+            <p>Покрытие:            <span></span> {door.surface}</p>
+            <p>Материал:            <span></span> {door.material}</p>
           </div>
           <h2>Описание</h2>
           <p>{door.description}</p>

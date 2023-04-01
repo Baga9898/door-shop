@@ -88,9 +88,30 @@
     }
 
     .downSide {
+        display: flex;
+
+        .specs {
+            padding-right: 40px;
+            margin-right: 40px;
+            width: 35%;
+            border-right: 1px solid #ccc;
+
+            p {
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    color: #000;
+                }
+            }
+        }
+
+        .description {
+            width: 65%;
+        }
 
         h2 {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             font-size: 26px;
             line-height: 32px;
         }
@@ -105,7 +126,7 @@
         }
 
         div {
-            margin-bottom: 30px;
+            margin-bottom: 10px;
         }
     }
 }
@@ -127,6 +148,15 @@
 
             .rightSide {
                 width: 500px;
+            }
+        }
+
+        .downSide {
+
+            .specs {
+                padding-right: 40px;
+                margin-right: 40px;
+                width: 40%;
             }
         }
     }
@@ -156,6 +186,19 @@
                 }
             }
         }
+
+        .downSide {
+
+            .specs {
+                padding-right: 40px;
+                margin-right: 40px;
+                width: 50%;
+            }
+
+            .description {
+                width: 50%;
+            }
+        }
     }
 }
 
@@ -168,6 +211,7 @@
             align-items: center;
 
             .imageWrapper {
+                margin-bottom: 10px;
                 display: flex;
                 align-items: center;
 
@@ -180,39 +224,27 @@
             .rightSide {
                 padding: 0 30px;
                 width: 100%;
-
-                .doorName {
-                    margin-bottom: 5px;
-                    font-size: 24px;
-                    line-height: 30px;
-                }
-
-                .specParagraph {
-                    margin-bottom: 5px;
-                }
-        
-                .specWrapper {
-                    display: flex;
-                    margin-bottom: 10px;
-                }
-    
-                .price {
-                    font-size: 24px;
-                    line-height: 30px;
-                }
     
                 button {
-                    margin-top: 10px;
-                    width: 200px;
-                    height: 50px;
-                    font-size: 16px;
-                    
+                    width: 200px;                    
                 }
             }
         }
 
         .downSide {
             padding: 0 30px;
+            flex-direction: column;
+
+            .specs {
+                padding: 0px;
+                margin: 0 0 30px 0;
+                width: 100%;
+                border: none;
+            }
+
+            .description {
+                width: 100%;
+            }
         }
     }
 }

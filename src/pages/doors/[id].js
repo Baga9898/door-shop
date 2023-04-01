@@ -122,19 +122,19 @@ export default ({ door }) => {
           </div>
         </div>
         <div className={styles.downSide}>
-          <div>
+          <div className={styles.specs}>
             <h2>Характеристики</h2>
-            {/* Вынести в массив объектов. И написать функцию для высчитывания количества точек между свойством и значением.*/}
-            {/* Сделать либо таблицу, либо зафлексить , а внутри контент на всю ширину, где контент точка. */}
-            <p>Категория:           <span></span> {door.category}</p>
-            <p>Цвет:                <span></span> {door.color}</p>
-            <p>Конструкция:         <span></span> {door.construction}</p>
-            <p>Страна: производства <span></span> {door.country}</p>
-            <p>Покрытие:            <span></span> {door.surface}</p>
-            <p>Материал:            <span></span> {door.material}</p>
+            <p>Категория:           <span>{door.category}</span></p>
+            <p>Цвет:                <span>{door.color}</span></p>
+            <p>Конструкция:         <span>{door.construction}</span></p>
+            <p>Страна производства: <span>{door.country}</span></p>
+            <p>Покрытие:            <span>{door.surface}</span></p>
+            <p>Материал:            <span>{door.material}</span></p>
           </div>
-          <h2>Описание</h2>
-          <p>{door.description}</p>
+          <div className={styles.description}>
+            <h2>Описание</h2>
+            <p>{door.description}</p>
+          </div>
         </div>
       </section>
     </MainContainer>

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.2.0
+
+- Implemented adaptability of the current item page for mobile devices
+
 ## 1.1.1
 
 - Added adaptibility burger menu

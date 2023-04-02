@@ -93,3 +93,16 @@
         }
     }
 }
+
+@media (max-width: 1000px) {
+    .cartOrder {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .cartOrder {
+        margin-top: 0;
+    }
+}

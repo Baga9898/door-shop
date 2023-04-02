@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.3.0 Mobile friendly
+
+- Implemented adaptability of the current item page for mobile devices
+- Adaptability Ready
+
 ## 1.2.0
 
 - Implemented adaptability of the current item page for mobile devices

@@ -21,12 +21,13 @@ const Cart = () => {
     }, []);
 
     return (
+        // В константы, подкатегорию page titles.
         <MainContainer title='Двери Портал - корзина'>
             <CartHeader setCartDoors={setCartDoors} />
             {isOrderSuccess ? <SuccessOrder /> : (
                 cartDoors && cartDoors.length !== 0 ? (
                     <div className={styles.content}>
-                        <div style={{width: '65%'}}>
+                        <div className={styles.cartItem}>
                             {cartDoors.map((door, index) => (
                                 <CartItem 
                                     key={`${door._id}_${index}`} 

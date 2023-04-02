@@ -2,4 +2,19 @@
     display: flex; 
     justify-content: space-between;
     min-height: calc(100vh - 177px);
+
+    .cartItem {
+        width: 65%;
+        
+    }
+}
+
+@media (max-width: 1000px) {
+    .content {
+        flex-direction: column;
+
+        .cartItem {
+            width: 100%;
+        }
+    }
 }

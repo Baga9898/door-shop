@@ -1,6 +1,7 @@
-import MainContainer   from '../components/mainLayout/mainLayout';
-import MainImage       from '../components/mainImage/mainImage';
-import Newest          from '../components/newest/newest';
+import MainContainer from '../components/mainLayout/mainLayout';
+import MainImage     from '../components/mainImage/mainImage';
+import Newest        from '../components/newest/newest';
+import PageDownSide  from '../components/pageDownSide/pageDownSide';
 
 export const getStaticProps = async () => {
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
@@ -15,9 +16,11 @@ export const getStaticProps = async () => {
 
 const Index = ({ doors }) => {
     return (
+        // Тайтл в константы.
         <MainContainer title='Двери Портал - Главная'>
             <MainImage />
             <Newest doors={doors}/>
+            <PageDownSide />
         </MainContainer>
     );
 };

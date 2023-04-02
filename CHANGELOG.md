@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.3.1
+
+- Added `see all` button for main page
+
 ## 1.3.0 Mobile friendly
 
 - Implemented adaptability of the current item page for mobile devices

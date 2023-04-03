@@ -1,6 +1,40 @@
 .currentDoor {
     padding: 20px 0;
 
+    .backButton {
+        margin-bottom: 20px;
+        background: transparent;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+
+        p {
+            color: #c4c4c4;
+            transition: 0.5s;
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+
+            path {
+                fill: #c4c4c4;
+                transition: 0.5s;
+            }
+        }
+
+        &:hover {
+            
+            p {
+                color: #414141;
+            }
+
+            svg path {
+                fill: #414141;
+            }
+        }
+    }
+
     .upSide {
         padding-bottom: 30px;
         display: flex;

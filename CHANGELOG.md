@@ -3,6 +3,7 @@
 ## 1.3.1
 
 - Added `see all` button for main page
+- Added `return back` button for current door page
 
 ## 1.3.0 Mobile friendly
 

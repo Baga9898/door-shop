@@ -5,7 +5,7 @@ import PageDownSide  from '../components/pageDownSide/pageDownSide';
 
 export const getStaticProps = async () => {
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
-    const response = await fetch(`${basePath}/api/doors/last-arrivals`);
+    const response = await fetch(`${basePath}/api/doors/last-arrivals`); // Вынести в константы, по типу файлик апи констант, где будет корень из окружения, и дополнения.
     const doors = await response.json();
 
     return {

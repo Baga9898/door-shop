@@ -1,4 +1,6 @@
 // Refactoring need
+import { BsArrowLeftShort }    from 'react-icons/bs';
+import { useRouter }           from 'next/router'
 import { useState, useEffect } from 'react';
 
 import { directions } from '../../constants';
@@ -38,6 +40,7 @@ export default ({ door }) => {
   const [chosenSize, setChosenSize] = useState('');
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [inCart, setInCart] = useState([]);
+  const router = useRouter();
 
   const basePath = process.env.NEXT_PUBLIC_API_LINK;
   const customDescription = `Купить дверь ${door.name} артикул ${door.article}`
@@ -75,6 +78,14 @@ export default ({ door }) => {
       customDescription={customDescription}
     >
       <section className={styles.currentDoor}>
+        <button 
+          className={styles.backButton} 
+          type='button' 
+          onClick={() => router.back()}
+        >
+          <BsArrowLeftShort />
+          <p>Назад</p>
+        </button>
         <div className={styles.upSide}>
           <div className={styles.imageWrapper}>
             <img src={`${basePath}/${door.image}`} alt={door.name} />

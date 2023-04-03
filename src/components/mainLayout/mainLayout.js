@@ -48,7 +48,6 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
                 customDescription={customDescription}
             />
             <Header />
-            {/* {title && <h1>{title}</h1>} */}
             { children }
             <Footer />
         </div>

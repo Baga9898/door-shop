@@ -1,8 +1,9 @@
 // Refactoring need.
-import { CgClose } from 'react-icons/cg';
+import { CgClose }                         from 'react-icons/cg';
+import { FaSearch }                        from 'react-icons/fa';
 import { FaUser, FaPhone, FaShoppingCart } from 'react-icons/fa';
 import { GiHamburgerMenu }                 from 'react-icons/gi';
-import { useRef }                          from 'react';
+import { useState, useRef }                from 'react';
 import Link                                from 'next/link';
 
 import { cartRoute }                      from './../../constants';
@@ -12,7 +13,8 @@ import { useOutsideClick }                from '../../hooks/useOutsideClick';
 import * as INTL                          from '../../texts';
 import AuthActions                        from './authActions/authActions';
 import AuthRegModal                       from './authRegModal/authRegModal';
-import Navigation from '../navigation/navigation';
+import GlobalSearch                       from '../shared/globalSearch/globalSearch';
+import Navigation                         from '../navigation/navigation';
 
 import styles from './headerActions.module.scss';
 
@@ -21,6 +23,7 @@ const HeaderActions = () => {
     const burgerRef = useRef();
     const [contactsIsShown, setContactsIsShown] = useOutsideClick(false, contactsRef);
     const [burgerIsShown, setBurgerIsShown] = useOutsideClick(false, burgerRef);
+    const [searchIsShown, setSearchIsShown] = useState(false);
     const { isAuth } = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
@@ -36,6 +39,10 @@ const HeaderActions = () => {
         setBurgerIsShown(!burgerIsShown);
     };
 
+    const showSearchModal = () => {
+        setSearchIsShown(!searchIsShown);
+    };
+
     return (
         <>
             {/* Вынести в отдельный компонент. */}
@@ -47,6 +54,7 @@ const HeaderActions = () => {
                         <Navigation />
                     </div>
                 </div>
+                <FaSearch onClick={showSearchModal} showSearchModal={showSearchModal} />
                 {/* Вынести в отдельный компонент. */}
                 {isAuth ? <AuthActions /> : <FaUser onClick={openAuthModal} title={INTL.logInOut} />}
                 {/* Вынести в отдельный компонент. */}
@@ -65,6 +73,7 @@ const HeaderActions = () => {
                 </Link>
             </div>
             <AuthRegModal />
+            <GlobalSearch searchIsShown={searchIsShown} showSearchModal={showSearchModal} />
         </>
     );
 };

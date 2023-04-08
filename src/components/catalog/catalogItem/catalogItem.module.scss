@@ -121,14 +121,19 @@
     }
 }
 
+.specs {
+    margin-top: 10px;
+    display: flex;
+
+    p {
+        width: 120px;
+    }
+}
+
 .specWrapper {
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
-
-    span {
-        width: 110px;
-    }
 
     li {
         margin: 0 10px 10px 0;

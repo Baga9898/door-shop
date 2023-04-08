@@ -1,9 +1,10 @@
-import { CgClose }             from 'react-icons/cg';
-import { useState, useEffect } from 'react';
-import axios                   from 'axios';
-import Link                    from 'next/link';
+import { CgClose }                          from 'react-icons/cg';
+import { useState, useEffect, useCallback } from 'react';
+import axios                                from 'axios';
+import Link                                 from 'next/link';
 
 import styles from './styles.module.scss';
+import Highlight from '../highlight/highlight';
 
 const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
     const [search, setSearch] = useState('');
@@ -32,6 +33,10 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
         }, 500);
     };
 
+    const foundLight = useCallback((str) => {
+        return <Highlight filter={search} str={str} />;
+    }, [search]);
+
     return (
         <div className={searchClassName}>
             {/* Вынести в сёрчбар компонент. */}
@@ -49,8 +54,8 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
                         <div className={styles.foundItem} onClick={closeSearch}>
                             <img src={`${basePath}/${door.image}`} alt={door.name} />
                             <div className={styles.rightside}>
-                                <p>Арт. {door.article}</p>
-                                <p>{door.name}</p>
+                                <p>Арт. {foundLight(door.article)}</p>
+                                <p>{foundLight(door.name)}</p>
                             </div>
                         </div>
                     </Link>

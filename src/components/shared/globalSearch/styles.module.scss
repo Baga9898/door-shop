@@ -35,6 +35,14 @@
 
         path {
             fill: #c4c4c4;
+            transition: 0.5s;
+        }
+
+        &:hover {
+
+            path {
+                fill: #fff;
+            }
         }
     }
 }

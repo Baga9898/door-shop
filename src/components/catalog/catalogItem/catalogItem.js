@@ -87,30 +87,38 @@ const CatalogItem = ({ door }) => {
         secondText={isInCart(inCart, door.article, chosenSize, chosenDirection) ? 'В корзине' : 'В корзину'}
         secondAction={isInCart(inCart, door.article, chosenSize, chosenDirection) ? inCartNotify : addToCart}
       >
-        <div className={styles.specWrapper}>
-          <span>Размер: </span>
-          {door.sizes && door.sizes.toString().split(',').map(size => (
-            <li 
-              key={size} 
-              className={size === chosenSize && styles.active}
-              onClick={() => setChosenSize(size)}
-            >
-              {size}
-            </li>
-          ))}
-        </div>
-        {door.withLeftRight &&
+        <div className={styles.specs}>
+          <div>
+            <p>Размер: </p>
+          </div>
           <div className={styles.specWrapper}>
-            <span>Нправление:</span>
-            {directions && directions.map(direction => (
+            {door.sizes && door.sizes.toString().split(',').map(size => (
               <li 
-                key={direction}
-                className={direction === chosenDirection && styles.active}
-                onClick={() => setChosenDirection(direction)}
+                key={size} 
+                className={size === chosenSize && styles.active}
+                onClick={() => setChosenSize(size)}
               >
-                {direction}
+                {size}
               </li>
             ))}
+          </div>
+        </div>
+        {door.withLeftRight &&
+          <div className={styles.specs}>
+            <div>
+              <p>Нправление:</p>
+            </div>
+            <div className={styles.specWrapper}>
+              {directions && directions.map(direction => (
+                <li 
+                  key={direction}
+                  className={direction === chosenDirection && styles.active}
+                  onClick={() => setChosenDirection(direction)}
+                >
+                  {direction}
+                </li>
+              ))}
+            </div>
           </div>
         }
       </Modal>

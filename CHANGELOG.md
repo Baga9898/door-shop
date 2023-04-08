@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.4.3
+
+- Added highlight matches for global search
+
 ## 1.4.2
 
 - Added adaptability of global search

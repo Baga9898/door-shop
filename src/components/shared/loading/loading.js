@@ -7,11 +7,15 @@ import Loader                    from '../loader/loader';
 const Loading = () => {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const [currentPath, setCurrentPath] = useState(router.asPath);
     const { globalLoading } = useAppSelector(state => state.app);
 
     useEffect(() => {
         const handleStart = (url) => (url !== router.asPath) && setLoading(true);
-        const handleComplete = (url) => (url === router.asPath) && setLoading(false);
+        const handleComplete = (url) => {
+            setCurrentPath(url);
+            (url === router.asPath || currentPath === router.asPath) && setLoading(false);
+        };
 
         router.events.on('routeChangeStart', handleStart);
         router.events.on('routeChangeComplete', handleComplete);

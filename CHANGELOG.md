@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.4.1
+
+- Fixed bug transition pages during global search
+
+## 1.4.0
+
+- Added global search by name & article
+
 ## 1.3.1
 
 - Added `see all` button for main page

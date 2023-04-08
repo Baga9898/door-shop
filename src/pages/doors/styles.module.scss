@@ -77,7 +77,12 @@
     
             .specWrapper {
                 display: flex;
-                margin-bottom: 20px;
+                flex-wrap: wrap;
+                margin-bottom: 10px;
+
+                li {
+                    margin-bottom: 5px;
+                }
             }
 
             .price {

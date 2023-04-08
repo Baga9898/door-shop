@@ -36,7 +36,11 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
         <div className={searchClassName}>
             {/* Вынести в сёрчбар компонент. */}
             <CgClose className={styles.closeButton} onClick={closeSearch} />
-            <input value={search} onChange={(e) => handleSearch(e.target.value)}/>
+            {/* Вынести в сёрчбар компонент. */}
+            <div className={styles.searchInputWrapper}>
+                <input value={search} onChange={(e) => handleSearch(e.target.value)}/>
+                <CgClose className={styles.resetSearch} onClick={() => setSearch('')} />
+            </div>
             {/* Вынести в отдельный компонент. */}
             <div className={styles.foundDoors}>
                 {/* Вынести в отдельный компонент. */}

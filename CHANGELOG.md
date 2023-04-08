@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.4.2
+
+- Added adaptability of global search
+- Added search reset button
+
 ## 1.4.1
 
 - Fixed bug transition pages during global search

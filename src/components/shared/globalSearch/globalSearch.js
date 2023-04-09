@@ -3,20 +3,19 @@ import { useState, useEffect, useCallback } from 'react';
 import axios                                from 'axios';
 import Link                                 from 'next/link';
 
+import { useDebounce } from './../../../hooks/useDebounce';
+import Highlight       from '../highlight/highlight';
+
 import styles from './styles.module.scss';
-import Highlight from '../highlight/highlight';
 
 const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
+    const debounce = useDebounce();
     const [search, setSearch] = useState('');
     const [foundDoors, setFoundDoors] = useState([]);
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
     const searchClassName = searchIsShown ? `${styles.globalSearch} ${styles.active}` : styles.globalSearch;
 
-    const handleSearch = (value) => {
-        setSearch(value);
-    };
-
-    useEffect(() => {
+    const makeRequest = () => {
         // Вынести в санку.
         try {
             axios.post(`${basePath}/api/doors/search`, {searchText: search})
@@ -24,6 +23,14 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
                     setFoundDoors(response.data);
                 });
         } catch (error) {}
+    };
+
+    const handleSearch = (value) => {
+        setSearch(value);
+    };
+
+    useEffect(() => {
+        debounce(() => makeRequest());
     }, [search]);
 
     const closeSearch = () => {

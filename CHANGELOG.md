@@ -3,6 +3,7 @@
 ## 1.4.3
 
 - Added highlight matches for global search
+- Added global search debounce
 
 ## 1.4.2
 

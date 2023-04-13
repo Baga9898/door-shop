@@ -30,7 +30,7 @@ const AuthActions = () => {
     return (
         <>
             <div ref={userDropdownRef} className={styles.userModalWrapper}>
-                <p onClick={usernameClickHandler}>{currentUser.username}</p>
+                <p className={styles.username} onClick={usernameClickHandler}>{currentUser.username}</p>
                 <ul className={userDropdownMode}>
                     <li onClick={logout}>{logoutButton}</li>
                 </ul>

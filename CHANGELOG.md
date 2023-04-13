@@ -1,8 +1,14 @@
 # CHANGELOG
 
+## 1.4.5
+
+- Added dynamic sitemap
+
 ## 1.4.4
 
 - Don't show sizes when they are not available
+- Hiding the username on tablets and mobiles
+- Closing global search works correctly on all resolutions
 
 ## 1.4.3
 

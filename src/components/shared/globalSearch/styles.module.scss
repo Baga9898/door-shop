@@ -114,16 +114,20 @@
     }
 }
 
+@media (max-width: 800px) {
+    .globalSearch {
+
+        .closeButton {
+            top: 10px;
+        }
+    }
+}
+
 @media (max-width: 600px) {
     .globalSearch {
 
         input {
-            margin-top: 20px;
             width: 300px;
-        }
-
-        .closeButton {
-            top: 26px;
         }
     }
 
@@ -147,13 +151,6 @@
                     }
                 }
             }
-        }
-    }
-
-    .searchInputWrapper {
-    
-        .resetSearch {
-            top: 28px;
         }
     }
 }

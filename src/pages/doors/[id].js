@@ -32,7 +32,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // Проверить вариант работы со значением 'blocking'.
+    fallback: 'blocking', // Проверить вариант работы со значением 'blocking'.
   }
 };
 
@@ -47,7 +47,7 @@ export default ({ door }) => {
 
   const addToCart = () => {
     if (chosenSize === '') {
-      notify('warn', 'Выберите размер')
+      notify('warn', 'Выберите размер');
       return;
     }
 
@@ -70,6 +70,8 @@ export default ({ door }) => {
   const alreadyInCart = () => {
     notify('info', 'Товар уже добавлен в корзину');
   };
+
+  console.log(door.sizes[0]);
 
   return (
     <MainContainer 
@@ -94,18 +96,22 @@ export default ({ door }) => {
             <div>
               <p className={styles.article}>Арт. {door.article}</p>
               <h1 className={styles.doorName}>{door.name}</h1>
-              <p className={styles.specParagraph}>{'Размеры двери (см):'}</p>
-              <div className={styles.specWrapper}>
-                {door.sizes && door.sizes.toString().split(',').map(size => (
-                  <li 
-                    key={size} 
-                    className={size === chosenSize && styles.active}
-                    onClick={() => setChosenSize(size)}
-                  >
-                    {size}
-                  </li>
-                ))}
-              </div>
+              {door.sizes[0] !== '' &&
+                <>
+                  <p className={styles.specParagraph}>{'Размеры двери (см):'}</p>
+                  <div className={styles.specWrapper}>
+                    {door.sizes.toString().split(',').map(size => (
+                      <li 
+                        key={size} 
+                        className={size === chosenSize && styles.active}
+                        onClick={() => setChosenSize(size)}
+                      >
+                        {size}
+                      </li>
+                    ))}
+                  </div>
+                </>
+              }
               {door.withLeftRight &&
                 <>
                   <p className={styles.specParagraph}>{'Направление открывания:'}</p>

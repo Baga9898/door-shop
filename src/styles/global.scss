@@ -6,11 +6,15 @@
 }
 
 @media (prefers-color-scheme: dark) {
-    .themed {
-      background: white;
-      color: black;  
+    html {
+        color-scheme: light;
     }
-  }
+
+    body {
+        color: #000;
+        background: #fff;
+    }
+}
 
 * {
     padding: 0;

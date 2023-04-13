@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.4.4
+
+- Don't show sizes when they are not available
+
 ## 1.4.3
 
 - Added highlight matches for global search

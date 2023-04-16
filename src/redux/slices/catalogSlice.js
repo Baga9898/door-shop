@@ -3,24 +3,28 @@ import axios                             from 'axios';
 
 import { notify } from './../../components/shared/notify/notify';
 import * as MODES from '../../components/doorsHeader/sortSelect/selectModes';
+import { setIsLoading, setPaginationLoading } from './appSlice';
 
 const initialState = {
   sortMode: MODES.newest,
   doors: [],
   currentPage: 1,
   doorsCount: null,
-  pageSize: 20,
+  pageSize: 2,
 };
 
 export const getSortedDoors = createAsyncThunk(
   'catalog/getSortedDoors',
   async (params, { dispatch }) => {
+    dispatch(setIsLoading(true));
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
     try {
       const res = await axios.post(`${basePath}/api/doors/sort`, { ...params });
       dispatch(setDoors(res.data));
     } catch (error) {
       console.error(error.message);
+    } finally {
+      dispatch(setIsLoading(false));
     }
   },
 );

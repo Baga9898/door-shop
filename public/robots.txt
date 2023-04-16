@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitenap: https://portaldoorsstore.ru/sitemap.xml

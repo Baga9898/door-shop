@@ -34,11 +34,11 @@ const Pagination = () => {
     }
 
     const prevPage = () => {
-        dispatch(setCurrentPage(currentPage - 1))
+        dispatch(setCurrentPage(currentPage - 1));
     };
 
     const nextPage = () => {
-        dispatch(setCurrentPage(currentPage + 1))
+        dispatch(setCurrentPage(currentPage + 1));
     };
 
     const setPage = (page) => {

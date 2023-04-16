@@ -3,6 +3,8 @@
 ## 1.4.5
 
 - Added dynamic sitemap
+- Added basic robots.txt
+- Added doors page changes transition
 
 ## 1.4.4
 

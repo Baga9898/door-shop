@@ -10,7 +10,7 @@ import Pagination                  from './../../components/shared/pagination/pa
 
 export const getStaticProps = async () => {
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
-    const response = await fetch(`${basePath}/api/doors`);
+    const response = await fetch(`${basePath}/api/doors`); // В константы.
     const data = await response.json();
 
     return {
@@ -34,6 +34,7 @@ const Doors = ({ serverDoors }) => {
     }, [doors]);
 
     return (
+        // В константы.
         <MainContainer keywords="" title={`Каталог дверей страница ${currentPage}`}>
             <DoorsHeader />
             <Catalog doors={localDoors} />

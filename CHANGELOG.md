@@ -5,6 +5,7 @@
 - Added dynamic sitemap
 - Added basic robots.txt
 - Added doors page changes transition
+- Added middle page for pagination
 
 ## 1.4.4
 

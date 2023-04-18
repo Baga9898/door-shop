@@ -10,7 +10,7 @@ const initialState = {
   doors: [],
   currentPage: 1,
   doorsCount: null,
-  pageSize: 2,
+  pageSize: 1,
 };
 
 export const getSortedDoors = createAsyncThunk(

@@ -1,16 +1,16 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios                             from 'axios';
 
-import { notify } from './../../components/shared/notify/notify';
-import * as MODES from '../../components/doorsHeader/sortSelect/selectModes';
-import { setIsLoading, setPaginationLoading } from './appSlice';
+import { notify }       from './../../components/shared/notify/notify';
+import { setIsLoading } from './appSlice';
+import * as MODES       from '../../components/doorsHeader/sortSelect/selectModes';
 
 const initialState = {
   sortMode: MODES.newest,
   doors: [],
   currentPage: 1,
   doorsCount: null,
-  pageSize: 1,
+  pageSize: 20,
 };
 
 export const getSortedDoors = createAsyncThunk(

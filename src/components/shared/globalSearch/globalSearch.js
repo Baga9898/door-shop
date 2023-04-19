@@ -1,5 +1,5 @@
 import { CgClose }                          from 'react-icons/cg';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import axios                                from 'axios';
 import Link                                 from 'next/link';
 
@@ -33,6 +33,11 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
         debounce(() => makeRequest());
     }, [search]);
 
+    useEffect(() => {
+        const globalSearchinput = document.querySelector('#globalSearch');
+        globalSearchinput.focus();
+    }, [searchIsShown]);
+
     const closeSearch = () => {
         showSearchModal();
         setTimeout(() => {
@@ -50,7 +55,7 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
             <CgClose className={styles.closeButton} onClick={closeSearch} />
             {/* Вынести в сёрчбар компонент. */}
             <div className={styles.searchInputWrapper}>
-                <input value={search} onChange={(e) => handleSearch(e.target.value)}/>
+                <input id='globalSearch' value={search} onChange={(e) => handleSearch(e.target.value)}/>
                 <CgClose className={styles.resetSearch} onClick={() => setSearch('')} />
             </div>
             {/* Вынести в отдельный компонент. */}

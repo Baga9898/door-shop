@@ -1,3 +1,11 @@
+.layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
 .successOrder {
     height: calc(100vh - 177px);
     display: flex;

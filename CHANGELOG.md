@@ -6,6 +6,7 @@
 - Added basic robots.txt
 - Added doors page changes transition
 - Added middle page for pagination
+- Added autofocus when opening global search
 
 ## 1.4.4
 

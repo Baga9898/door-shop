@@ -48,7 +48,7 @@ const Pagination = () => {
     };
 
     const getPageNumbers = () => {
-        if (pageCount <= 3) {
+        if (pageCount <= 4) {
             return (
                 pageNumbers.map(page => (
                     <li 
@@ -110,9 +110,9 @@ const Pagination = () => {
 
     return (
         <ul className={styles.pagination}>
-            {currentPage !== 1 && <li onClick={prevPage}>{'<'}</li>}
+            {pageCount !== 1 && <button disabled={currentPage === 1} onClick={prevPage}>{'<'}</button>}
             {getPageNumbers()}
-            {currentPage !== pageCount && <li onClick={nextPage}>{'>'}</li>}
+            {pageCount !== 1 && <button disabled={currentPage === pageCount} onClick={nextPage}>{'>'}</button>}
         </ul>
     );
 };

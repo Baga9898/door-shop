@@ -7,6 +7,7 @@
 - Added doors page changes transition
 - Added middle page for pagination
 - Added autofocus when opening global search
+- Added pagination styling
 
 ## 1.4.4
 

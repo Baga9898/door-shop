@@ -1,5 +1,8 @@
-import { CgClose } from 'react-icons/cg';
+import { CgClose }   from 'react-icons/cg';
+import { useEffect } from 'react';
+
 import { useAppSelector } from '../../../redux/hook';
+import { useKeyPress }    from './../../../hooks/useKeyPress';
 
 import styles from './modal.module.scss';
 
@@ -16,13 +19,18 @@ const Modal = ({
     disabled,
 }) => {
     const currentMode = useAppSelector(state => state.auth.authMode);
+    const isModalClosed = useKeyPress('Escape'); // В константы.
+
+    useEffect(() => {
+        isModalClosed && onCloseFunction();
+    }, [isModalClosed]);
 
     const getSecondButtonText = () => {
         if (isReg) {
-            if (currentMode === 'reg') {
-                return 'Зарегистрироваться';
-            } else if (currentMode === 'auth') {
-                return 'Войти';
+            if (currentMode === 'reg') { // В константы.
+                return 'Зарегистрироваться'; // В константы.
+            } else if (currentMode === 'auth') { // В константы.
+                return 'Войти'; // В константы.
             }
         } else {
             return secondText;
@@ -33,7 +41,7 @@ const Modal = ({
         <div className={isOpen ? styles.backgroundOpen : styles.background}>
             <div className={styles.modal}>
                 <CgClose 
-                    title='Close' 
+                    title='Close' // В константы.
                     onClick={onCloseFunction}
                 />
                 {!isReg && (
@@ -45,6 +53,7 @@ const Modal = ({
                     { children }
                 </div>
                 <div className={styles.footer}>
+                    {/* В константы. */}
                     <button onClick={firstAction ? firstAction : onCloseFunction}>{firstText ? firstText : 'отмена'}</button>
                     {(secondText || isReg) && <button disabled={disabled} onClick={secondAction}>{getSecondButtonText()}</button>}
                 </div>

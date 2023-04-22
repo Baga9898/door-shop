@@ -1,9 +1,10 @@
 import { CgClose }                          from 'react-icons/cg';
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import axios                                from 'axios';
 import Link                                 from 'next/link';
 
 import { useDebounce } from './../../../hooks/useDebounce';
+import { useKeyPress } from './../../../hooks/useKeyPress';
 import Highlight       from '../highlight/highlight';
 
 import styles from './styles.module.scss';
@@ -12,6 +13,7 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
     const debounce = useDebounce();
     const [search, setSearch] = useState('');
     const [foundDoors, setFoundDoors] = useState([]);
+    const isSearchClosed = useKeyPress('Escape');
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
     const searchClassName = searchIsShown ? `${styles.globalSearch} ${styles.active}` : styles.globalSearch;
 
@@ -24,6 +26,10 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
                 });
         } catch (error) {}
     };
+
+    useEffect(() => {
+        isSearchClosed && closeSearch();
+    }, [isSearchClosed]);
 
     const handleSearch = (value) => {
         setSearch(value);

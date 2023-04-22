@@ -108,13 +108,12 @@ const state = {
 ./view
   ./login-page
     ./login-form
-      thunks.ts
       constants.ts
-      create-transfer-on-card.spec.ts
       login-form.tsx
-      slice.ts
       selectors.ts
+      slice.ts
       styles.scss
+      thunks.ts
       types.ts
 ```
 
@@ -123,10 +122,10 @@ const state = {
 ```
 ./model
   ./payments
-    action-creators.ts
-    action-types.ts
-    reducer.ts
     selectors.ts
+    slice.ts
+    thunks.ts
+    types.ts
 ```
 
 ## Соглашение об именовании

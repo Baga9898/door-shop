@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## 1.5.0
+
+- Implemented hooks for the escape press event
+- Implemented the logic of closing the modal window by pressing escape
+
 ## 1.4.5
 
 - Added dynamic sitemap

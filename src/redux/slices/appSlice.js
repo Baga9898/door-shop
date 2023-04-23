@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     globalLoading: false,
+    uniqueUserId: null,
 };
 
 export const appSlice = createSlice({
@@ -11,8 +12,11 @@ export const appSlice = createSlice({
         setIsLoading: (state, action) => {
             state.globalLoading = action.payload;
         },
+        setUniqueUserId: (state, action) => {
+            state.uniqueUserId = action.payload;
+        },
     },
 });
 
-export const { setIsLoading } = appSlice.actions;
+export const { setIsLoading, setUniqueUserId } = appSlice.actions;
 export default appSlice.reducer;

@@ -1,9 +1,11 @@
 // Refactoring need
-import { Montserrat } from '@next/font/google';
-import { useEffect }  from 'react';
-import axios          from 'axios';
+import { Montserrat }                 from '@next/font/google';
+import { useEffect }                  from 'react';
+import { v1 as uuidv1, v4 as uuidv4 } from 'uuid';
+import axios                          from 'axios';
 
 import { logOut, setUser } from '../../redux/slices/userSlice';
+import { setUniqueUserId } from '../../redux/slices/appSlice';
 import { useAppDispatch }  from '../../redux/hook'; 
 import CustomHead          from "../head/head";
 import Footer              from "../footer/footer";
@@ -39,6 +41,16 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
             dispatch(logOut());
         }
     };
+
+    useEffect(() => {
+        if (!localStorage.getItem('uniqueUserId')) {
+            const uniqueUserId = `${uuidv4()}-${uuidv1()}`;
+            localStorage.setItem('uniqueUserId', uniqueUserId);
+            dispatch(setUniqueUserId(uniqueUserId));
+        } else {
+            dispatch(setUniqueUserId(localStorage.getItem('uniqueUserId')));
+        }
+    }, []);
 
     return (
         <div className={styles.container} style={font.style}>

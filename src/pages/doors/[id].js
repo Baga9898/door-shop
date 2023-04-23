@@ -1,12 +1,15 @@
 // Refactoring need
-import { BsArrowLeftShort }    from 'react-icons/bs';
-import { useRouter }           from 'next/router'
-import { useState, useEffect } from 'react';
+import { BsArrowLeftShort } from 'react-icons/bs';
+import { useRouter }        from 'next/router'
+import { useState }         from 'react';
 
-import { directions } from '../../constants';
-import { isInCart }   from '../../utils';
-import { notify }     from '../../components/shared/notify/notify';
-import MainContainer  from "../../components/mainLayout/mainLayout";
+import { addCartDoor }    from '../../redux/slices/cartSlice';
+import { directions }     from '../../constants';
+import { isInCart }       from '../../utils';
+import { notify }         from '../../components/shared/notify/notify';
+import { useAppDispatch } from './../../redux/hook';
+import { useAppSelector } from '../../redux/hook';
+import MainContainer      from "../../components/mainLayout/mainLayout";
 
 import styles from './styles.module.scss';
 
@@ -32,18 +35,29 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: 'blocking', // Проверить вариант работы со значением 'blocking'.
+    fallback: 'blocking',
   }
 };
 
 export default ({ door }) => {
+  const router = useRouter();
+  const dispatch = useAppDispatch();
   const [chosenSize, setChosenSize] = useState('');
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
-  const [inCart, setInCart] = useState([]);
-  const router = useRouter();
+  const inCartDoors = useAppSelector(state => state.cart.cartDoors);
 
   const basePath = process.env.NEXT_PUBLIC_API_LINK;
   const customDescription = `Купить дверь ${door.name} артикул ${door.article}`
+
+  // В санки.
+  const setDoorsInCart = async(doorForCart) => {
+    try {
+      axios.put(`${basePath}/api/cart/${uniqueUserId}`, {cartDoors: [...inCartDoors, doorForCart]})
+        .then(response => {
+          dispatch(addCartDoor(response.data.cartDoors[0]));
+        });
+    } catch (error) {}
+  };
 
   const addToCart = () => {
     if (chosenSize === '') {
@@ -51,27 +65,20 @@ export default ({ door }) => {
       return;
     }
 
-    let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || [];
-    door.chosenSize = chosenSize;
-    door.direction = chosenDirection;
-    door.count = 1;
-    cartDoors.push(door);
-    localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
-    setInCart(cartDoors);
+    const doorForCart = {
+      ...door, 
+      count: 1, 
+      chosenSize: chosenSize,
+      direction: chosenDirection,
+    };
+
+    setDoorsInCart(doorForCart);
     notify('success', 'Товар успешно добавлен в корзину');
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('cartDoors')) {
-      setInCart(JSON.parse(localStorage.getItem('cartDoors')));
-    }
-  }, []);
 
   const alreadyInCart = () => {
     notify('info', 'Товар уже добавлен в корзину');
   };
-
-  console.log(door.sizes[0]);
 
   return (
     <MainContainer 
@@ -131,7 +138,7 @@ export default ({ door }) => {
             </div>
             <div>
               <p className={styles.price}>{door.price} &#8381;/шт.</p>
-              {isInCart(inCart, door.article, chosenSize, chosenDirection) ?
+              {isInCart(inCartDoors, door.article, chosenSize, chosenDirection) ?
                 <button onClick={alreadyInCart}>В корзине</button> :
                 <button onClick={addToCart}>В корзину</button>
               }

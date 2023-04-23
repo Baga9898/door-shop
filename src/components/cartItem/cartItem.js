@@ -1,47 +1,35 @@
 // Refactoring need
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import styles from './styles.module.scss';
 
-const CartItem = ({ door, cartDoors, setCartDoors }) => {
+const CartItem = ({ door, cartDoors }) => {
     const [count, setCount] = useState(door.count || 1);
     const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id && cartDoor.chosenSize === door.chosenSize)[0];
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
-    useEffect(() => {
-        currentDoor.fullPrice = +door.price;
-        localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
-    }, []);
+    // useEffect(() => {
+    //     currentDoor.fullPrice = +door.price;
+    // }, []);
 
     const decrement = () => {
         if (count > 1) {
             setCount(prevState => prevState - 1);
-            currentDoor.count = count - 1;
-            currentDoor.fullPrice = (+door.price * count) - +door.price;
-            localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
-
-            // console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
-            // console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+            // currentDoor.count = count - 1;
+            // currentDoor.fullPrice = (+door.price * count) - +door.price;
         }
     };
 
     const inccrement = () => {
         setCount(prevState => prevState + 1);
-        currentDoor.count = count + 1;
-        currentDoor.fullPrice = (+door.price * count) + +door.price;
-        localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
-
-        // console.log(cartDoors.map(door => door.count).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
-        // console.log(cartDoors.map(door => door.fullPrice).reduce((accumulator, currentValue) => accumulator + currentValue, 0)); // Добавить в редакс.
+        // currentDoor.count = count + 1;
+        // currentDoor.fullPrice = (+door.price * count) + +door.price;
     };
 
     const deleteFromCart = (article, size) => {
-        const localDoors = JSON.parse(localStorage.getItem('cartDoors'));
-        const itemForDelete = localDoors.filter(door => door.article === article && door.chosenSize === size)[0];
-        const indexOfChosenDoor = localDoors.indexOf(itemForDelete);
-        localDoors.splice(indexOfChosenDoor, 1);
-        localStorage.setItem('cartDoors', JSON.stringify(localDoors));
-        setCartDoors(localDoors);
+        const itemForDelete = cartDoors.filter(door => door.article === article && door.chosenSize === size)[0];
+        const indexOfChosenDoor = cartDoors.indexOf(itemForDelete);
+        // cartDoors.splice(indexOfChosenDoor, 1);
     };
 
     return (

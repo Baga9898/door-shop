@@ -5,6 +5,7 @@ import { v1 as uuidv1, v4 as uuidv4 } from 'uuid';
 import axios                          from 'axios';
 
 import { logOut, setUser } from '../../redux/slices/userSlice';
+import { setCartDoors }    from '../../redux/slices/cartSlice';
 import { setUniqueUserId } from '../../redux/slices/appSlice';
 import { useAppDispatch }  from '../../redux/hook'; 
 import CustomHead          from "../head/head";
@@ -22,11 +23,43 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
     const dispatch = useAppDispatch();
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
+    // Вынести в санки.
+    const createCart = async(uniqueUserId) => {
+        try {
+            axios.post(`${basePath}/api/cart`, {uniqueUserId: uniqueUserId})
+                .then(response => {
+                    dispatch(setCartDoors(response.data[0].cartDoors));
+                });
+        } catch (error) {}
+    };
+
+    // Вынести в санки.
+    const getCart = async(uniqueUserId) => {
+        try {
+            axios.get(`${basePath}/api/cart/${uniqueUserId}`)
+                .then(response => {
+                    dispatch(setCartDoors(response.data[0].cartDoors));
+                });
+        } catch (error) {}
+    };
+
     useEffect(() => {
         const token = localStorage.getItem('token');
         token && authorization();
+
+        if (!localStorage.getItem('uniqueUserId')) {
+            const uniqueUserId = `${uuidv4()}-${uuidv1()}`;
+            localStorage.setItem('uniqueUserId', uniqueUserId);
+            dispatch(setUniqueUserId(uniqueUserId));
+            createCart(uniqueUserId);
+        } else {
+            const uniqueUserId = localStorage.getItem('uniqueUserId');
+            dispatch(setUniqueUserId(uniqueUserId));
+            getCart(uniqueUserId);
+        }
     }, []);
 
+    // Вынести в санки.
     const authorization = async () => {
         const token = localStorage.getItem('token');
         try {
@@ -41,16 +74,6 @@ const MainContainer = ({ children, keywords, title, customDescription }) => {
             dispatch(logOut());
         }
     };
-
-    useEffect(() => {
-        if (!localStorage.getItem('uniqueUserId')) {
-            const uniqueUserId = `${uuidv4()}-${uuidv1()}`;
-            localStorage.setItem('uniqueUserId', uniqueUserId);
-            dispatch(setUniqueUserId(uniqueUserId));
-        } else {
-            dispatch(setUniqueUserId(localStorage.getItem('uniqueUserId')));
-        }
-    }, []);
 
     return (
         <div className={styles.container} style={font.style}>

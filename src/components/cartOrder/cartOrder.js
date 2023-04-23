@@ -9,7 +9,7 @@ import { setIsOrderSuccess } from '../../redux/slices/cartSlice';
 
 import styles from './styles.module.scss';
 
-const CartOrder = ({ setCartDoors }) => {
+const CartOrder = () => {
     const dispatch = useDispatch();
     const [nameError, setNameError] = useState('');
     const [phoneError, setPhoneError] = useState('');
@@ -64,7 +64,8 @@ const CartOrder = ({ setCartDoors }) => {
                 doors: objectsForBack,
             });
             localStorage.removeItem('cartDoors');
-            setCartDoors();
+            // delete all request here
+            // setCartDoors();
             setOrderForm({
                 customerName: '',
                 customerPhone: '',

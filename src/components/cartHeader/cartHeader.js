@@ -1,10 +1,9 @@
 // Refactoring need
 import styles from './styles.module.scss';
 
-const CartHeader = ({ setCartDoors }) => {
+const CartHeader = () => {
     const handleCartClear = () => {
-        localStorage.removeItem('cartDoors');
-        setCartDoors(null);
+        // delete all request here 
     };
 
     return (

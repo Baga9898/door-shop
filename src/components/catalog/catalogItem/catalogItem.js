@@ -1,8 +1,10 @@
 // Refactoring need
-import { MdDelete }            from 'react-icons/md';
-import { useState, useEffect } from 'react';
-import Link                    from "next/link";
+import { MdDelete } from 'react-icons/md';
+import { useState } from 'react';
+import axios        from 'axios';
+import Link         from 'next/link';
 
+import { addCartDoor }    from '../../../redux/slices/cartSlice';
 import { deleteDoorById } from '../../../redux/slices/catalogSlice';
 import { directions }     from '../../../constants';
 import { isInCart }       from '../../../utils';
@@ -15,11 +17,12 @@ import styles from './catalogItem.module.scss';
 
 const CatalogItem = ({ door }) => {
   const dispatch = useAppDispatch();
-  const [inCart, setInCart] = useState([]);
   const [chosenSize, setChosenSize] = useState('');
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const [choseModalIsOpen, setChoseModalIsOpen] = useState(false);
   const { isAuth, currentUser } = useAppSelector(state => state.user);
+  const uniqueUserId = useAppSelector(state => state.app.uniqueUserId);
+  const inCartDoors = useAppSelector(state => state.cart.cartDoors);
   const isAdmin = currentUser.roles?.includes('admin');
   const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
@@ -27,30 +30,33 @@ const CatalogItem = ({ door }) => {
     dispatch(deleteDoorById(doorId));
   };
 
+  // В санки.
+  const setDoorsInCart = async(doorForCart) => {
+    try {
+      axios.put(`${basePath}/api/cart/${uniqueUserId}`, {cartDoors: [...inCartDoors, doorForCart]})
+        .then(response => {
+          dispatch(addCartDoor(response.data.cartDoors[0]));
+        });
+    } catch (error) {}
+  };
+
   const addToCart = () => {
     if (chosenSize === '') {
       notify('warn', 'Необходимо выбрать размер');
       return;
     }
-
-    let cartDoors = JSON.parse(localStorage.getItem('cartDoors')) || []; 
-    cartDoors.push({
+    
+    const doorForCart = {
       ...door, 
-      chosenSize: chosenSize, 
-      count: 1,
+      count: 1, 
+      chosenSize: chosenSize,
       direction: chosenDirection,
-    });
-    localStorage.setItem('cartDoors', JSON.stringify(cartDoors));
-    setInCart(cartDoors);
+    };
+
+    setDoorsInCart(doorForCart);
     notify('success', 'Товар успешно добавлен в корзину');
     closeModal();
   };
-
-  useEffect(() => {
-    if (localStorage.getItem('cartDoors')) {
-      setInCart(JSON.parse(localStorage.getItem('cartDoors')));
-    }
-  }, []);
 
   const openModal = () => {
     setChoseModalIsOpen(true);
@@ -84,8 +90,8 @@ const CatalogItem = ({ door }) => {
         title='Выберите характеристики'
         isOpen={choseModalIsOpen}
         onCloseFunction={closeModal}
-        secondText={isInCart(inCart, door.article, chosenSize, chosenDirection) ? 'В корзине' : 'В корзину'}
-        secondAction={isInCart(inCart, door.article, chosenSize, chosenDirection) ? inCartNotify : addToCart}
+        secondText={isInCart(inCartDoors, door.article, chosenSize, chosenDirection) ? 'В корзине' : 'В корзину'}
+        secondAction={isInCart(inCartDoors, door.article, chosenSize, chosenDirection) ? inCartNotify : addToCart}
       >
         <div className={styles.specs}>
           <div>

@@ -3,9 +3,10 @@ import { useDispatch }         from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios                   from 'axios';
 
-import { notify }            from '../shared/notify/notify';
-import { setIsLoading }      from '../../redux/slices/appSlice';
-import { setIsOrderSuccess } from '../../redux/slices/cartSlice';
+import { notify }                          from '../shared/notify/notify';
+import { setEmptyCart, setIsOrderSuccess } from '../../redux/slices/cartSlice';
+import { setIsLoading }                    from '../../redux/slices/appSlice';
+import { useAppSelector }                  from '../../redux/hook';
 
 import styles from './styles.module.scss';
 
@@ -19,7 +20,8 @@ const CartOrder = () => {
         customerPhone: '',
         customerMail: '',
     });
-
+    const cartDoors = useAppSelector(state => state.cart.cartDoors);
+    const uniqueUserId = useAppSelector(state => state.app.uniqueUserId);
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
     const phoneRegexp = /(\+7|8)[- _]*\(?[- _]*(\d{3}[- _]*\)?([- _]*\d){7}|\d\d[- _]*\d\d[- _]*\)?([- _]*\d){6})/g;
@@ -45,9 +47,17 @@ const CartOrder = () => {
         setMailError('Почта должна соответствовать формату: example@mail.ru');
     }, [orderForm.customerMail]);
 
+    const handleCartClear = () => {
+        try {
+            axios.put(`${basePath}/api/cart/delete/${uniqueUserId}`)
+                .then(() => {
+                    dispatch(setEmptyCart());
+                });
+        } catch (error) {}
+    };
+
     const makeOrder = async() => {
-        const localDoors = JSON.parse(localStorage.getItem('cartDoors'));
-        const objectsForBack = localDoors.map(door => ({
+        const objectsForBack = cartDoors.map(door => ({
             article: door.article,
             name: door.name,
             size: door.chosenSize,
@@ -63,9 +73,7 @@ const CartOrder = () => {
                 ...orderForm,
                 doors: objectsForBack,
             });
-            localStorage.removeItem('cartDoors');
-            // delete all request here
-            // setCartDoors();
+            handleCartClear();
             setOrderForm({
                 customerName: '',
                 customerPhone: '',

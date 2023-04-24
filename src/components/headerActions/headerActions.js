@@ -25,6 +25,7 @@ const HeaderActions = () => {
     const [burgerIsShown, setBurgerIsShown] = useOutsideClick(false, burgerRef);
     const [searchIsShown, setSearchIsShown] = useState(false);
     const { isAuth } = useAppSelector(state => state.user);
+    const cartDoors = useAppSelector(state => state.cart.cartDoors);
     const dispatch = useAppDispatch();
 
     const openAuthModal = () => {
@@ -70,10 +71,11 @@ const HeaderActions = () => {
                 {/* Вынести в отдельный компонент. */}
                 <Link href={cartRoute}>
                     <FaShoppingCart title={INTL.cart} />
+                    <div>{cartDoors.length}</div>
                 </Link>
             </div>
             <AuthRegModal />
-            <GlobalSearch searchIsShown={searchIsShown} showSearchModal={showSearchModal} />
+            <GlobalSearch searchIsShown={searchIsShown} setSearchIsShown={setSearchIsShown} />
         </>
     );
 };

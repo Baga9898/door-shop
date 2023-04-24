@@ -9,7 +9,7 @@ import Highlight       from '../highlight/highlight';
 
 import styles from './styles.module.scss';
 
-const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
+const GlobalSearch = ({ searchIsShown, setSearchIsShown }) => {
     const debounce = useDebounce();
     const [search, setSearch] = useState('');
     const [foundDoors, setFoundDoors] = useState([]);
@@ -45,7 +45,7 @@ const GlobalSearch = ({ searchIsShown, showSearchModal }) => {
     }, [searchIsShown]);
 
     const closeSearch = () => {
-        showSearchModal();
+        setSearchIsShown(false);
         setTimeout(() => {
             setSearch('');
         }, 500);

@@ -1,29 +1,40 @@
 // Refactoring need
 import { useState } from 'react';
+import axios        from 'axios';
+
+import { useAppSelector } from '../../redux/hook';
 
 import styles from './styles.module.scss';
 
 const CartItem = ({ door, cartDoors }) => {
     const [count, setCount] = useState(door.count || 1);
+    const uniqueId = useAppSelector(state => state.app.uniqueUserId);
     const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id && cartDoor.chosenSize === door.chosenSize)[0];
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
-    // useEffect(() => {
-    //     currentDoor.fullPrice = +door.price;
-    // }, []);
+    // Вынести в санку.
+    const updateCartDoor = () => {
+        try {
+            axios.put(`${basePath}/api/cart/edit/${uniqueId}`, {
+                currentDoorId: currentDoor._id,
+                chosenSize: currentDoor.chosenSize,
+                direction: currentDoor.direction,
+                fullPrice: +door.price * (count + 1),
+                count: count + 1,
+            })
+        } catch (error) {}
+    }
 
     const decrement = () => {
         if (count > 1) {
             setCount(prevState => prevState - 1);
-            // currentDoor.count = count - 1;
-            // currentDoor.fullPrice = (+door.price * count) - +door.price;
+            updateCartDoor();
         }
     };
 
     const inccrement = () => {
         setCount(prevState => prevState + 1);
-        // currentDoor.count = count + 1;
-        // currentDoor.fullPrice = (+door.price * count) + +door.price;
+        updateCartDoor();
     };
 
     const deleteFromCart = (article, size) => {

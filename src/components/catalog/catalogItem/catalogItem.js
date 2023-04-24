@@ -33,9 +33,9 @@ const CatalogItem = ({ door }) => {
   // В санки.
   const setDoorsInCart = async(doorForCart) => {
     try {
-      axios.put(`${basePath}/api/cart/${uniqueUserId}`, {cartDoors: [...inCartDoors, doorForCart]})
+      axios.put(`${basePath}/api/cart/${uniqueUserId}`, { cartDoors: inCartDoors, doorForCart: doorForCart })
         .then(response => {
-          dispatch(addCartDoor(response.data.cartDoors[0]));
+          dispatch(addCartDoor(response.data.doorForCart));
         });
     } catch (error) {}
   };

@@ -105,27 +105,29 @@ const state = {
 Типичная структура директории компонента реализующего отдельную функциональность приложения может выглядеть следующим образом:
 
 ```
-./view
-  ./login-page
-    ./login-form
-      constants.ts
-      login-form.tsx
-      selectors.ts
-      slice.ts
-      styles.scss
-      thunks.ts
-      types.ts
+./client
+  ./view
+    ./login-page
+      ./login-form
+        constants.ts
+        login-form.tsx
+        selectors.ts
+        slice.ts
+        styles.scss
+        thunks.ts
+        types.ts
 ```
 
 А так может выглядеть структура директории для отдельной части модели данных составляющих одноименную часть состояния:
 
 ```
-./model
-  ./payments
-    selectors.ts
-    slice.ts
-    thunks.ts
-    types.ts
+./client
+  ./model
+    ./payments
+      selectors.ts
+      slice.ts
+      thunks.ts
+      types.ts
 ```
 
 ## Соглашение об именовании

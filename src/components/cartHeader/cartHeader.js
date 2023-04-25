@@ -14,7 +14,7 @@ const CartHeader = () => {
 
     const handleCartClear = () => {
         try {
-            axios.put(`${basePath}/api/cart/delete/${uniqueUserId}`)
+            axios.put(`${basePath}/api/cart/clear/${uniqueUserId}`)
                 .then(() => {
                     dispatch(setEmptyCart());
                 });

@@ -1,15 +1,21 @@
 // Refactoring need
-import { useState } from 'react';
-import axios        from 'axios';
+import { useDispatch } from 'react-redux';
+import { useState }    from 'react';
+import axios           from 'axios';
 
 import { useAppSelector } from '../../redux/hook';
 
 import styles from './styles.module.scss';
+import { setCartDoors } from '../../redux/slices/cartSlice';
 
 const CartItem = ({ door, cartDoors }) => {
+    const dispatch = useDispatch();
     const [count, setCount] = useState(door.count || 1);
     const uniqueId = useAppSelector(state => state.app.uniqueUserId);
-    const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id && cartDoor.chosenSize === door.chosenSize)[0];
+    const currentDoor = cartDoors.filter(cartDoor => cartDoor._id === door._id 
+        && cartDoor.chosenSize === door.chosenSize
+        && (cartDoor.direction && cartDoor.direction === door.direction)
+    )[0];
     const basePath = process.env.NEXT_PUBLIC_API_LINK;
 
     // Вынести в санку.
@@ -37,10 +43,16 @@ const CartItem = ({ door, cartDoors }) => {
         updateCartDoor();
     };
 
-    const deleteFromCart = (article, size) => {
-        const itemForDelete = cartDoors.filter(door => door.article === article && door.chosenSize === size)[0];
-        const indexOfChosenDoor = cartDoors.indexOf(itemForDelete);
-        // cartDoors.splice(indexOfChosenDoor, 1);
+    const deleteFromCart = (id, size, direction) => {
+        try {
+            axios.put(`${basePath}/api/cart/delete/${uniqueId}`, {
+                currentDoorId: id,
+                chosenSize: size,
+                direction: direction,
+            }).then((response) => {
+                dispatch(setCartDoors(response.data.cartDoors));
+            });
+        } catch (error) {}
     };
 
     return (
@@ -55,7 +67,7 @@ const CartItem = ({ door, cartDoors }) => {
                     <div>
                         {/* <button>В избранное</button> */}
                         {/* <span> | </span> */}
-                        <button onClick={() => deleteFromCart(door.article, door.chosenSize)}>Удалить</button>
+                        <button onClick={() => deleteFromCart(door._id, door.chosenSize, door.direction)}>Удалить</button>
                     </div>
                 </div>
             </div>

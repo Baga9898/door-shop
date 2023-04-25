@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.0
+
+- Implemented the transition of storing data about the user's shopping cart from local storage to the server
+
 ## 1.5.0
 
 - Implemented hooks for the escape press event

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.2
+
+- Fixed incorrect behavior of the request to add a door to the basket on the page of the selected door
+
 ## 1.6.1
 
 - Implemented a counter showing the number of items in the cart

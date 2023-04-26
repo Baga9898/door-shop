@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 1.6.1
+
+- Implemented a counter showing the number of items in the cart
+
 ## 1.6.0
 
 - Implemented the transition of storing data about the user's shopping cart from local storage to the server

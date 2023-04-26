@@ -69,9 +69,9 @@ const HeaderActions = () => {
                     </div>
                 </div>
                 {/* Вынести в отдельный компонент. */}
-                <Link href={cartRoute}>
+                <Link href={cartRoute} className={styles['cart-wrapper']}>
                     <FaShoppingCart title={INTL.cart} />
-                    <div>{cartDoors.length}</div>
+                    <div className={cartDoors.length ? styles['cart-doors-count-active'] : styles['cart-doors-count']}>{cartDoors.length}</div>
                 </Link>
             </div>
             <AuthRegModal />

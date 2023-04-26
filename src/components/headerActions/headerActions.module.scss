@@ -224,3 +224,43 @@
     width: 28px !important;
     height: 28px !important;
 }
+
+.cart-wrapper {
+    position: relative;
+}
+
+.cart-doors-count {
+    position: absolute;
+    top: -7px;
+    right: -2px;
+    padding: 0 3px;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    font-size: 10px;
+    background: #ff4646;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.cart-doors-count-active {
+    position: absolute;
+    top: -7px;
+    right: -2px;
+    padding: 0 3px;
+    min-width: 15px;
+    height: 15px;
+    border-radius: 15px;
+    font-size: 10px;
+    background: #ff4646;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: 0.5s;
+}

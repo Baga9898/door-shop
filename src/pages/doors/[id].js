@@ -2,6 +2,7 @@
 import { BsArrowLeftShort } from 'react-icons/bs';
 import { useRouter }        from 'next/router'
 import { useState }         from 'react';
+import axios                from 'axios';
 
 import { addCartDoor }    from '../../redux/slices/cartSlice';
 import { directions }     from '../../constants';
@@ -45,6 +46,7 @@ export default ({ door }) => {
   const [chosenSize, setChosenSize] = useState('');
   const [chosenDirection, setChosenDirection] = useState(directions[0]);
   const inCartDoors = useAppSelector(state => state.cart.cartDoors);
+  const uniqueUserId = useAppSelector(state => state.app.uniqueUserId);
 
   const basePath = process.env.NEXT_PUBLIC_API_LINK;
   const customDescription = `Купить дверь ${door.name} артикул ${door.article}`
@@ -52,9 +54,10 @@ export default ({ door }) => {
   // В санки.
   const setDoorsInCart = async(doorForCart) => {
     try {
-      axios.put(`${basePath}/api/cart/${uniqueUserId}`, {cartDoors: [...inCartDoors, doorForCart]})
+      axios.put(`${basePath}/api/cart/${uniqueUserId}`, { cartDoors: inCartDoors, doorForCart: doorForCart })
         .then(response => {
-          dispatch(addCartDoor(response.data.cartDoors[0]));
+          dispatch(addCartDoor(response.data.doorForCart));
+          notify('success', 'Товар успешно добавлен в корзину');
         });
     } catch (error) {}
   };
@@ -73,7 +76,6 @@ export default ({ door }) => {
     };
 
     setDoorsInCart(doorForCart);
-    notify('success', 'Товар успешно добавлен в корзину');
   };
 
   const alreadyInCart = () => {

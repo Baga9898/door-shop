@@ -36,6 +36,7 @@ const CatalogItem = ({ door }) => {
       axios.put(`${basePath}/api/cart/${uniqueUserId}`, { cartDoors: inCartDoors, doorForCart: doorForCart })
         .then(response => {
           dispatch(addCartDoor(response.data.doorForCart));
+          notify('success', 'Товар успешно добавлен в корзину');
         });
     } catch (error) {}
   };
@@ -54,7 +55,6 @@ const CatalogItem = ({ door }) => {
     };
 
     setDoorsInCart(doorForCart);
-    notify('success', 'Товар успешно добавлен в корзину');
     closeModal();
   };
 
